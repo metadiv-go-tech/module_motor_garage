@@ -104,6 +104,8 @@ github.com/metadiv-go-tech/metagin v1.5.0 h1:zK0dpmgMfKUFBkni2eHpqwzzCupFaDQ4nFg
 github.com/metadiv-go-tech/metagin v1.5.0/go.mod h1:P34TxQxDNsvXl/k8nwuOZ5xMCnmvi19M442UdV6N9Tk=
 github.com/metadiv-go-tech/metaorm v1.3.0 h1:oCt8lyEWalXLfiuqP9BB3ehr4noAxKxyRpaQVJUN6UE=
 github.com/metadiv-go-tech/metaorm v1.3.0/go.mod h1:OexZfDduBfr7A5QBLIARy/vglwRZcZCT6boiTTiU1SM=
+github.com/metadiv-go-tech/mod_dev_auth v0.0.0-20241026040509-8d633aea24e0 h1:PQC3dEpO0/+hPFFWWTGjKWn41+fRzwxoH1bZj1rMQms=
+github.com/metadiv-go-tech/mod_dev_auth v0.0.0-20241026040509-8d633aea24e0/go.mod h1:1cBBi/7fo9Ww/uo9REtIuieSOX3URQEC+FuXt7k1o1U=
 github.com/metadiv-go-tech/module_relationship v1.1.0 h1:bQvA7gJHnBi0dI4jBE+FqtzWSQKKDI36yQ/+dj9B8IM=
 github.com/metadiv-go-tech/module_relationship v1.1.0/go.mod h1:ash+ZdDtkVvkzzYIizqkodivOHrOYGnBvz7mZWZgJyA=
 github.com/metadiv-go-tech/module_system_data v0.0.0-20241028082909-2ca2de4172d8 h1:8DzYNPZTa2X3tQZ/tCzSSHT5jWKll8Vcw+BUmuF3rJE=

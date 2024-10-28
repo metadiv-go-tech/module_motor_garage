@@ -5,6 +5,7 @@ go 1.23.2
 require (
 	github.com/metadiv-go-tech/metagin v1.5.0
 	github.com/metadiv-go-tech/metaorm v1.3.0
+	github.com/metadiv-go-tech/mod_dev_auth v0.0.0-20241026040509-8d633aea24e0
 	github.com/metadiv-go-tech/module_relationship v1.1.0
 	gorm.io/gorm v1.25.12
 )
