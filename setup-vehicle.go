@@ -11,7 +11,7 @@ import (
 func SetupVehicle() {
 	metagin.Migrate(&entity.MotorGarageVehicle{})
 
-	metagin.Get("/vehicle", handler.ApiMotorGarageVehicleList, &metagin.ApiHandlerOpts{
+	metagin.Get("/motor-garage/vehicle", handler.ApiMotorGarageVehicleList, &metagin.ApiHandlerOpts{
 		TypescriptOpts: &metagin.TypescriptOpts{
 			FunctionName: "listVehicles",
 			Models:       []any{dto.MotorGarageVehicle{}},
@@ -19,7 +19,7 @@ func SetupVehicle() {
 			Response:     "MotorGarageVehicle[]",
 		},
 	})
-	metagin.Get("/vehicle/:id", handler.ApiMotorGarageVehicleGet, &metagin.ApiHandlerOpts{
+	metagin.Get("/motor-garage/vehicle/:id", handler.ApiMotorGarageVehicleGet, &metagin.ApiHandlerOpts{
 		TypescriptOpts: &metagin.TypescriptOpts{
 			FunctionName: "getVehicle",
 			Models:       []any{dto.MotorGarageVehicle{}},
@@ -27,7 +27,7 @@ func SetupVehicle() {
 			Response:     "MotorGarageVehicle",
 		},
 	})
-	metagin.Post("/vehicle", handler.ApiMotorGarageVehicleCreate, &metagin.ApiHandlerOpts{
+	metagin.Post("/motor-garage/vehicle", handler.ApiMotorGarageVehicleCreate, &metagin.ApiHandlerOpts{
 		TypescriptOpts: &metagin.TypescriptOpts{
 			FunctionName: "createVehicle",
 			Models:       []any{request.MotorGarageVehicleCreate{}, dto.MotorGarageVehicle{}},
@@ -35,7 +35,7 @@ func SetupVehicle() {
 			Response:     "MotorGarageVehicle",
 		},
 	})
-	metagin.Put("/vehicle/:id", handler.ApiMotorGarageVehicleUpdate, &metagin.ApiHandlerOpts{
+	metagin.Put("/motor-garage/vehicle/:id", handler.ApiMotorGarageVehicleUpdate, &metagin.ApiHandlerOpts{
 		TypescriptOpts: &metagin.TypescriptOpts{
 			FunctionName: "updateVehicle",
 			Models:       []any{request.MotorGarageVehicleUpdate{}, dto.MotorGarageVehicle{}},
@@ -44,7 +44,7 @@ func SetupVehicle() {
 			Response:     "MotorGarageVehicle",
 		},
 	})
-	metagin.Delete("/vehicle/:id", handler.ApiMotorGarageVehicleDelete, &metagin.ApiHandlerOpts{
+	metagin.Delete("/motor-garage/vehicle/:id", handler.ApiMotorGarageVehicleDelete, &metagin.ApiHandlerOpts{
 		TypescriptOpts: &metagin.TypescriptOpts{
 			FunctionName: "deleteVehicle",
 			Paths:        []string{"id"},

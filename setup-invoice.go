@@ -16,7 +16,7 @@ func SetupInvoice() {
 		&entity.MotorGarageInvoiceDiscount{},
 	)
 
-	metagin.Post("/invoice", handler.ApiMotorGarageInvoiceCreate, &metagin.ApiHandlerOpts{
+	metagin.Post("/motor-garage/invoice", handler.ApiMotorGarageInvoiceCreate, &metagin.ApiHandlerOpts{
 		TypescriptOpts: &metagin.TypescriptOpts{
 			FunctionName: "createInvoice",
 			Models:       []any{request.MotorGarageInvoiceCreate{}, dto.MotorGarageInvoice{}},
@@ -24,7 +24,7 @@ func SetupInvoice() {
 			Response:     "MotorGarageInvoice",
 		},
 	})
-	metagin.Get("/invoice", handler.ApiMotorGarageInvoiceList, &metagin.ApiHandlerOpts{
+	metagin.Get("/motor-garage/invoice", handler.ApiMotorGarageInvoiceList, &metagin.ApiHandlerOpts{
 		TypescriptOpts: &metagin.TypescriptOpts{
 			FunctionName: "listInvoices",
 			Models:       []any{dto.MotorGarageInvoice{}},
@@ -32,7 +32,7 @@ func SetupInvoice() {
 			Response:     "MotorGarageInvoice[]",
 		},
 	})
-	metagin.Get("/invoice/:id", handler.ApiMotorGarageInvoiceGet, &metagin.ApiHandlerOpts{
+	metagin.Get("/motor-garage/invoice/:id", handler.ApiMotorGarageInvoiceGet, &metagin.ApiHandlerOpts{
 		TypescriptOpts: &metagin.TypescriptOpts{
 			FunctionName: "getInvoice",
 			Models:       []any{dto.MotorGarageInvoice{}},
@@ -40,7 +40,7 @@ func SetupInvoice() {
 			Response:     "MotorGarageInvoice",
 		},
 	})
-	metagin.Put("/invoice/:id", handler.ApiMotorGarageInvoiceUpdate, &metagin.ApiHandlerOpts{
+	metagin.Put("/motor-garage/invoice/:id", handler.ApiMotorGarageInvoiceUpdate, &metagin.ApiHandlerOpts{
 		TypescriptOpts: &metagin.TypescriptOpts{
 			FunctionName: "updateInvoice",
 			Models:       []any{request.MotorGarageInvoiceUpdate{}, dto.MotorGarageInvoice{}},
@@ -49,7 +49,7 @@ func SetupInvoice() {
 			Response:     "MotorGarageInvoice",
 		},
 	})
-	metagin.Delete("/invoice/:id", handler.ApiMotorGarageInvoiceDelete, &metagin.ApiHandlerOpts{
+	metagin.Delete("/motor-garage/invoice/:id", handler.ApiMotorGarageInvoiceDelete, &metagin.ApiHandlerOpts{
 		TypescriptOpts: &metagin.TypescriptOpts{
 			FunctionName: "deleteInvoice",
 			Paths:        []string{"id"},
