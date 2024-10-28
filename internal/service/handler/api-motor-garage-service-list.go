@@ -4,8 +4,8 @@ import (
 	"github.com/metadiv-go-tech/metagin"
 	"github.com/metadiv-go-tech/metagin/base"
 	"github.com/metadiv-go-tech/metaorm"
-	"github.com/metadiv-go-tech/mod_motor_garage_core/model/dto"
-	"github.com/metadiv-go-tech/mod_motor_garage_core/repo"
+	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
+	"github.com/metadiv-go-tech/module_motor_garage/internal/service/repo"
 )
 
 func ApiMotorGarageServiceList(ctx metagin.IContext[base.RequestListing]) {

@@ -2,8 +2,8 @@ package handler
 
 import (
 	"github.com/metadiv-go-tech/metagin"
-	"github.com/metadiv-go-tech/mod_motor_garage_core/model/request"
-	"github.com/metadiv-go-tech/mod_motor_garage_core/repo"
+	"github.com/metadiv-go-tech/module_motor_garage/internal/product/repo"
+	"github.com/metadiv-go-tech/module_motor_garage/model/request"
 )
 
 func ApiMotorGarageProductUpdate(ctx metagin.IContext[request.MotorGarageProductUpdate]) {

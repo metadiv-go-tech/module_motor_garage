@@ -14,7 +14,7 @@ func SetupService() {
 	metagin.Post("/motor-garage/service", handler.ApiMotorGarageServiceCreate, &metagin.ApiHandlerOpts{
 		TypescriptOpts: &metagin.TypescriptOpts{
 			FunctionName: "createService",
-			Models:       []any{request.MotorGarageService{}, dto.MotorGarageService{}},
+			Models:       []any{request.MotorGarageServiceCreate{}, dto.MotorGarageService{}},
 			Body:         "MotorGarageServiceCreate",
 			Response:     "MotorGarageService",
 		},
@@ -38,7 +38,7 @@ func SetupService() {
 	metagin.Put("/motor-garage/service/:id", handler.ApiMotorGarageServiceUpdate, &metagin.ApiHandlerOpts{
 		TypescriptOpts: &metagin.TypescriptOpts{
 			FunctionName: "updateService",
-			Models:       []any{request.MotorGarageService{}, dto.MotorGarageService{}},
+			Models:       []any{request.MotorGarageServiceUpdate{}, dto.MotorGarageService{}},
 			Paths:        []string{"id"},
 			Body:         "MotorGarageServiceUpdate",
 			Response:     "MotorGarageService",

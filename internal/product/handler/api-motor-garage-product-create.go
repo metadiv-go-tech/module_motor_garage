@@ -6,7 +6,7 @@ import (
 	"github.com/metadiv-go-tech/module_motor_garage/model/request"
 )
 
-func ApiMotorGarageProductCreate(ctx metagin.IContext[request.MotorGarageProduct]) {
+func ApiMotorGarageProductCreate(ctx metagin.IContext[request.MotorGarageProductCreate]) {
 
 	j := ctx.Jwt()
 

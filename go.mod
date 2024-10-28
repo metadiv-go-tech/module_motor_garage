@@ -5,7 +5,6 @@ go 1.23.2
 require (
 	github.com/metadiv-go-tech/metagin v1.5.0
 	github.com/metadiv-go-tech/metaorm v1.3.0
-	github.com/metadiv-go-tech/mod_motor_garage_core v0.3.0
 )
 
 require (
@@ -50,9 +49,6 @@ require (
 	github.com/memcachier/mc/v3 v3.0.3 // indirect
 	github.com/metadiv-go-tech/aes v1.2.1 // indirect
 	github.com/metadiv-go-tech/jwt v1.1.0 // indirect
-	github.com/metadiv-go-tech/mod_address v1.1.0 // indirect
-	github.com/metadiv-go-tech/mod_country v1.1.0 // indirect
-	github.com/metadiv-go-tech/mod_crm_core v0.0.0-20241004060838-38e01983577f // indirect
 	github.com/metadiv-go-tech/nanoid v1.1.1 // indirect
 	github.com/metadiv-go-tech/rsa v1.1.1 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect

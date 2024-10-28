@@ -6,7 +6,7 @@ import (
 	"github.com/metadiv-go-tech/module_motor_garage/model/request"
 )
 
-func ApiMotorGarageServiceUpdate(ctx metagin.IContext[request.MotorGarageService]) {
+func ApiMotorGarageServiceUpdate(ctx metagin.IContext[request.MotorGarageServiceUpdate]) {
 	j := ctx.Jwt()
 
 	s := repo.MotorGarageServiceRepo.FindByID(ctx.GetDB(), ctx.GetRequest().ID, j.GetWorkspaceId())

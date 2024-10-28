@@ -1,20 +1,18 @@
 package request
 
 import (
-	"github.com/metadiv-go-tech/metagin/base"
 	"github.com/metadiv-go-tech/metaorm"
 	"github.com/metadiv-go-tech/module_motor_garage/model/entity"
 )
 
-type MotorGarageService struct {
-	base.RequestIDPath
+type MotorGarageProductCreate struct {
 	Name          string `json:"name"`
 	Description   string `json:"description"`
 	Price         uint   `json:"price"`
 	PriceAfterTax uint   `json:"price_after_tax"`
 }
 
-func (r *MotorGarageService) Validate() string {
+func (r *MotorGarageProductCreate) Validate() string {
 	if r.Name == "" {
 		return "name is required"
 	}
@@ -27,9 +25,9 @@ func (r *MotorGarageService) Validate() string {
 	return ""
 }
 
-func (r *MotorGarageService) ToEntity(e *entity.MotorGarageService) *entity.MotorGarageService {
+func (r *MotorGarageProductCreate) ToEntity(e *entity.MotorGarageProduct) *entity.MotorGarageProduct {
 	if e == nil {
-		e = new(entity.MotorGarageService)
+		e = new(entity.MotorGarageProduct)
 	}
 	e.Name = metaorm.Encryption.Encrypt(r.Name)
 	e.Description = metaorm.Encryption.Encrypt(r.Description)

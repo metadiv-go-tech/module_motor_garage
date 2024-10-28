@@ -102,14 +102,6 @@ github.com/metadiv-go-tech/metagin v1.5.0 h1:zK0dpmgMfKUFBkni2eHpqwzzCupFaDQ4nFg
 github.com/metadiv-go-tech/metagin v1.5.0/go.mod h1:P34TxQxDNsvXl/k8nwuOZ5xMCnmvi19M442UdV6N9Tk=
 github.com/metadiv-go-tech/metaorm v1.3.0 h1:oCt8lyEWalXLfiuqP9BB3ehr4noAxKxyRpaQVJUN6UE=
 github.com/metadiv-go-tech/metaorm v1.3.0/go.mod h1:OexZfDduBfr7A5QBLIARy/vglwRZcZCT6boiTTiU1SM=
-github.com/metadiv-go-tech/mod_address v1.1.0 h1:8BlWCK7oYJuNe5o3LAktFX2kEfaFkyt65BCGvb+VDfk=
-github.com/metadiv-go-tech/mod_address v1.1.0/go.mod h1:Cspkcz+cuI1NAUgJEUsfxzl4fhB/W9YeZDAGF9pI/1s=
-github.com/metadiv-go-tech/mod_country v1.1.0 h1:5jhTe3qeaaYDl7KCpIEHS+JbBY7Lf+pPNu44ufdqQEc=
-github.com/metadiv-go-tech/mod_country v1.1.0/go.mod h1:/KwarwHjFNkHt9Mz3w2WYrWwvy4rMksACv4z6r3X618=
-github.com/metadiv-go-tech/mod_crm_core v0.0.0-20241004060838-38e01983577f h1:Bi5kTcZfcsis6mtlVxFMvRhtrWZjbCzoIxCHUnJ9u8M=
-github.com/metadiv-go-tech/mod_crm_core v0.0.0-20241004060838-38e01983577f/go.mod h1:SYXBuUv85/h7XQQ5vTc1NOITefwY804A2iH7hW47AKM=
-github.com/metadiv-go-tech/mod_motor_garage_core v0.3.0 h1:DsMBHxxJW/nkRvHBzQxQV5hlCpNTHr8BpODIspg2W00=
-github.com/metadiv-go-tech/mod_motor_garage_core v0.3.0/go.mod h1:rK5znfm6onuelBm+Uyyoioo5Qj19dIlF4MXOUOnLlb0=
 github.com/metadiv-go-tech/nanoid v1.1.1 h1:z2MI+vZAtXKHShCNh9+IQ//NMhOQ+QIDXwowOKwGaaw=
 github.com/metadiv-go-tech/nanoid v1.1.1/go.mod h1:pczCffnIQJ6GpmnkXX6+1biFyNWP+TXFema4Bb6I/ak=
 github.com/metadiv-go-tech/rsa v1.1.1 h1:xExf+zyhIDuc96cDrCuqSWajJb0hCYlCyAlvQX3W75A=

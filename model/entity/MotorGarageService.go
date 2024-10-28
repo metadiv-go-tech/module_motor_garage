@@ -17,9 +17,11 @@ type MotorGarageService struct {
 }
 
 func (e *MotorGarageService) ToDTO() *dto.MotorGarageService {
-	d := new(dto.MotorGarageService)
-	d.ID = e.ID
-	d.Name = metaorm.Encryption.Decrypt(e.Name)
-	d.Description = metaorm.Encryption.Decrypt(e.Description)
-	return d
+	return &dto.MotorGarageService{
+		ID:            e.ID,
+		Name:          metaorm.Encryption.Decrypt(e.Name),
+		Description:   metaorm.Encryption.Decrypt(e.Description),
+		Price:         e.Price,
+		PriceAfterTax: e.PriceAfterTax,
+	}
 }

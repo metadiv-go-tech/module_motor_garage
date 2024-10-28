@@ -14,7 +14,7 @@ func SetupProduct() {
 	metagin.Post("/motor-garage/product", handler.ApiMotorGarageProductCreate, &metagin.ApiHandlerOpts{
 		TypescriptOpts: &metagin.TypescriptOpts{
 			FunctionName: "createProduct",
-			Models:       []any{request.MotorGarageProduct{}, dto.MotorGarageProduct{}},
+			Models:       []any{request.MotorGarageProductCreate{}, dto.MotorGarageProduct{}},
 			Body:         "MotorGarageProductCreate",
 			Response:     "MotorGarageProduct",
 		},
@@ -38,7 +38,7 @@ func SetupProduct() {
 	metagin.Put("/motor-garage/product/:id", handler.ApiMotorGarageProductUpdate, &metagin.ApiHandlerOpts{
 		TypescriptOpts: &metagin.TypescriptOpts{
 			FunctionName: "updateProduct",
-			Models:       []any{request.MotorGarageProduct{}, dto.MotorGarageProduct{}},
+			Models:       []any{request.MotorGarageProductUpdate{}, dto.MotorGarageProduct{}},
 			Paths:        []string{"id"},
 			Body:         "MotorGarageProductUpdate",
 			Response:     "MotorGarageProduct",
