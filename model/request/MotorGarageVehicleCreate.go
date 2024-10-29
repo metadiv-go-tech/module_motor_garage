@@ -1,6 +1,7 @@
 package request
 
 import (
+	"github.com/metadiv-go-tech/metaorm"
 	"github.com/metadiv-go-tech/module_motor_garage/model/entity"
 )
 
@@ -31,11 +32,11 @@ func (r *MotorGarageVehicleCreate) ToEntity(e *entity.MotorGarageVehicle) *entit
 	}
 	e.Name = r.Name
 	e.Year = r.Year
-	e.Rego = []byte(r.Rego)
+	e.Rego = metaorm.Encryption.Encrypt(r.Rego)
 	e.RegoExpiry = r.RegoExpiry
 	e.Odometer = r.Odometer
-	e.VIN = []byte(r.VIN)
-	e.Registration = []byte(r.Registration)
+	e.VIN = metaorm.Encryption.Encrypt(r.VIN)
+	e.Registration = metaorm.Encryption.Encrypt(r.Registration)
 	e.CustomerId = r.CustomerId
 	return e
 }
