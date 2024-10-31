@@ -15,7 +15,6 @@ func ApiMotorGarageInvoiceList(ctx metagin.IContext[base.RequestListing]) {
 	cls = append(cls, metaorm.Or(
 		ctx.GetRequest().BuildSimilarClause(
 			"date",
-			"total_amount",
 		),
 	))
 
