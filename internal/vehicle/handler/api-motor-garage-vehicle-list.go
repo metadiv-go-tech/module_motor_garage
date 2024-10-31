@@ -33,7 +33,7 @@ func ApiMotorGarageVehicleList(ctx metagin.IContext[base.RequestListing]) {
 
 	ds := make([]dto.MotorGarageVehicle, len(ps))
 	for i := range ps {
-		ds[i] = *ps[i].ToDTO()
+		ds[i] = *ps[i].ToDTO(ctx.Locale())
 	}
 
 	ctx.OK(ds, page)

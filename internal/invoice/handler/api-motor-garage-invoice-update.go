@@ -59,6 +59,6 @@ func ApiMotorGarageInvoiceUpdate(ctx metagin.IContext[request.MotorGarageInvoice
 		}
 	}
 
-	ctx.OK(e.ToDTO())
+	ctx.OK(e.ToDTO(ctx.Locale()))
 
 }

@@ -23,8 +23,8 @@ type MotorGarageVehicle struct {
 	Customer   *relationship.Customer `json:"customer" gorm:"foreignKey:CustomerId"`
 }
 
-func (e *MotorGarageVehicle) ToDTO() *dto.MotorGarageVehicle {
-	return &dto.MotorGarageVehicle{
+func (e *MotorGarageVehicle) ToDTO(locale string) *dto.MotorGarageVehicle {
+	d := &dto.MotorGarageVehicle{
 		ID:           e.ID,
 		Name:         e.Name,
 		Year:         e.Year,
@@ -33,5 +33,10 @@ func (e *MotorGarageVehicle) ToDTO() *dto.MotorGarageVehicle {
 		Odometer:     e.Odometer,
 		VIN:          metaorm.Encryption.Decrypt(e.VIN),
 		Registration: metaorm.Encryption.Decrypt(e.Registration),
+		CustomerId:   e.CustomerId,
 	}
+	if e.Customer != nil {
+		d.Customer = e.Customer.ToDTO(locale)
+	}
+	return d
 }

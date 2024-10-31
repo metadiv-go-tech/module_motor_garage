@@ -15,5 +15,5 @@ func ApiMotorGarageVehicleGet(ctx metagin.IContext[base.RequestIDPath]) {
 		return
 	}
 
-	ctx.OK(v.ToDTO())
+	ctx.OK(v.ToDTO(ctx.Locale()))
 }

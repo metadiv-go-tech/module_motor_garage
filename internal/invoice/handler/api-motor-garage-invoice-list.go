@@ -30,7 +30,7 @@ func ApiMotorGarageInvoiceList(ctx metagin.IContext[base.RequestListing]) {
 
 	ds := make([]dto.MotorGarageInvoice, 0)
 	for i := range is {
-		ds = append(ds, *is[i].ToDTO())
+		ds = append(ds, *is[i].ToDTO(ctx.Locale()))
 	}
 
 	ctx.OK(ds, page)

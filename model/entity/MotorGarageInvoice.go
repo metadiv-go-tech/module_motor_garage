@@ -19,14 +19,14 @@ type MotorGarageInvoice struct {
 	Discounts []MotorGarageInvoiceDiscount `json:"discounts" gorm:"foreignKey:InvoiceId"`
 }
 
-func (e *MotorGarageInvoice) ToDTO() *dto.MotorGarageInvoice {
+func (e *MotorGarageInvoice) ToDTO(locale string) *dto.MotorGarageInvoice {
 	d := &dto.MotorGarageInvoice{
 		ID:        e.ID,
 		Date:      e.Date,
 		VehicleId: e.VehicleId,
 	}
 	if e.Vehicle != nil {
-		d.Vehicle = e.Vehicle.ToDTO()
+		d.Vehicle = e.Vehicle.ToDTO(locale)
 	}
 	var total uint
 	d.Services = make([]dto.MotorGarageService, len(e.Services))

@@ -14,5 +14,5 @@ func ApiMotorGarageInvoiceGet(ctx metagin.IContext[base.RequestIDPath]) {
 		ctx.Err("invoice not found")
 		return
 	}
-	ctx.OK(e.ToDTO())
+	ctx.OK(e.ToDTO(ctx.Locale()))
 }
