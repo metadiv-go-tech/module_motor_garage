@@ -13,7 +13,7 @@
         .invoice {
             max-width: 800px;
             margin: 0 auto;
-            background-color: #ffffcc;
+            background-color: white;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
@@ -85,7 +85,7 @@
             border-collapse: collapse;
             margin-top: 0;
             margin-bottom: 0;
-            background-color: #ffffcc;
+            background-color: white;
             flex: 1;
         }
         th, td {
@@ -94,12 +94,12 @@
             text-align: left;
         }
         th {
-            background-color: #f2f2aa;
+            background-color: white;
             height: 30px;
         }
         .empty-row td {
             height: 25px;
-            background-color: #ffffcc;
+            background-color: white;
         }
         .summary {
             margin-top: 20px;
@@ -116,13 +116,18 @@
         div + div {
             margin-top: 10px;
         }
+        .company-logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="invoice">
         <div class="header">
             <div class="company-info">
-                <h1>Vortex Auto</h1>
+                <p><img src="/Users/benlam/code/metadiv/module_motor_garage/IMG_0413.svg" alt="Vortex Auto Logo" class="company-logo"></p>
                 <p><strong>ABN:</strong> 12345678901</p>
                 <p>806 BEAUDESERT COOPERS PLAINS QLD 4108</p>
                 <p>PH: (07) 31569933</p>
