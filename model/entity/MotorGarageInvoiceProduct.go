@@ -8,10 +8,10 @@ type MotorGarageInvoiceProduct struct {
 	Quantity uint `json:"quantity"`
 
 	InvoiceId uint                `json:"invoice_id"`
-	Invoice   *MotorGarageInvoice `json:"invoice"`
+	Invoice   *MotorGarageInvoice `json:"invoice" gorm:"foreignKey:InvoiceId;references:ID"`
 
 	ProductId *uint               `json:"product_id"`
-	Product   *MotorGarageProduct `json:"product"`
+	Product   *MotorGarageProduct `json:"product" gorm:"foreignKey:ProductId"`
 }
 
 func (e *MotorGarageInvoiceProduct) ToDTO() *dto.MotorGarageInvoiceProduct {

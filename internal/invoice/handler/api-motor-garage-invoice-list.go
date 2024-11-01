@@ -19,7 +19,7 @@ func ApiMotorGarageInvoiceList(ctx metagin.IContext[base.RequestListing]) {
 	))
 
 	is, page := repo.MotorGarageInvoiceRepo.FindAllComplex(
-		ctx.GetDB().Preload("Customer").Preload("Items").Preload("Items.Product").Preload("Items.Product").Preload("Items.Service"),
+		metaorm.Preload(ctx.GetDB(), "Vehicle", "Vehicle.Customer", "Services", "Products", "Discounts"),
 		metaorm.And(cls...),
 		ctx.Page(),
 		ctx.Sort(),

@@ -38,25 +38,19 @@ func ApiMotorGarageInvoiceUpdate(ctx metagin.IContext[request.MotorGarageInvoice
 		return
 	}
 
-	if len(e.Services) > 0 {
-		if !one2many.HandleOne2Many(ctx.GetDB(), e.ID, "InvoiceId", e.Services, j.GetWorkspaceId()) {
-			ctx.InternalServerError("failed to save invoice services")
-			return
-		}
+	if !one2many.HandleOne2Many(ctx.GetDB(), e.ID, "InvoiceId", e.Services, j.GetWorkspaceId()) {
+		ctx.InternalServerError("failed to save invoice services")
+		return
 	}
 
-	if len(e.Products) > 0 {
-		if !one2many.HandleOne2Many(ctx.GetDB(), e.ID, "InvoiceId", e.Products, j.GetWorkspaceId()) {
-			ctx.InternalServerError("failed to save invoice products")
-			return
-		}
+	if !one2many.HandleOne2Many(ctx.GetDB(), e.ID, "InvoiceId", e.Products, j.GetWorkspaceId()) {
+		ctx.InternalServerError("failed to save invoice products")
+		return
 	}
 
-	if len(e.Discounts) > 0 {
-		if !one2many.HandleOne2Many(ctx.GetDB(), e.ID, "InvoiceId", e.Discounts, j.GetWorkspaceId()) {
-			ctx.InternalServerError("failed to save invoice discounts")
-			return
-		}
+	if !one2many.HandleOne2Many(ctx.GetDB(), e.ID, "InvoiceId", e.Discounts, j.GetWorkspaceId()) {
+		ctx.InternalServerError("failed to save invoice discounts")
+		return
 	}
 
 	ctx.OK(e.ToDTO(ctx.Locale()))

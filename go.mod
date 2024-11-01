@@ -6,7 +6,8 @@ require (
 	github.com/metadiv-go-tech/metagin v1.5.0
 	github.com/metadiv-go-tech/metaorm v1.3.0
 	github.com/metadiv-go-tech/mod_dev_auth v0.0.0-20241026040509-8d633aea24e0
-	github.com/metadiv-go-tech/module_relationship v1.1.0
+	github.com/metadiv-go-tech/module_relationship v1.2.1
+	github.com/metadiv-go-tech/module_system_data v0.0.0-20241031063137-35759c162e1a
 	gorm.io/gorm v1.25.12
 )
 
@@ -52,8 +53,9 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.24 // indirect
 	github.com/memcachier/mc/v3 v3.0.3 // indirect
 	github.com/metadiv-go-tech/aes v1.2.1 // indirect
+	github.com/metadiv-go-tech/gotenberg v1.0.0 // indirect
 	github.com/metadiv-go-tech/jwt v1.1.0 // indirect
-	github.com/metadiv-go-tech/module_system_data v0.0.0-20241028082909-2ca2de4172d8 // indirect
+	github.com/metadiv-go-tech/metadiv_util_client v0.0.0-20241029055206-0458b64628ca // indirect
 	github.com/metadiv-go-tech/nanoid v1.1.1 // indirect
 	github.com/metadiv-go-tech/rsa v1.1.1 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
