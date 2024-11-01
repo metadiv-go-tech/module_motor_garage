@@ -6,7 +6,7 @@ var InvoiceTemplate = `<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Masters Invoice</title>
+    <title>VortexAuto Invoice #{{invoice_number}}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -259,10 +259,10 @@ var InvoiceTemplate = `<!DOCTYPE html>
                 </svg>
             </p>
             <p style="padding-left: 25px;">
-                <strong>ABN:</strong> 12345678901
+                <strong>ABN:</strong> 123456789
             </p>
-            <p style="padding-left: 25px;">806 BEAUDESERT COOPERS PLAINS QLD 4108</p>
-            <p style="padding-left: 25px;">PH: (07) 31569933</p>
+            <p style="padding-left: 25px;">Unit 4/22 Musgrave Rd, Coopers Plains QLD 4108</p>
+            <p style="padding-left: 25px;">PH: +61 499 299 751</p>
         </div>
         <div class="customer-info">
             <div class="invoice-info">
