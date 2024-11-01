@@ -18,5 +18,6 @@ func main() {
 	module_motor_garage.SetupProduct()
 	module_motor_garage.SetupDiscount()
 	module_motor_garage.SetupInvoice()
+	module_motor_garage.SetupInvoiceReport()
 	metagin.Engine.Run()
 }
