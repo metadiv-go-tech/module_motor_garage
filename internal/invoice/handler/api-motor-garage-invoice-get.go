@@ -1,21 +1,28 @@
 package handler
 
 import (
-	"github.com/metadiv-go-tech/metagin"
-	"github.com/metadiv-go-tech/metagin/base"
-	"github.com/metadiv-go-tech/metaorm"
+	"errors"
+
+	"github.com/metadiv-go-tech/metagin/v2"
+	"github.com/metadiv-go-tech/metagin/v2/base"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/invoice/repo"
+	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 )
 
-func ApiMotorGarageInvoiceGet(ctx metagin.IContext[base.RequestIDPath]) {
-	j := ctx.Jwt()
+var ApiMotorGarageInvoiceGet = metagin.Get(
+	"getInvoice",
+	"Get Invoice",
+	"/motor-garage/invoice/:id",
+	func(ctx metagin.Context[base.RequestPathId, dto.MotorGarageInvoice]) {
+		j := ctx.Jwt()
 
-	e := repo.MotorGarageInvoiceRepo.FindByID(
-		metaorm.Preload(ctx.GetDB(), "Vehicle", "Vehicle.Customer", "Services", "Products", "Discounts"),
-		ctx.GetRequest().ID, j.GetWorkspaceId())
-	if e == nil {
-		ctx.Err("invoice not found")
-		return
-	}
-	ctx.OK(e.ToDTO(ctx.Locale()))
-}
+		e := repo.MotorGarageInvoiceRepo.FindById(
+			ctx.DB().Preload("Vehicle", "Vehicle.Customer", "Services", "Products", "Discounts"),
+			ctx.Request().ID, j.GetWorkspaceId())
+		if e == nil {
+			ctx.Err(errors.New("invoice not found"))
+			return
+		}
+		ctx.OK(e.ToDTO(ctx.Locale()))
+	},
+)

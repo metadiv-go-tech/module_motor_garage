@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/metadiv-go-tech/metagin"
-	"github.com/metadiv-go-tech/mod_dev_auth"
+	"github.com/metadiv-go-tech/metagin/v2"
+	"github.com/metadiv-go-tech/mod_dev_auth/v2"
 	"github.com/metadiv-go-tech/module_motor_garage"
-	"github.com/metadiv-go-tech/module_relationship"
-	"github.com/metadiv-go-tech/module_system_data"
+	"github.com/metadiv-go-tech/module_relationship/v2"
+	"github.com/metadiv-go-tech/module_system_data/v2"
 )
 
 func main() {
@@ -19,5 +19,5 @@ func main() {
 	module_motor_garage.SetupDiscount()
 	module_motor_garage.SetupInvoice()
 	module_motor_garage.SetupInvoiceReport()
-	metagin.Engine.Run()
+	metagin.Run()
 }

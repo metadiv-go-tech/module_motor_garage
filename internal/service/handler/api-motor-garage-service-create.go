@@ -1,26 +1,35 @@
 package handler
 
 import (
-	"github.com/metadiv-go-tech/metagin"
+	"errors"
+	"net/http"
+
+	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/service/repo"
+	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 	"github.com/metadiv-go-tech/module_motor_garage/model/request"
 )
 
-func ApiMotorGarageServiceCreate(ctx metagin.IContext[request.MotorGarageServiceCreate]) {
-	j := ctx.Jwt()
+var ApiMotorGarageServiceCreate = metagin.Post(
+	"createService",
+	"Create Service",
+	"/motor-garage/service",
+	func(ctx metagin.Context[request.MotorGarageServiceCreate, dto.MotorGarageService]) {
+		j := ctx.Jwt()
 
-	s := ctx.GetRequest().ToEntity(nil)
+		s := ctx.Request().ToEntity(nil)
 
-	if errMsg := ctx.GetRequest().Validate(); errMsg != "" {
-		ctx.Err(errMsg)
-		return
-	}
+		if errMsg := ctx.Request().Validate(); errMsg != "" {
+			ctx.Err(errors.New(errMsg))
+			return
+		}
 
-	s = repo.MotorGarageServiceRepo.Save(ctx.GetDB(), s, j.GetWorkspaceId())
-	if s == nil {
-		ctx.InternalServerError("failed to save service")
-		return
-	}
+		s = repo.MotorGarageServiceRepo.Save(ctx.DB(), s, j.GetWorkspaceId())
+		if s == nil {
+			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save service"))
+			return
+		}
 
-	ctx.OK(s.ToDTO())
-}
+		ctx.OK(s.ToDTO())
+	},
+)

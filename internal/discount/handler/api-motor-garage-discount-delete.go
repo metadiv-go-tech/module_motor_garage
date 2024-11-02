@@ -1,31 +1,34 @@
 package handler
 
 import (
-	"github.com/metadiv-go-tech/metagin"
-	"github.com/metadiv-go-tech/metagin/base"
+	"errors"
+	"net/http"
+
+	"github.com/metadiv-go-tech/metagin/v2"
+	"github.com/metadiv-go-tech/metagin/v2/base"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/discount/repo"
+	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 )
 
-// @Summary Delete Motor Garage Discount by ID
-// @Description Delete Motor Garage Discount by ID
-// @Tags Motor Garage Discount
-// @Param id path int true "ID"
-// @Success 200
-// @Failure 40001 {object} string "discount not found"
-// @Router /motor-garage-discount/{id} [delete]
-func ApiMotorGarageDiscountDelete(ctx metagin.IContext[base.RequestIDPath]) {
-	j := ctx.Jwt()
+var ApiMotorGarageDiscountDelete = metagin.Delete(
+	"deleteDiscount",
+	"Delete Discount",
+	"/motor-garage/discount/:id",
+	func(ctx metagin.Context[base.RequestPathId, dto.MotorGarageDiscount]) {
 
-	i := repo.MotorGarageDiscountRepo.FindByID(ctx.GetDB(), ctx.GetRequest().ID, j.GetWorkspaceId())
-	if i == nil {
-		ctx.Err("discount not found")
-		return
-	}
+		j := ctx.Jwt()
 
-	if !repo.MotorGarageDiscountRepo.Delete(ctx.GetDB(), i) {
-		ctx.InternalServerError("failed to delete discount")
-		return
-	}
+		i := repo.MotorGarageDiscountRepo.FindById(ctx.DB(), ctx.Request().ID, j.GetWorkspaceId())
+		if i == nil {
+			ctx.Err(errors.New("discount not found"))
+			return
+		}
 
-	ctx.OK(nil)
-}
+		if !repo.MotorGarageDiscountRepo.Delete(ctx.DB(), i) {
+			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to delete discount"))
+			return
+		}
+
+		ctx.OK(nil)
+	},
+)

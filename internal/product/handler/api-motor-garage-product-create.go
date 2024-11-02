@@ -1,28 +1,36 @@
 package handler
 
 import (
-	"github.com/metadiv-go-tech/metagin"
+	"errors"
+	"net/http"
+
+	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/product/repo"
+	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 	"github.com/metadiv-go-tech/module_motor_garage/model/request"
 )
 
-func ApiMotorGarageProductCreate(ctx metagin.IContext[request.MotorGarageProductCreate]) {
+var ApiMotorGarageProductCreate = metagin.Post(
+	"createProduct",
+	"Create Product",
+	"/motor-garage/product",
+	func(ctx metagin.Context[request.MotorGarageProductCreate, dto.MotorGarageProduct]) {
 
-	j := ctx.Jwt()
+		j := ctx.Jwt()
 
-	if errMsg := ctx.GetRequest().Validate(); errMsg != "" {
-		ctx.Err(errMsg)
-		return
-	}
+		if errMsg := ctx.Request().Validate(); errMsg != "" {
+			ctx.Err(errors.New(errMsg))
+			return
+		}
 
-	product := ctx.GetRequest().ToEntity(nil)
+		product := ctx.Request().ToEntity(nil)
 
-	product = repo.MotorGarageProductRepo.Save(ctx.GetDB(), product, j.GetWorkspaceId())
-	if product == nil {
-		ctx.InternalServerError("failed to save product")
-		return
-	}
+		product = repo.MotorGarageProductRepo.Save(ctx.DB(), product, j.GetWorkspaceId())
+		if product == nil {
+			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save product"))
+			return
+		}
 
-	ctx.OK(product.ToDTO())
-
-}
+		ctx.OK(product.ToDTO())
+	},
+)

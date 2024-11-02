@@ -1,7 +1,7 @@
 package request
 
 import (
-	"github.com/metadiv-go-tech/metaorm"
+	"github.com/metadiv-go-tech/metaorm/v2"
 	"github.com/metadiv-go-tech/module_motor_garage/model/entity"
 )
 
@@ -23,8 +23,8 @@ func (r *MotorGarageDiscountCreate) ToEntity(d *entity.MotorGarageDiscount) *ent
 	if d == nil {
 		d = &entity.MotorGarageDiscount{}
 	}
-	d.Name = metaorm.Encryption.Encrypt(r.Name)
-	d.Description = metaorm.Encryption.Encrypt(r.Description)
+	d.Name = metaorm.Encrypt(r.Name)
+	d.Description = metaorm.Encrypt(r.Description)
 	d.DiscountAmount = r.DiscountAmount
 	d.DiscountPercentage = r.DiscountPercentage
 	return d

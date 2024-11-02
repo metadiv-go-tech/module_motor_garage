@@ -1,7 +1,7 @@
 package dto
 
 import (
-	relationship "github.com/metadiv-go-tech/module_relationship/model/dto"
+	relationship "github.com/metadiv-go-tech/module_relationship/v2/model/dto"
 )
 
 type MotorGarageVehicle struct {

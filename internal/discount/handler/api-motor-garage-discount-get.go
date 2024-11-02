@@ -1,28 +1,28 @@
 package handler
 
 import (
-	"github.com/metadiv-go-tech/metagin"
-	"github.com/metadiv-go-tech/metagin/base"
+	"errors"
+
+	"github.com/metadiv-go-tech/metagin/v2"
+	"github.com/metadiv-go-tech/metagin/v2/base"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/discount/repo"
+	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 )
 
-// @Summary Get Motor Garage Discount by ID
-// @Description Get Motor Garage Discount by ID
-// @Tags Motor Garage Discount
-// @Param id path int true "ID"
-// @Success 200 {object} dto.MotorGarageDiscount
-// @Failure 40001 {object} string "discount not found"
-// @Router /motor-garage-discount/{id} [get]
-func ApiMotorGarageDiscountGet(ctx metagin.IContext[base.RequestIDPath]) {
+var ApiMotorGarageDiscountGet = metagin.Get(
+	"getDiscount",
+	"Get Discount",
+	"/motor-garage/discount/:id",
+	func(ctx metagin.Context[base.RequestPathId, dto.MotorGarageDiscount]) {
 
-	j := ctx.Jwt()
+		j := ctx.Jwt()
 
-	d := repo.MotorGarageDiscountRepo.FindByID(ctx.GetDB(), ctx.GetRequest().ID, j.GetWorkspaceId())
-	if d == nil {
-		ctx.Err("discount not found")
-		return
-	}
+		d := repo.MotorGarageDiscountRepo.FindById(ctx.DB(), ctx.Request().ID, j.GetWorkspaceId())
+		if d == nil {
+			ctx.Err(errors.New("discount not found"))
+			return
+		}
 
-	ctx.OK(d.ToDTO())
-
-}
+		ctx.OK(d.ToDTO())
+	},
+)

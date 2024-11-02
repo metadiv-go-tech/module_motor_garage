@@ -1,36 +1,40 @@
 package handler
 
 import (
-	"github.com/metadiv-go-tech/metagin"
-	"github.com/metadiv-go-tech/metagin/base"
-	"github.com/metadiv-go-tech/metaorm"
+	"github.com/metadiv-go-tech/metagin/v2"
+	"github.com/metadiv-go-tech/metagin/v2/base"
+	"github.com/metadiv-go-tech/metaorm/v2"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/invoice/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 )
 
-func ApiMotorGarageInvoiceList(ctx metagin.IContext[base.RequestListing]) {
-	j := ctx.Jwt()
+var ApiMotorGarageInvoiceList = metagin.Get(
+	"listInvoices",
+	"List Invoices",
+	"/motor-garage/invoice",
+	func(ctx metagin.Context[base.RequestListing, []dto.MotorGarageInvoice]) {
+		j := ctx.Jwt()
 
-	cls := make([]metaorm.IClause, 0)
-	cls = append(cls, metaorm.Or(
-		ctx.GetRequest().BuildSimilarClause(
-			"date",
-		),
-	))
+		b := metaorm.NewAndQueryBuilder()
+		b.Add(ctx.DB().Or(
+			ctx.Request().BuildSimilarClause(
+				"date",
+			),
+		))
 
-	is, page := repo.MotorGarageInvoiceRepo.FindAllComplex(
-		metaorm.Preload(ctx.GetDB(), "Vehicle", "Vehicle.Customer", "Services", "Products", "Discounts"),
-		metaorm.And(cls...),
-		ctx.Page(),
-		ctx.Sort(),
-		"",
-		j.GetWorkspaceId(),
-	)
+		is, page := repo.MotorGarageInvoiceRepo.FindAllComplex(
+			ctx.DB().Preload("Vehicle", "Vehicle.Customer", "Services", "Products", "Discounts"),
+			b.Build(),
+			ctx.Page(),
+			ctx.Sort(),
+			j.GetWorkspaceId(),
+		)
 
-	ds := make([]dto.MotorGarageInvoice, 0)
-	for i := range is {
-		ds = append(ds, *is[i].ToDTO(ctx.Locale()))
-	}
+		ds := make([]dto.MotorGarageInvoice, 0)
+		for i := range is {
+			ds = append(ds, *is[i].ToDTO(ctx.Locale()))
+		}
 
-	ctx.OK(ds, page)
-}
+		ctx.OK(&ds, page)
+	},
+)

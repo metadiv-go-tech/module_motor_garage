@@ -1,55 +1,63 @@
 package handler
 
 import (
-	"github.com/metadiv-go-tech/metagin"
-	"github.com/metadiv-go-tech/metaorm"
+	"errors"
+	"net/http"
+
+	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/vehicle/repo"
+	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 	"github.com/metadiv-go-tech/module_motor_garage/model/request"
-	relationship "github.com/metadiv-go-tech/module_relationship"
+	relationship "github.com/metadiv-go-tech/module_relationship/v2"
 )
 
-func ApiMotorGarageVehicleUpdate(ctx metagin.IContext[request.MotorGarageVehicleUpdate]) {
-	j := ctx.Jwt()
+var ApiMotorGarageVehicleUpdate = metagin.Put(
+	"updateVehicle",
+	"Update Vehicle",
+	"/motor-garage/vehicle/:id",
+	func(ctx metagin.Context[request.MotorGarageVehicleUpdate, dto.MotorGarageVehicle]) {
+		j := ctx.Jwt()
 
-	if errMsg := ctx.GetRequest().Validate(); errMsg != "" {
-		ctx.Err(errMsg)
-		return
-	}
-
-	v := repo.MotorGarageVehicleRepo.FindByID(ctx.GetDB(), ctx.GetRequest().ID, j.GetWorkspaceId())
-	if v == nil {
-		ctx.Err("vehicle not found")
-		return
-	}
-
-	if ctx.GetRequest().CustomerId != nil && *ctx.GetRequest().CustomerId > 0 {
-		customer := relationship.CustomerCaller.GetCustomerByID(
-			ctx.GetDB(),
-			*ctx.GetRequest().CustomerId,
-			j.GetWorkspaceId(),
-		)
-		if customer == nil {
-			ctx.Err("customer not found")
+		if errMsg := ctx.Request().Validate(); errMsg != "" {
+			ctx.Err(errors.New(errMsg))
 			return
 		}
-		v.CustomerId = ctx.GetRequest().CustomerId
-		v.Customer = customer
-	}
 
-	if ctx.GetRequest().Registration != "" {
-		exist := repo.MotorGarageVehicleRepo.FindOne(ctx.GetDB(), metaorm.Eq("registration", ctx.GetRequest().Registration), j.GetWorkspaceId())
-		if exist != nil {
-			ctx.Err("registration is already in use")
+		v := repo.MotorGarageVehicleRepo.FindById(ctx.DB(), ctx.Request().ID, j.GetWorkspaceId())
+		if v == nil {
+			ctx.Err(errors.New("vehicle not found"))
 			return
 		}
-	}
 
-	v = ctx.GetRequest().ToEntity(v)
-	v = repo.MotorGarageVehicleRepo.Save(ctx.GetDB(), v, j.GetWorkspaceId())
-	if v == nil {
-		ctx.InternalServerError("failed to save vehicle")
-		return
-	}
+		if ctx.Request().CustomerId != nil && *ctx.Request().CustomerId > 0 {
+			customer := relationship.CustomerCaller.GetCustomerByID(
+				ctx.DB(),
+				*ctx.Request().CustomerId,
+				j.GetWorkspaceId(),
+			)
+			if customer == nil {
+				ctx.Err(errors.New("customer not found"))
+				return
+			}
+			v.CustomerId = ctx.Request().CustomerId
+			v.Customer = customer
+		}
 
-	ctx.OK(v.ToDTO(ctx.Locale()))
-}
+		if ctx.Request().Registration != "" {
+			exist := repo.MotorGarageVehicleRepo.FindOne(ctx.DB(), ctx.DB().Eq("registration", ctx.Request().Registration), j.GetWorkspaceId())
+			if exist != nil {
+				ctx.Err(errors.New("registration is already in use"))
+				return
+			}
+		}
+
+		v = ctx.Request().ToEntity(v)
+		v = repo.MotorGarageVehicleRepo.Save(ctx.DB(), v, j.GetWorkspaceId())
+		if v == nil {
+			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save vehicle"))
+			return
+		}
+
+		ctx.OK(v.ToDTO(ctx.Locale()))
+	},
+)

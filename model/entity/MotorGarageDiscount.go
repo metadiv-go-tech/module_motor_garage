@@ -1,8 +1,8 @@
 package entity
 
 import (
-	"github.com/metadiv-go-tech/metagin/base"
-	"github.com/metadiv-go-tech/metaorm"
+	"github.com/metadiv-go-tech/metagin/v2/base"
+	"github.com/metadiv-go-tech/metaorm/v2"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 )
 
@@ -19,8 +19,8 @@ type MotorGarageDiscount struct {
 func (e *MotorGarageDiscount) ToDTO() *dto.MotorGarageDiscount {
 	return &dto.MotorGarageDiscount{
 		ID:                 e.ID,
-		Name:               metaorm.Encryption.Decrypt(e.Name),
-		Description:        metaorm.Encryption.Decrypt(e.Description),
+		Name:               metaorm.Decrypt(e.Name),
+		Description:        metaorm.Decrypt(e.Description),
 		DiscountAmount:     e.DiscountAmount,
 		DiscountPercentage: e.DiscountPercentage,
 	}

@@ -1,22 +1,31 @@
 package handler
 
 import (
-	"github.com/metadiv-go-tech/metagin"
+	"errors"
+	"net/http"
+
+	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/discount/repo"
+	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 	"github.com/metadiv-go-tech/module_motor_garage/model/request"
 )
 
-func ApiMotorGarageDiscountCreate(ctx metagin.IContext[request.MotorGarageDiscountCreate]) {
+var ApiMotorGarageDiscountCreate = metagin.Post(
+	"createDiscount",
+	"Create Discount",
+	"/motor-garage/discount",
+	func(ctx metagin.Context[request.MotorGarageDiscountCreate, dto.MotorGarageDiscount]) {
 
-	j := ctx.Jwt()
+		j := ctx.Jwt()
 
-	d := ctx.GetRequest().ToEntity(nil)
+		d := ctx.Request().ToEntity(nil)
 
-	d = repo.MotorGarageDiscountRepo.Save(ctx.GetDB(), d, j.GetWorkspaceId())
-	if d == nil {
-		ctx.InternalServerError("failed to save discount")
-		return
-	}
+		d = repo.MotorGarageDiscountRepo.Save(ctx.DB(), d, j.GetWorkspaceId())
+		if d == nil {
+			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save discount"))
+			return
+		}
 
-	ctx.OK(d.ToDTO())
-}
+		ctx.OK(d.ToDTO())
+	},
+)

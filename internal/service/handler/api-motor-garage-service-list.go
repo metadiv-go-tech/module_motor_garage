@@ -1,35 +1,38 @@
 package handler
 
 import (
-	"github.com/metadiv-go-tech/metagin"
-	"github.com/metadiv-go-tech/metagin/base"
-	"github.com/metadiv-go-tech/metaorm"
-	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
+	"github.com/metadiv-go-tech/metagin/v2"
+	"github.com/metadiv-go-tech/metagin/v2/base"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/service/repo"
+	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 )
 
-func ApiMotorGarageServiceList(ctx metagin.IContext[base.RequestListing]) {
-	j := ctx.Jwt()
-	ps, page := repo.MotorGarageServiceRepo.FindAllComplex(
-		ctx.GetDB(),
-		metaorm.Or(
-			ctx.GetRequest().BuildDecryptedSimilarClause(
-				"name",
-				"description",
+var ApiMotorGarageServiceList = metagin.Get(
+	"listService",
+	"List Service",
+	"/motor-garage/service",
+	func(ctx metagin.Context[base.RequestListing, []dto.MotorGarageService]) {
+		j := ctx.Jwt()
+		ps, page := repo.MotorGarageServiceRepo.FindAllComplex(
+			ctx.DB(),
+			ctx.DB().Or(
+				ctx.Request().BuildDecryptedSimilarClause(
+					"name",
+					"description",
+				),
+				ctx.Request().BuildSimilarClause(
+					"price",
+					"price_after_tax",
+				),
 			),
-			ctx.GetRequest().BuildSimilarClause(
-				"price",
-				"price_after_tax",
-			),
-		),
-		ctx.Page(),
-		ctx.Sort(),
-		"",
-		j.GetWorkspaceId(),
-	)
-	ds := make([]dto.MotorGarageService, len(ps))
-	for i := range ps {
-		ds[i] = *ps[i].ToDTO()
-	}
-	ctx.OK(ds, page)
-}
+			ctx.Page(),
+			ctx.Sort(),
+			j.GetWorkspaceId(),
+		)
+		ds := make([]dto.MotorGarageService, len(ps))
+		for i := range ps {
+			ds[i] = *ps[i].ToDTO()
+		}
+		ctx.OK(&ds, page)
+	},
+)

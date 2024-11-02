@@ -5,12 +5,11 @@ go 1.23.2
 require (
 	github.com/metadiv-go-tech/gotenberg v1.0.0
 	github.com/metadiv-go-tech/metadiv_util_client v0.0.0-20241029055206-0458b64628ca
-	github.com/metadiv-go-tech/metagin v1.5.0
-	github.com/metadiv-go-tech/metaorm v1.3.0
-	github.com/metadiv-go-tech/mod_dev_auth v0.0.0-20241026040509-8d633aea24e0
-	github.com/metadiv-go-tech/module_relationship v1.2.1
-	github.com/metadiv-go-tech/module_system_data v0.0.0-20241031063137-35759c162e1a
-	gorm.io/gorm v1.25.12
+	github.com/metadiv-go-tech/metagin/v2 v2.3.7
+	github.com/metadiv-go-tech/metaorm/v2 v2.3.3
+	github.com/metadiv-go-tech/mod_dev_auth/v2 v2.0.0
+	github.com/metadiv-go-tech/module_relationship/v2 v2.0.0
+	github.com/metadiv-go-tech/module_system_data/v2 v2.0.1
 )
 
 require (
@@ -56,6 +55,8 @@ require (
 	github.com/memcachier/mc/v3 v3.0.3 // indirect
 	github.com/metadiv-go-tech/aes v1.2.1 // indirect
 	github.com/metadiv-go-tech/jwt v1.1.0 // indirect
+	github.com/metadiv-go-tech/metagin v1.5.0 // indirect
+	github.com/metadiv-go-tech/metaorm v1.3.0 // indirect
 	github.com/metadiv-go-tech/nanoid v1.1.1 // indirect
 	github.com/metadiv-go-tech/rsa v1.1.1 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
@@ -63,6 +64,7 @@ require (
 	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/robfig/cron v1.2.0 // indirect
+	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/robfig/go-cache v0.0.0-20130306151617-9fc39e0dbf62 // indirect
 	github.com/swaggo/files v1.0.1 // indirect
 	github.com/swaggo/gin-swagger v1.6.0 // indirect
@@ -84,4 +86,5 @@ require (
 	gorm.io/driver/mysql v1.5.7 // indirect
 	gorm.io/driver/postgres v1.5.9 // indirect
 	gorm.io/driver/sqlite v1.5.6 // indirect
+	gorm.io/gorm v1.25.12 // indirect
 )

@@ -1,20 +1,27 @@
 package handler
 
 import (
-	"github.com/metadiv-go-tech/metagin"
-	"github.com/metadiv-go-tech/metagin/base"
+	"errors"
+
+	"github.com/metadiv-go-tech/metagin/v2"
+	"github.com/metadiv-go-tech/metagin/v2/base"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/product/repo"
+	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 )
 
-func ApiMotorGarageProductGet(ctx metagin.IContext[base.RequestIDPath]) {
-	j := ctx.Jwt()
+var ApiMotorGarageProductGet = metagin.Get(
+	"getProduct",
+	"Get Product",
+	"/motor-garage/product/:id",
+	func(ctx metagin.Context[base.RequestPathId, dto.MotorGarageProduct]) {
+		j := ctx.Jwt()
 
-	product := repo.MotorGarageProductRepo.FindByID(ctx.GetDB(), ctx.GetRequest().ID, j.GetWorkspaceId())
-	if product == nil {
-		ctx.Err("product not found")
-		return
-	}
+		product := repo.MotorGarageProductRepo.FindById(ctx.DB(), ctx.Request().ID, j.GetWorkspaceId())
+		if product == nil {
+			ctx.Err(errors.New("product not found"))
+			return
+		}
 
-	ctx.OK(product.ToDTO())
-
-}
+		ctx.OK(product.ToDTO())
+	},
+)
