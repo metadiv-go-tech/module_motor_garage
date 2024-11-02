@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Masters Inspection Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffeb3b;
+            color: #000;
+        }
+        .inspection-form {
+            background-color: #ffeb3b;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header {
+            border-bottom: 2px solid #000;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 20px;
+            border: 1px solid #666;
+            padding: 15px;
+            background-color: #fff;
+            color: #000;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .checkbox-group {
+            display: flex;
+            gap: 15px;
+            
+        }
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        h3 {
+            margin-top: 0;
+            border-bottom: 1px solid #666;
+            padding-bottom: 5px;
+            color: #000;
+        }
+        label {
+            margin-right: 10px;
+            color: #000;
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .status {
+            font-weight: bold;
+            text-align: center;
+        }
+        .grid-4x2 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 100%;
+        }
+        .engine-tune-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr auto;
+            gap: 10px;
+            align-items: center;
+        }
+        .header-checkboxes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            text-align: center;
+        }
+        .main-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .main-header h3 {
+            margin: 0;
+        }
+        .main-header h3:nth-child(2),
+        .main-header h3:nth-child(3) {
+            text-align: center;
+        }
+        .engine-tune-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .engine-tune-row input[type="text"] {
+            padding: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .input-group input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .before-after-label {
+            font-weight: bold;
+            padding: 5px;
+        }
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+        }
+        .number-grid input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .number-input {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .number-input label {
+            font-size: 12px;
+            margin: 0;
+        }
+        .number-input input {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .input-box {
+            display: flex;
+            align-items: center;
+        }
+        .input-box {
+            width: 100%;
+        }
+        .input-box input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .input-box {
+            width: 100%;
+        }
+        .input-box input[type="text"],
+        .input-box input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .status {
+            white-space: nowrap;
+            font-weight: bold;
+        }
+        .input-box-small {
+            width: 100%;
+            max-width: 100px;
+            margin-left: auto;
+            display: flex;
+            justify-content: center;
+        }
+        .input-box-small input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .input-box-small input[type="checkbox"] {
+            margin: 0;
+            transform: scale(1.2); /* Makes checkboxes slightly larger */
+        }
+        .headlight-checks {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .check-item label {
+            font-size: 12px;
+            margin: 0;
+        }
+        .check-item input[type="checkbox"] {
+            margin: 0;
+        }
+        .label-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .sub-labels {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+        }
+        .check-label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+        .check-label input[type="checkbox"] {
+            margin: 0;
+        }
+        .pressure-input {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .mini-input {
+            width: 50px;
+            padding: 3px;
+            text-align: center;
+        }
+        .brakes-section {
+            margin-top: 20px;
+        }
+        .brakes-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .brakes-table th,
+        .brakes-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        .brakes-table input {
+            width: 90%;
+            padding: 4px;
+            box-sizing: border-box;
+        }
+        .spec-input {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .medium-input {
+            width: 100px;
+            padding: 4px;
+            box-sizing: border-box;
+        }
+        .speed-input {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+        .mini-input {
+            width: 50px;
+            padding: 3px;
+            text-align: center;
+        }
+        .label-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .sub-labels {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+        }
+        .input-box-small {
+            width: 100%;
+            max-width: 100px;
+            margin-left: auto;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .info-group {
+            margin-bottom: 20px;
+        }
+        .info-group h4 {
+            margin-bottom: 10px;
+        }
+        .info-group p {
+            margin: 0;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h2 {
+            color: #000;
+            margin: 0;
+            padding: 10px 0;
+            font-size: 24px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .info-group {
+            padding: 10px;
+        }
+        .info-group h4 {
+            color: #000;
+            margin: 0 0 15px 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #666;
+        }
+        .info-group p {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        .info-group label {
+            min-width: 120px;
+            margin-right: 10px;
+            color: #000;
+        }
+        .info-group input {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #666;
+            border-radius: 3px;
+        }
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="inspection-form">
+        <div class="section">
+            <div class="header">
+                <h2>Auto Masters</h2>
+            </div>
+            <div class="section">
+                <h3>Customer & Vehicle Information</h3>
+                <div class="info-grid">
+                    <!-- Customer Information -->
+                    <div class="info-group">
+                        <h4>Customer Details</h4>
+                        <p>
+                            <label>Date:</label>
+                            <input type="date" value="2023-05-01">
+                        </p>
+                        <p>
+                            <label>Name:</label>
+                            <input type="text" placeholder="Enter customer name">
+                        </p>
+                        <p>
+                            <label>Phone:</label>
+                            <input type="tel" placeholder="Enter phone number">
+                        </p>
+                        <p>
+                            <label>Email:</label>
+                            <input type="email" placeholder="Enter email address">
+                        </p>
+                    </div>
+
+                    <!-- Vehicle Information -->
+                    <div class="info-group">
+                        <h4>Vehicle Details</h4>
+                        <p>
+                            <label>Make/Model:</label>
+                            <input type="text" placeholder="HONDA FIT HU 1.5">
+                        </p>
+                        <p>
+                            <label>Registration:</label>
+                            <input type="text" placeholder="Enter registration">
+                        </p>
+                        <p>
+                            <label>VIN:</label>
+                            <input type="text" placeholder="Enter VIN number">
+                        </p>
+                        <p>
+                            <label>Odometer:</label>
+                            <input type="number" placeholder="70365">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3> Customer Instructions and Tests</h3>
+                    <div class="instruction-grid">
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> Tune</label>
+                        </div>
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> Injector</label>
+                        </div>
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> Diesel Service</label>
+                        </div>
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> Standard</label>
+                        </div>
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> Timing Belt</label>
+                        </div>
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> Diagnose</label>
+                        </div>
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> Major Service</label>
+                        </div>
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> Exhaust</label>
+                        </div>
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> Auto Service</label>
+                        </div>
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> Minor Service</label>
+                        </div>
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> Suspension</label>
+                        </div>
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> Vehicle Check</label>
+                        </div>
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> Wiper Disc SCE</label>
+                        </div>
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> Logbook Service</label>
+                        </div>
+                        <div class="instruction-item">
+                            <label><input type="checkbox"> CAB Over Schg</label>
+                        </div>
+                    </div>
+                    <div class="terms-note">
+                        Authority to proceed as per terms & conditions overleaf.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>1. Road Test</h3>
+            <div class="grid">
+                <label>1.1 Fit Seat Cover and Floor Mat</label>
+                <div class="input-box">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>1.2 Check Oil, Water and Tyre Condition</label>
+                <div class="status">Before Road Test</div>
+                <div class="input-box">
+                    <input type="text">
+                </div>
+                
+            </div>
+            <div class="grid">
+                <label>1.3 Obvious Vehicle Damage</label>
+                <div class="input-box">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>1.4 Road Test - Max Speed Reached</label>
+                <div class="input-box">
+                    <input type="number" placeholder="60">
+                    <div class="status">kph</div>
+                    <input type="text">
+                </div>
+                
+        
+            </div>
+            <div class="grid">
+                <label>1.5 Air Conditioning / Climate / Heater Controls</label>
+                <div class="input-box">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>1.6 Air Conditioning Temperature Check (6-9 degrees)</label>
+                <div class="input-box">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>1.7 Handbrake Operation</label>
+                <div class="input-box">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>1.8 Footbrake Operation</label>
+                <div class="input-box">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>1.9 Clutch / Gearbox Operation</label>
+                <div class="input-box">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>1.10 Automatic Transmission Operation</label>
+                <div class="input-box">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>1.11 Starter Inhibitor Switch</label>
+                <div class="input-box">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>1.12 Requires Injector Service</label>
+                <div class="input-box">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="main-header">
+                <h3>2. Engine Tune</h3>
+                <div class="header-checkboxes">
+                    <span class="before-after-label">Before</span>
+                    <span class="before-after-label">After</span>
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.13 Battery Load Test</label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.14 Cranking Voltage</label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.15 Charging Voltage</label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.16 Ignition Timing - Check and Adjust Where Applicable</label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.17 Coil / Condenser</label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.18 Manufacturers Idle Speed</label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.19 Injectors Secure / Visual Leaks</label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.20 Fuel Lines / Visual Leaks</label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.21 HT Leads</label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.22 E.G.R. / E.F.E. Valve</label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.23 Distributor Cap</label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.24 Rotor</label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.25 P.C.V. System</label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.26 Battery Cables / Terminals <input type="checkbox"><di class="status">Levels</di> </label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.27 Plugs Replaced</label>
+                <div class="input-group">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="engine-tune-row">
+                <label>2.28 Compression or Power Balance</label>
+                <div class="input-group">
+                    <div class="number-grid">
+                        <div class="number-input">
+                            <label>1</label>
+                            <input type="number">
+                        </div>
+                        <div class="number-input">
+                            <label>2</label>
+                            <input type="number">
+                        </div>
+                        <div class="number-input">
+                            <label>3</label>
+                            <input type="number">
+                        </div>
+                        <div class="number-input">
+                            <label>4</label>
+                            <input type="number">
+                        </div>
+                    </div>
+                    <div class="number-grid">
+                        <div class="number-input">
+                            <label>5</label>
+                            <input type="number">
+                        </div>
+                        <div class="number-input">
+                            <label>6</label>
+                            <input type="number">
+                        </div>
+                        <div class="number-input">
+                            <label>7</label>
+                            <input type="number">
+                        </div>
+                        <div class="number-input">
+                            <label>8</label>
+                            <input type="number">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>3. Light Check</h3>
+            <div class="grid">
+                <div class="label-group">
+                    <label>3.29 Headlight Operation</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>Hi L</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>Hi R</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>Lo L</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>Lo R</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>3.30 High Beam Indicator</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="label-group">
+                    <label>3.31 Park / Tail Lights</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>FL</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>FR</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RL</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RR</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>3.32 Turn Signals / Flashing Rate</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="label-group">
+                    <label>3.33 Signal Cancellation</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>L</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>R</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="label-group">
+                    <label>3.34 Brake Lights</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>L</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>R</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>High Level</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="label-group">
+                    <label>3.35 License Plate Lights</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>L</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>R</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="label-group">
+                    <label>3.36 Reverse Lights</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>L</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>R</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>3.37 All Lenses / Condition</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>4. Interior Check</h3>
+            <div class="grid">
+                <label>4.38 Instrument Warning Lights</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>4.39 Engine Check Light</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>4.40 Instrument Panel Lights</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>4.41 Interior Lights / Courtesy Lights</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="label-group">
+                    <label>4.42 Windscreen Wiper Blades</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>L</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>R</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>REAR</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>4.43 Windscreen Condition and Visibility</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>4.44 Mirrors - Internal / External</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>4.45 Horn Operation </label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="label-group">
+                    <label>4.46 Seat Belts</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>FL</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>FR</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RL</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RC</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RR</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>4.47 Lubricate Door Locks / Check Straps / Hinges / Bonnet Latch</label>
+                <div class="sub-labels">
+                    <label class="check-label">
+                        <span>FL</span>
+                        <input type="checkbox">
+                    </label>
+                    <label class="check-label">
+                        <span>FR</span>
+                        <input type="checkbox">
+                    </label>
+                    <label class="check-label">
+                        <span>RL</span>
+                        <input type="checkbox">
+                    </label>
+                    <label class="check-label">
+                        <span>RR</span>
+                        <input type="checkbox">
+                    </label>
+                    <label class="check-label">
+                        <span>BOOT</span>
+                        <input type="checkbox">
+                    </label>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>4.48 Window Operation</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="label-group">
+                    <label>4.49 Boot & Tail Gate Operation</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>FL</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>FR</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RL</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RC</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>4.50 Pollen Filter</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>5. Suspension/Steering System Test</h3>
+            <div class="grid">
+                <label>5.51 Drain Oil and Replace Sump Plug/Washer</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>5.52 Replace Oil Filter</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>5.53 Engine Oil Leaks</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>5.54 Gearbox Oil Level - Leaks</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>5.55 Differential Oil Level - Leaks</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>5.56 Lubricate Suspension - Where Applicable</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>5.57 Fuel Line/ Leaks / Attachments</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>5.58 Brake Cables / Hoses / Lines</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="label-group">
+                    <label>5.59 Engine Mountings</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>GEARBOX MOUNTS</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>FRONT</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>REAR</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>6. Exhaust System Checks</h3>
+            <div class="grid">
+                <label>6.60 Engine Pipe / Flange</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>6.61 Mufflers / Resonators / Pipes</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>6.62 Catalytic Converter - Visual</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>6.63 Particulate Filter - Visual</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>6.64 Support / Hangers</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>7. SUSPENSION / STEERING SYSTEM TEST</h3>
+            <div class="grid">
+                <label>7.65 Steering Free Play</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>7.66 Steering Wear / Leaks / Rack Boots</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>7.67 Tie Rod Ends</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>7.68 Suspension Bushes</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>7.69 Upper and Lower Wishbones</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="label-group">
+                    <label>7.70 Sway Bar Rubbers</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>Front</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>Rear</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>7.71 Ball Joints</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="label-group">
+                    <label>7.72 Shock Absorbers</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>FL</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>FR</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RL</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RR</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <label>7.73 Tail Shaft / Joints</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="label-group">
+                    <label>7.74 Constant Velocity Joints</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>FL</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>FR</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RL</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RR</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="label-group">
+                    <label>7.75 Rear Spring Bushes</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>L</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>R</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>8. BRAKE AND TYRE CHECK</h3>
+            
+            <!-- Tyre Pressure with small input boxes -->
+            <div class="grid">
+                <div class="label-group">
+                    <label>8.76 Tyre Pressure</label>
+                    <div class="sub-labels">
+                        <div class="pressure-input">
+                            <span>FL</span>
+                            <input type="text" class="mini-input">
+                        </div>
+                        <div class="pressure-input">
+                            <span>FR</span>
+                            <input type="text" class="mini-input">
+                        </div>
+                        <div class="pressure-input">
+                            <span>RL</span>
+                            <input type="text" class="mini-input">
+                        </div>
+                        <div class="pressure-input">
+                            <span>RR</span>
+                            <input type="text" class="mini-input">
+                        </div>
+                        <div class="pressure-input">
+                            <span>SP</span>
+                            <input type="text" class="mini-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <!-- Tyre Condition with checkboxes -->
+            <div class="grid">
+                <div class="label-group">
+                    <label>8.77 Tyre Condition</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>FL</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>FR</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RL</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RR</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>SP</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <!-- Wheel Bearings with checkboxes -->
+            <div class="grid">
+                <div class="label-group">
+                    <label>8.78 Wheel Bearings</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>FL</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>FR</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RL</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>RR</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <!-- Master Cyl and Booster with checkboxes -->
+            <div class="grid">
+                <div class="label-group">
+                    <label>8.79 Master Cyl and Booster</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>Master</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>Booster</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <!-- Brakes Table -->
+            <div class="brakes-section">
+                <label>8.80 Brakes</label>
+                <table class="brakes-table">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Manufacturers Spec Size</th>
+                            <th>Disc or Drum size</th>
+                            <th>Pad or Lining % Worn</th>
+                            <th>Caliper or Cylinder</th>
+                            <th>Seals</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>(a) L.H.Front</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>(b) R.H.Front</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>(c) L.H.Rear</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>(d) R.H.Rear</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>9. UNDER THE BONNET TESTS</h3>
+            
+            <div class="grid">
+                <label>9.81 Replace Engine Oil</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="label-group">
+                    <label>9.82 Battery Load Test</label>
+                    <div class="sub-labels">
+                        <label class="check-label">
+                            <span>Electrolyte</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>Clamp</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>Terminals</span>
+                            <input type="checkbox">
+                        </label>
+                        <label class="check-label">
+                            <span>Cables</span>
+                            <input type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>9.83 Air Cleaner</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>9.84 Belts</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="label-group">
+                    <label>9.85 Cambelt</label>
+                    <div class="sub-labels">
+                        <div class="spec-input">
+                            <span>Manuf Spec:</span>
+                            <input type="text" class="medium-input">
+                            <span>km</span>
+                        </div>
+                        <div class="spec-input">
+                            <span>Date:</span>
+                            <input type="text" class="medium-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>9.86 Coolant Condition</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>9.87 Conduct External Visual Check of Components</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>9.88 Start Motor - Check Oil Filter for Leaks</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>9.89 Power Steering / Hydraulic or Electric. Fluid and Condition</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>9.90 Automatic Transmission Oil Level and Condition Check</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>9.91 Brake / Clutch Fluid Level and Condition Check</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>9.92 Windscreen Washers - Operation / Top Up / Additive Added</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>9.93 Fuel Filter - Visual Only</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>9.94 Pressurise Cooling System</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>9.95 Bonnet / Boot Latch Operation</label>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h3>10. FINAL PROCEDURES</h3>
+            
+            <div class="grid">
+                <div class="label-group">
+                    <label>10.96 Road Test Car (If Roadworthy)</label>
+                    <div class="sub-labels">
+                        <div class="speed-input">
+                            <span>Max Speed</span>
+                            <input type="number" class="mini-input">
+                            <span>kph</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-box-small">
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>10.97 Park Vehicle - Facing Out</label>
+                <div class="input-box-small">
+                    <input type="checkbox">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>10.98 Reset Service Interval</label>
+                <div class="input-box-small">
+                    <input type="checkbox">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>10.99 Reset Service Interval</label>
+                <div class="input-box-small">
+                    <input type="checkbox">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>10.100 Vacuum Carpets Front & Rear</label>
+                <div class="input-box-small">
+                    <input type="checkbox">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>10.101 Deodorise Interior</label>
+                <div class="input-box-small">
+                    <input type="checkbox">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>10.102 Wipe Over Dash</label>
+                <div class="input-box-small">
+                    <input type="checkbox">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>10.103 Clean Windows</label>
+                <div class="input-box-small">
+                    <input type="checkbox">
+                </div>
+            </div>
+
+            <div class="grid">
+                <label>10.104 Remove Seat Cover and Floor Mat</label>
+                <div class="input-box-small">
+                    <input type="checkbox">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
