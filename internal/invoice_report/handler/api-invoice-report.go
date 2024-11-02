@@ -15,7 +15,7 @@ import (
 var ApiInvoiceReport = metagin.Get(
 	"getInvoiceReport",
 	"Get Invoice Report",
-	"/invoice/report/:id",
+	"/motor-garage/invoice/report/:id",
 	func(ctx metagin.Context[base.RequestPathId, struct{}]) {
 
 		j := ctx.Jwt()

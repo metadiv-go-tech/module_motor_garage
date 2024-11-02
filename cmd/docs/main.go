@@ -12,6 +12,7 @@ func main() {
 	module_motor_garage.SetupDiscount()
 	module_motor_garage.SetupInvoice()
 	module_motor_garage.SetupInvoiceReport()
+	module_motor_garage.SetupTestReport()
 	metagin.GenerateTypescript()
 	metagin.GenerateOpenAPI()
 }
