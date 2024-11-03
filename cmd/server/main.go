@@ -4,8 +4,8 @@ import (
 	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/mod_dev_auth/v2"
 	"github.com/metadiv-go-tech/module_motor_garage"
-	"github.com/metadiv-go-tech/module_relationship/v2"
-	"github.com/metadiv-go-tech/module_system_data/v2"
+	"github.com/metadiv-go-tech/module_relationship"
+	"github.com/metadiv-go-tech/module_system_data"
 )
 
 func main() {

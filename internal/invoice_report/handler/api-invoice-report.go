@@ -2,6 +2,7 @@ package handler
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/metadiv-go-tech/gotenberg"
@@ -36,6 +37,6 @@ var ApiInvoiceReport = metagin.Get(
 			return
 		}
 
-		ctx.File(pdf, "invoice.pdf")
+		ctx.File(pdf, fmt.Sprintf("invoice-#%d.pdf", invoice.ID))
 	},
 )
