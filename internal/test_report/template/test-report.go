@@ -142,7 +142,7 @@ var TestReportTemplate = `<!DOCTYPE html>
     <div class="header">
         <div class="company-info">
             <p class="company-logo">
-                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" style="padding-left: 25px;
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" style="padding-left: 5px;
                     width="50.000000pt" height="40.000000pt" viewBox="0 0 1512.000000 1202.000000"
                     preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,1202.000000) scale(0.100000,-0.100000)"
