@@ -118,6 +118,8 @@ github.com/metadiv-go-tech/metagin/v2 v2.3.12 h1:hxjU6kky79ENYcR50ymHSPl9wMw5opA
 github.com/metadiv-go-tech/metagin/v2 v2.3.12/go.mod h1:F8u6dHwYpv5zS1jZzVyqCIZ+CQwAfYD8e49JuHI7+3I=
 github.com/metadiv-go-tech/metagin/v2 v2.3.16 h1:9hx3apcLCRo3ZvDyW80Wdu2TEiyIPY9FMqb3CemSDdA=
 github.com/metadiv-go-tech/metagin/v2 v2.3.16/go.mod h1:sYMN0x+HeFnk/6oIEyNhGw68XJTd+x9QrEm8yqG38ds=
+github.com/metadiv-go-tech/metagin/v2 v2.3.17 h1:12eJKORMYlcRAN2azS6HF6sQVlppNe4AZlojkfoxd1s=
+github.com/metadiv-go-tech/metagin/v2 v2.3.17/go.mod h1:GmtCJFG++4n4Rz7Dlczwz/fSc7D+kMDex4hJMFzhpgU=
 github.com/metadiv-go-tech/metaorm v1.3.0 h1:oCt8lyEWalXLfiuqP9BB3ehr4noAxKxyRpaQVJUN6UE=
 github.com/metadiv-go-tech/metaorm v1.3.0/go.mod h1:OexZfDduBfr7A5QBLIARy/vglwRZcZCT6boiTTiU1SM=
 github.com/metadiv-go-tech/metaorm/v2 v2.3.3 h1:12BwSGKSfR33hQB6TD3qkaOf5jdtqV1AxbkXAfI6gD8=
@@ -126,6 +128,8 @@ github.com/metadiv-go-tech/metaorm/v2 v2.3.6 h1:nE8DJK77pRLuwD64ZCSDTydqUK/UC9i4
 github.com/metadiv-go-tech/metaorm/v2 v2.3.6/go.mod h1:5T8PIHeOEg01yvkDooYbtIVTscf//KZWl4bV+pvZ0/E=
 github.com/metadiv-go-tech/metaorm/v2 v2.3.7 h1:86UcKTe5S6f/Kg87DKnDy5zPQZKf0r5eKyDN4ajuSiQ=
 github.com/metadiv-go-tech/metaorm/v2 v2.3.7/go.mod h1:5T8PIHeOEg01yvkDooYbtIVTscf//KZWl4bV+pvZ0/E=
+github.com/metadiv-go-tech/metaorm/v2 v2.3.8 h1:rs2CU1N0086397BZoTIGuOwISS40SgSlX2ktA1MMTrI=
+github.com/metadiv-go-tech/metaorm/v2 v2.3.8/go.mod h1:5T8PIHeOEg01yvkDooYbtIVTscf//KZWl4bV+pvZ0/E=
 github.com/metadiv-go-tech/mod_dev_auth/v2 v2.0.0 h1:85pkZ61Gy0cLTCxG7D9SEbLrzL61zcYQ8iLWUK9yhvY=
 github.com/metadiv-go-tech/mod_dev_auth/v2 v2.0.0/go.mod h1:jlXMoz9wpyAh+rqglGR+VWo0gLcK4IkIIcj0xwcssBc=
 github.com/metadiv-go-tech/module_relationship v1.2.1 h1:tetKnjt9AU5/oZt9GavANUGsy07ocyUXLPWtYw+gCLU=
