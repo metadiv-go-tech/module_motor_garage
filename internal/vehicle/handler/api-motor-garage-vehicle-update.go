@@ -6,6 +6,7 @@ import (
 
 	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/vehicle/repo"
+	"github.com/metadiv-go-tech/module_motor_garage/internal/vehicle/service"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 	"github.com/metadiv-go-tech/module_motor_garage/model/request"
 	relationship "github.com/metadiv-go-tech/module_relationship/v2"
@@ -44,8 +45,7 @@ var ApiMotorGarageVehicleUpdate = metagin.Put(
 		}
 
 		if ctx.Request().Registration != "" {
-			exist := repo.MotorGarageVehicleRepo.FindOne(ctx.DB(), ctx.DB().Eq("registration", ctx.Request().Registration), j.GetWorkspaceId())
-			if exist != nil {
+			if service.VehicleService.CheckRegistration(ctx.DB(), ctx.Request().Registration, j.GetWorkspaceId(), ctx.Request().ID) {
 				ctx.Err(errors.New("registration is already in use"))
 				return
 			}
