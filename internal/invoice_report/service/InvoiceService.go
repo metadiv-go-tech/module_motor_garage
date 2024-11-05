@@ -52,12 +52,12 @@ func (s *invoiceService) GenerateReport(invoice *entity.MotorGarageInvoice, loca
 				serviceDto.Name,
 				serviceDto.Description,
 				float64(service.Price)/100,
-				float64(service.Price)/100)
+				float64(service.PriceAfterTax)/100)
 			total += service.PriceAfterTax
 			sum += service.PriceAfterTax
 		}
 		html = strings.Replace(html, "{{service_items}}", sHtml, -1)
-		html = strings.Replace(html, "{{services_total}}", fmt.Sprintf("$%.2f", float64(total)/100), -1)
+		html = strings.ReplaceAll(html, "{{services_total}}", fmt.Sprintf("$%.2f", float64(total)/100))
 	} else {
 		html = strings.Replace(html, "{{service_items}}", "", -1)
 	}
@@ -68,12 +68,12 @@ func (s *invoiceService) GenerateReport(invoice *entity.MotorGarageInvoice, loca
 		for _, product := range invoice.Products {
 			productDto := product.ToDTO()
 			pHtml += fmt.Sprintf("<tr><td>%s</td><td>%s</td><td>%d</td><td>$%.2f</td><td>$%.2f</td></tr>",
-				productDto.Name, productDto.Description, productDto.Quantity, float64(product.Price)/100, float64(product.Price)/100)
-			total += product.PriceAfterTax
-			sum += product.PriceAfterTax
+				productDto.Name, productDto.Description, productDto.Quantity, float64(product.Price)/100, float64(product.PriceAfterTax)/100)
+			total += product.PriceAfterTax * productDto.Quantity
+			sum += product.PriceAfterTax * productDto.Quantity
 		}
 		html = strings.Replace(html, "{{product_items}}", pHtml, -1)
-		html = strings.Replace(html, "{{products_total}}", fmt.Sprintf("$%.2f", float64(total)/100), -1)
+		html = strings.ReplaceAll(html, "{{products_total}}", fmt.Sprintf("$%.2f", float64(total)/100))
 	} else {
 		html = strings.Replace(html, "{{product_items}}", "", -1)
 	}
@@ -93,7 +93,7 @@ func (s *invoiceService) GenerateReport(invoice *entity.MotorGarageInvoice, loca
 		}
 		html = strings.Replace(html, "{{discount_items}}", dHtml, -1)
 		html = strings.Replace(html, "{{discounts_total}}", fmt.Sprintf("$%.2f", float64(total)/100), -1)
-		html = strings.Replace(html, "{{discounts_percentage}}", fmt.Sprintf("%.2f", (1-percentage)*100), -1)
+		html = strings.ReplaceAll(html, "{{discounts_percentage}}", fmt.Sprintf("%.2f", (1-percentage)*100))
 	} else {
 		html = strings.Replace(html, "{{discount_items}}", "", -1)
 	}
