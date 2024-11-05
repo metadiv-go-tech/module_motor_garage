@@ -8,9 +8,9 @@ type MotorGarageInvoice struct {
 	VehicleId uint                `json:"vehicle_id"`
 	Vehicle   *MotorGarageVehicle `json:"vehicle"`
 
-	Services  []MotorGarageService        `json:"services"`
-	Products  []MotorGarageInvoiceProduct `json:"products"`
-	Discounts []MotorGarageDiscount       `json:"discounts"`
+	Services  []MotorGarageInvoiceService  `json:"services"`
+	Products  []MotorGarageInvoiceProduct  `json:"products"`
+	Discounts []MotorGarageInvoiceDiscount `json:"discounts"`
 
 	Total uint `json:"total"`
 }

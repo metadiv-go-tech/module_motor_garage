@@ -29,7 +29,7 @@ func (e *MotorGarageInvoice) ToDTO(locale string) *dto.MotorGarageInvoice {
 		d.Vehicle = e.Vehicle.ToDTO(locale)
 	}
 	var total uint
-	d.Services = make([]dto.MotorGarageService, len(e.Services))
+	d.Services = make([]dto.MotorGarageInvoiceService, len(e.Services))
 	for i, s := range e.Services {
 		d.Services[i] = *s.ToDTO()
 		total += s.PriceAfterTax
@@ -39,7 +39,7 @@ func (e *MotorGarageInvoice) ToDTO(locale string) *dto.MotorGarageInvoice {
 		d.Products[i] = *p.ToDTO()
 		total += p.PriceAfterTax * p.Quantity
 	}
-	d.Discounts = make([]dto.MotorGarageDiscount, len(e.Discounts))
+	d.Discounts = make([]dto.MotorGarageInvoiceDiscount, len(e.Discounts))
 	for i, discount := range e.Discounts {
 		d.Discounts[i] = *discount.ToDTO()
 		total -= discount.DiscountAmount

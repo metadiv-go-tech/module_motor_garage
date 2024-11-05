@@ -2,5 +2,6 @@ package dto
 
 type MotorGarageInvoiceProduct struct {
 	MotorGarageProduct
-	Quantity uint `json:"quantity"`
+	ProductId *uint `json:"product_id"`
+	Quantity  uint  `json:"quantity"`
 }

@@ -27,28 +27,46 @@ func (r *MotorGarageInvoiceCreate) ToEntity(e *entity.MotorGarageInvoice) *entit
 	}
 	e.Date = r.Date
 	e.VehicleId = r.VehicleId
+
+	existServices := make(map[uint]entity.MotorGarageInvoiceService)
+	for _, s := range e.Services {
+		existServices[s.ID] = s
+	}
 	for _, s := range r.Services {
 		sEntity := entity.MotorGarageInvoiceService{
-			MotorGarageService: *s.ToEntity(nil),
+			MotorGarageService: *s.ToEntity(existServices[s.ID].Service),
 		}
-		if s.ID != 0 {
-			sEntity.ServiceId = &s.ID
+		if s.ServiceId != 0 {
+			sEntity.ServiceId = &s.ServiceId
 		}
 		e.Services = append(e.Services, sEntity)
 	}
+
+	existProducts := make(map[uint]entity.MotorGarageInvoiceProduct)
+	for _, p := range e.Products {
+		existProducts[p.ID] = p
+	}
 	for _, p := range r.Products {
 		pEntity := entity.MotorGarageInvoiceProduct{
-			MotorGarageProduct: *p.ToEntity(nil),
+			MotorGarageProduct: *p.ToEntity(existProducts[p.ID].Product),
 			Quantity:           p.Quantity,
 		}
-		if p.ID != 0 {
-			pEntity.ProductId = &p.ID
+		if p.ProductId != 0 {
+			pEntity.ProductId = &p.ProductId
 		}
 		e.Products = append(e.Products, pEntity)
 	}
+
+	existDiscounts := make(map[uint]entity.MotorGarageInvoiceDiscount)
+	for _, d := range e.Discounts {
+		existDiscounts[d.ID] = d
+	}
 	for _, d := range r.Discounts {
 		dEntity := entity.MotorGarageInvoiceDiscount{
-			MotorGarageDiscount: *d.ToEntity(nil),
+			MotorGarageDiscount: *d.ToEntity(existDiscounts[d.ID].Discount),
+		}
+		if d.DiscountId != 0 {
+			dEntity.DiscountId = &d.DiscountId
 		}
 		e.Discounts = append(e.Discounts, dEntity)
 	}
