@@ -6,6 +6,11 @@ import (
 	"github.com/metadiv-go-tech/module_motor_garage/model/entity"
 )
 
+type MotorGarageVehicleList struct {
+	base.RequestListing
+	CustomerId uint `form:"customer_id"`
+}
+
 type MotorGarageVehicleCreate struct {
 	Name         string `json:"name"`
 	Year         uint   `json:"year"`
