@@ -13,10 +13,10 @@ type MotorGarageBooking struct {
 
 	DateTime int64 `json:"date_time"`
 
-	CustomerId uint                   `json:"customer_id"`
+	CustomerId *uint                  `json:"customer_id"`
 	Customer   *relationship.Customer `json:"customer"`
 
-	VehicleId uint                `json:"vehicle_id"`
+	VehicleId *uint               `json:"vehicle_id"`
 	Vehicle   *MotorGarageVehicle `json:"vehicle"`
 
 	Requirement []byte `json:"requirement"`
@@ -27,10 +27,14 @@ func (m *MotorGarageBooking) ToDTO(locale string) *dto.MotorGarageBooking {
 	d := &dto.MotorGarageBooking{
 		ID:          m.ID,
 		DateTime:    m.DateTime,
-		CustomerId:  m.CustomerId,
-		VehicleId:   m.VehicleId,
 		Requirement: metaorm.Decrypt(m.Requirement),
 		Note:        metaorm.Decrypt(m.Note),
+	}
+	if m.CustomerId != nil {
+		d.CustomerId = *m.CustomerId
+	}
+	if m.VehicleId != nil {
+		d.VehicleId = *m.VehicleId
 	}
 	if m.Customer != nil {
 		d.Customer = m.Customer.ToDTO(locale)

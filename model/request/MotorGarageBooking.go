@@ -35,8 +35,12 @@ func (r *MotorGarageBookingCreate) ToEntity(e *entity.MotorGarageBooking) *entit
 		e = &entity.MotorGarageBooking{}
 	}
 	e.DateTime = r.DateTime
-	e.CustomerId = r.CustomerId
-	e.VehicleId = r.VehicleId
+	if r.CustomerId != 0 {
+		e.CustomerId = &r.CustomerId
+	}
+	if r.VehicleId != 0 {
+		e.VehicleId = &r.VehicleId
+	}
 	e.Requirement = metaorm.Encrypt(r.Requirement)
 	e.Note = metaorm.Encrypt(r.Note)
 	return e
