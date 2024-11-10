@@ -6,13 +6,7 @@ import (
 )
 
 func main() {
-	module_motor_garage.SetupVehicle()
-	module_motor_garage.SetupService()
-	module_motor_garage.SetupProduct()
-	module_motor_garage.SetupDiscount()
-	module_motor_garage.SetupInvoice()
-	module_motor_garage.SetupInvoiceReport()
-	module_motor_garage.SetupTestReport()
+	module_motor_garage.SetupMotorGarage()
 	metagin.GenerateTypescript()
 	metagin.GenerateOpenAPI()
 }
