@@ -4,7 +4,6 @@ import (
 	"github.com/metadiv-go-tech/metagin/v2"
 	bookingHandler "github.com/metadiv-go-tech/module_motor_garage/internal/booking/handler"
 	discountHandler "github.com/metadiv-go-tech/module_motor_garage/internal/discount/handler"
-	inspectHandler "github.com/metadiv-go-tech/module_motor_garage/internal/inspect/handler"
 	invoiceReportHandler "github.com/metadiv-go-tech/module_motor_garage/internal/invoice_report/handler"
 	productHandler "github.com/metadiv-go-tech/module_motor_garage/internal/product/handler"
 	serviceHandler "github.com/metadiv-go-tech/module_motor_garage/internal/service/handler"
@@ -61,13 +60,6 @@ func SetupMotorGarage() {
 		bookingHandler.ApiMotorGarageBookingGet,
 		bookingHandler.ApiMotorGarageBookingUpdate,
 		bookingHandler.ApiMotorGarageBookingDelete,
-
-		// Inspect
-		inspectHandler.ApiMotorGarageInspectList,
-		inspectHandler.ApiMotorGarageInspectGet,
-		inspectHandler.ApiMotorGarageInspectDelete,
-		inspectHandler.ApiMotorGarageInspectCreate,
-		inspectHandler.ApiMotorGarageInspectUpdate,
 
 		// Invoice Report
 		invoiceReportHandler.ApiInvoiceReport,

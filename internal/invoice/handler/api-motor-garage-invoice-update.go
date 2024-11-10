@@ -6,6 +6,7 @@ import (
 
 	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/metagin/v2/one2many"
+	bookingRepo "github.com/metadiv-go-tech/module_motor_garage/internal/booking/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/invoice/repo"
 	vehicleRepo "github.com/metadiv-go-tech/module_motor_garage/internal/vehicle/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
@@ -18,39 +19,46 @@ var ApiMotorGarageInvoiceUpdate = metagin.Put(
 	"/motor-garage/invoice/:id",
 	func(ctx metagin.Context[request.MotorGarageInvoiceUpdate, dto.MotorGarageInvoice]) {
 
-		j := ctx.Jwt()
-
 		if err := ctx.Request().Validate(); err != "" {
 			ctx.Err(errors.New(err))
 			return
 		}
 
-		e := repo.MotorGarageInvoiceRepo.FindById(ctx.DB(), ctx.Request().ID, j.GetWorkspaceId())
+		e := repo.MotorGarageInvoiceRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())
 		if e == nil {
 			ctx.Err(errors.New("invoice not found"))
 			return
 		}
 
-		vehicle := vehicleRepo.MotorGarageVehicleRepo.FindById(ctx.DB(), ctx.Request().VehicleId, j.GetWorkspaceId())
+		vehicle := vehicleRepo.MotorGarageVehicleRepo.FindById(ctx.DB(), ctx.Request().VehicleId, ctx.WorkspaceId())
 		if vehicle == nil {
 			ctx.Err(errors.New("vehicle not found"))
 			return
 		}
 
+		if ctx.Request().BookingId != nil {
+			booking := bookingRepo.MotorGarageBookingRepo.FindById(ctx.DB().Preload("Invoice"), *ctx.Request().BookingId, ctx.WorkspaceId())
+			if booking == nil {
+				ctx.Err(errors.New("booking not found"))
+				return
+			}
+			e.Booking = booking
+		}
+
 		e = ctx.Request().ToEntity(e)
 		e.Vehicle = vehicle
 
-		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", e.Services, j.GetWorkspaceId()) {
+		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", e.Services, ctx.WorkspaceId()) {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save invoice services"))
 			return
 		}
 
-		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", e.Products, j.GetWorkspaceId()) {
+		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", e.Products, ctx.WorkspaceId()) {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save invoice products"))
 			return
 		}
 
-		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", e.Discounts, j.GetWorkspaceId()) {
+		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", e.Discounts, ctx.WorkspaceId()) {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save invoice discounts"))
 			return
 		}
@@ -58,13 +66,13 @@ var ApiMotorGarageInvoiceUpdate = metagin.Put(
 		e.Services = nil
 		e.Products = nil
 		e.Discounts = nil
-		e = repo.MotorGarageInvoiceRepo.Save(ctx.DB(), e, j.GetWorkspaceId())
+		e = repo.MotorGarageInvoiceRepo.Save(ctx.DB(), e, ctx.WorkspaceId())
 		if e == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save invoice"))
 			return
 		}
 
-		e = repo.MotorGarageInvoiceRepo.FindById(ctx.DB().Preload("Products", "Services", "Discounts"), ctx.Request().ID, j.GetWorkspaceId())
+		e = repo.MotorGarageInvoiceRepo.FindById(ctx.DB().Preload("Products", "Services", "Discounts"), ctx.Request().ID, ctx.WorkspaceId())
 		ctx.OK(e.ToDTO(ctx.Locale()))
 
 	},

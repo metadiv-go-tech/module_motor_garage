@@ -15,7 +15,6 @@ var ApiMotorGarageServiceCreate = metagin.Post(
 	"Create Service",
 	"/motor-garage/service",
 	func(ctx metagin.Context[request.MotorGarageServiceCreate, dto.MotorGarageService]) {
-		j := ctx.Jwt()
 
 		s := ctx.Request().ToEntity(nil)
 
@@ -24,7 +23,7 @@ var ApiMotorGarageServiceCreate = metagin.Post(
 			return
 		}
 
-		s = repo.MotorGarageServiceRepo.Save(ctx.DB(), s, j.GetWorkspaceId())
+		s = repo.MotorGarageServiceRepo.Save(ctx.DB(), s, ctx.WorkspaceId())
 		if s == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save service"))
 			return

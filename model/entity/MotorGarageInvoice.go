@@ -14,6 +14,12 @@ type MotorGarageInvoice struct {
 	VehicleId uint                `json:"vehicle_id"`
 	Vehicle   *MotorGarageVehicle `json:"vehicle" gorm:"foreignKey:VehicleId"`
 
+	BookingId *uint               `json:"booking_id"`
+	Booking   *MotorGarageBooking `json:"booking" gorm:"foreignKey:BookingId"`
+
+	InspectId *uint               `json:"inspect_id"`
+	Inspect   *MotorGarageInspect `json:"inspect" gorm:"foreignKey:InspectId"`
+
 	Services  []MotorGarageInvoiceService  `json:"services" gorm:"foreignKey:InvoiceId"`
 	Products  []MotorGarageInvoiceProduct  `json:"products" gorm:"foreignKey:InvoiceId"`
 	Discounts []MotorGarageInvoiceDiscount `json:"discounts" gorm:"foreignKey:InvoiceId"`
@@ -27,6 +33,14 @@ func (e *MotorGarageInvoice) ToDTO(locale string) *dto.MotorGarageInvoice {
 	}
 	if e.Vehicle != nil {
 		d.Vehicle = e.Vehicle.ToDTO(locale)
+	}
+	if e.Booking != nil {
+		d.BookingId = e.Booking.ID
+		d.Booking = e.Booking.ToDTO(locale)
+	}
+	if e.Inspect != nil {
+		d.InspectId = e.Inspect.ID
+		d.Inspect = e.Inspect.ToDTO(locale)
 	}
 	var total uint
 	d.Services = make([]dto.MotorGarageInvoiceService, len(e.Services))

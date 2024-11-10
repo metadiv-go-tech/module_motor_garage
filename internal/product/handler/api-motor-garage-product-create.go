@@ -16,8 +16,6 @@ var ApiMotorGarageProductCreate = metagin.Post(
 	"/motor-garage/product",
 	func(ctx metagin.Context[request.MotorGarageProductCreate, dto.MotorGarageProduct]) {
 
-		j := ctx.Jwt()
-
 		if errMsg := ctx.Request().Validate(); errMsg != "" {
 			ctx.Err(errors.New(errMsg))
 			return
@@ -25,7 +23,7 @@ var ApiMotorGarageProductCreate = metagin.Post(
 
 		product := ctx.Request().ToEntity(nil)
 
-		product = repo.MotorGarageProductRepo.Save(ctx.DB(), product, j.GetWorkspaceId())
+		product = repo.MotorGarageProductRepo.Save(ctx.DB(), product, ctx.WorkspaceId())
 		if product == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save product"))
 			return

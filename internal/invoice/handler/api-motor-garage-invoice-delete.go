@@ -14,9 +14,8 @@ var ApiMotorGarageInvoiceDelete = metagin.Delete(
 	"Delete Invoice",
 	"/motor-garage/invoice/:id",
 	func(ctx metagin.Context[base.RequestPathId, base.Empty]) {
-		j := ctx.Jwt()
 
-		e := repo.MotorGarageInvoiceRepo.FindById(ctx.DB(), ctx.Request().ID, j.GetWorkspaceId())
+		e := repo.MotorGarageInvoiceRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())
 		if e == nil {
 			ctx.Err(errors.New("invoice not found"))
 			return

@@ -12,6 +12,9 @@ type MotorGarageBooking struct {
 	VehicleId uint                `json:"vehicle_id"`
 	Vehicle   *MotorGarageVehicle `json:"vehicle"`
 
+	InvoiceId uint                `json:"invoice_id"`
+	Invoice   *MotorGarageInvoice `json:"invoice"`
+
 	Requirement string `json:"requirement"`
 	Note        string `json:"note"`
 }

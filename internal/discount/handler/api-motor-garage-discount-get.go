@@ -15,9 +15,7 @@ var ApiMotorGarageDiscountGet = metagin.Get(
 	"/motor-garage/discount/:id",
 	func(ctx metagin.Context[base.RequestPathId, dto.MotorGarageDiscount]) {
 
-		j := ctx.Jwt()
-
-		d := repo.MotorGarageDiscountRepo.FindById(ctx.DB(), ctx.Request().ID, j.GetWorkspaceId())
+		d := repo.MotorGarageDiscountRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())
 		if d == nil {
 			ctx.Err(errors.New("discount not found"))
 			return

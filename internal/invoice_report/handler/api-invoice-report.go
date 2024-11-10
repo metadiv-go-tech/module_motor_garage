@@ -19,11 +19,9 @@ var ApiInvoiceReport = metagin.Get(
 	"/motor-garage/invoice/report/:id",
 	func(ctx metagin.Context[base.RequestPathId, struct{}]) {
 
-		j := ctx.Jwt()
-
 		invoice := repo.MotorGarageInvoiceRepo.FindById(
 			ctx.DB().Preload("Vehicle", "Vehicle.Customer", "Vehicle.Customer.ContactPerson", "Services", "Discounts", "Products"),
-			ctx.Request().ID, j.GetWorkspaceId())
+			ctx.Request().ID, ctx.WorkspaceId())
 		if invoice == nil {
 			ctx.Err(errors.New("invoice not found"))
 			return

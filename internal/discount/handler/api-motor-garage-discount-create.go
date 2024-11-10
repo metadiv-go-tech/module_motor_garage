@@ -16,11 +16,9 @@ var ApiMotorGarageDiscountCreate = metagin.Post(
 	"/motor-garage/discount",
 	func(ctx metagin.Context[request.MotorGarageDiscountCreate, dto.MotorGarageDiscount]) {
 
-		j := ctx.Jwt()
-
 		d := ctx.Request().ToEntity(nil)
 
-		d = repo.MotorGarageDiscountRepo.Save(ctx.DB(), d, j.GetWorkspaceId())
+		d = repo.MotorGarageDiscountRepo.Save(ctx.DB(), d, ctx.WorkspaceId())
 		if d == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save discount"))
 			return

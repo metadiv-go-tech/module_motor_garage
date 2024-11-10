@@ -9,6 +9,10 @@ type MotorGarageInvoiceCreate struct {
 	Date      int64 `json:"date"`
 	VehicleId uint  `json:"vehicle_id"`
 
+	BookingId *uint `json:"booking_id"`
+
+	Inspect *MotorGarageInspect `json:"inspect"`
+
 	Services  []MotorGarageInvoiceService  `json:"services"`
 	Products  []MotorGarageInvoiceProduct  `json:"products"`
 	Discounts []MotorGarageInvoiceDiscount `json:"discounts"`
@@ -54,6 +58,7 @@ func (r *MotorGarageInvoiceCreate) ToEntity(e *entity.MotorGarageInvoice) *entit
 	}
 	e.Date = r.Date
 	e.VehicleId = r.VehicleId
+	e.BookingId = r.BookingId
 
 	existServices := make(map[uint]entity.MotorGarageInvoiceService)
 	for _, s := range e.Services {

@@ -13,10 +13,9 @@ var ApiMotorGarageProductDelete = metagin.Delete(
 	"deleteProduct",
 	"Delete Product",
 	"/motor-garage/product/:id",
-	func(ctx metagin.Context[base.RequestPathId, struct{}]) {
-		j := ctx.Jwt()
+	func(ctx metagin.Context[base.RequestPathId, base.Empty]) {
 
-		product := repo.MotorGarageProductRepo.FindById(ctx.DB(), ctx.Request().ID, j.GetWorkspaceId())
+		product := repo.MotorGarageProductRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())
 		if product == nil {
 			ctx.Err(errors.New("product not found"))
 			return

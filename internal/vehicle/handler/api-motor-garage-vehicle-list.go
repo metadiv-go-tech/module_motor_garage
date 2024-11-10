@@ -12,7 +12,6 @@ var ApiMotorGarageVehicleList = metagin.Get(
 	"List Vehicle",
 	"/motor-garage/vehicle",
 	func(ctx metagin.Context[base.RequestListing, []dto.MotorGarageVehicle]) {
-		j := ctx.Jwt()
 
 		ps, page := repo.MotorGarageVehicleRepo.FindAllComplex(
 			ctx.DB().Preload("Customer"),
@@ -30,7 +29,7 @@ var ApiMotorGarageVehicleList = metagin.Get(
 			),
 			ctx.Page(),
 			ctx.Sort(),
-			j.GetWorkspaceId(),
+			ctx.WorkspaceId(),
 		)
 
 		ds := make([]dto.MotorGarageVehicle, len(ps))

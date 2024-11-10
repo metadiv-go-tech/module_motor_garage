@@ -17,7 +17,6 @@ var ApiMotorGarageVehicleCreate = metagin.Post(
 	"Create Vehicle",
 	"/motor-garage/vehicle",
 	func(ctx metagin.Context[request.MotorGarageVehicleCreate, dto.MotorGarageVehicle]) {
-		j := ctx.Jwt()
 
 		if errMsg := ctx.Request().Validate(); errMsg != "" {
 			ctx.Err(errors.New(errMsg))
@@ -30,7 +29,7 @@ var ApiMotorGarageVehicleCreate = metagin.Post(
 			customer := relationship.CustomerCaller.GetCustomerByID(
 				ctx.DB(),
 				*ctx.Request().CustomerId,
-				j.GetWorkspaceId(),
+				ctx.WorkspaceId(),
 			)
 			if customer == nil {
 				ctx.Err(errors.New("customer not found"))
@@ -40,12 +39,12 @@ var ApiMotorGarageVehicleCreate = metagin.Post(
 			v.Customer = customer
 		}
 
-		if service.VehicleService.CheckRegistration(ctx.DB(), ctx.Request().Registration, j.GetWorkspaceId(), 0) {
+		if service.VehicleService.CheckRegistration(ctx.DB(), ctx.Request().Registration, ctx.WorkspaceId(), 0) {
 			ctx.Err(errors.New("registration is already in use"))
 			return
 		}
 
-		v = repo.MotorGarageVehicleRepo.Save(ctx.DB(), v, j.GetWorkspaceId())
+		v = repo.MotorGarageVehicleRepo.Save(ctx.DB(), v, ctx.WorkspaceId())
 		if v == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save vehicle"))
 			return

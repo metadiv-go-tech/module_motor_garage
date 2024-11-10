@@ -15,21 +15,20 @@ var ApiMotorGarageProductUpdate = metagin.Put(
 	"Update Product",
 	"/motor-garage/product/:id",
 	func(ctx metagin.Context[request.MotorGarageProductUpdate, dto.MotorGarageProduct]) {
-		j := ctx.Jwt()
 
 		if errMsg := ctx.Request().Validate(); errMsg != "" {
 			ctx.Err(errors.New(errMsg))
 			return
 		}
 
-		product := repo.MotorGarageProductRepo.FindById(ctx.DB(), ctx.Request().ID, j.GetWorkspaceId())
+		product := repo.MotorGarageProductRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())
 		if product == nil {
 			ctx.Err(errors.New("product not found"))
 			return
 		}
 
 		product = ctx.Request().ToEntity(product)
-		product = repo.MotorGarageProductRepo.Save(ctx.DB(), product, j.GetWorkspaceId())
+		product = repo.MotorGarageProductRepo.Save(ctx.DB(), product, ctx.WorkspaceId())
 		if product == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save product"))
 			return

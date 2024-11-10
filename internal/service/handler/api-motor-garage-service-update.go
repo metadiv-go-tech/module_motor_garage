@@ -15,9 +15,8 @@ var ApiMotorGarageServiceUpdate = metagin.Put(
 	"Update Service",
 	"/motor-garage/service/:id",
 	func(ctx metagin.Context[request.MotorGarageServiceUpdate, dto.MotorGarageService]) {
-		j := ctx.Jwt()
 
-		s := repo.MotorGarageServiceRepo.FindById(ctx.DB(), ctx.Request().ID, j.GetWorkspaceId())
+		s := repo.MotorGarageServiceRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())
 		if s == nil {
 			ctx.Err(errors.New("service not found"))
 			return
@@ -29,7 +28,7 @@ var ApiMotorGarageServiceUpdate = metagin.Put(
 		}
 
 		s = ctx.Request().ToEntity(s)
-		s = repo.MotorGarageServiceRepo.Save(ctx.DB(), s, j.GetWorkspaceId())
+		s = repo.MotorGarageServiceRepo.Save(ctx.DB(), s, ctx.WorkspaceId())
 		if s == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save service"))
 			return

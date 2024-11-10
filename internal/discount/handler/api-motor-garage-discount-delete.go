@@ -16,9 +16,7 @@ var ApiMotorGarageDiscountDelete = metagin.Delete(
 	"/motor-garage/discount/:id",
 	func(ctx metagin.Context[base.RequestPathId, dto.MotorGarageDiscount]) {
 
-		j := ctx.Jwt()
-
-		i := repo.MotorGarageDiscountRepo.FindById(ctx.DB(), ctx.Request().ID, j.GetWorkspaceId())
+		i := repo.MotorGarageDiscountRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())
 		if i == nil {
 			ctx.Err(errors.New("discount not found"))
 			return

@@ -13,10 +13,9 @@ var ApiMotorGarageVehicleDelete = metagin.Delete(
 	"deleteVehicle",
 	"Delete Vehicle",
 	"/motor-garage/vehicle/:id",
-	func(ctx metagin.Context[base.RequestPathId, struct{}]) {
-		j := ctx.Jwt()
+	func(ctx metagin.Context[base.RequestPathId, base.Empty]) {
 
-		e := repo.MotorGarageVehicleRepo.FindById(ctx.DB(), ctx.Request().ID, j.GetWorkspaceId())
+		e := repo.MotorGarageVehicleRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())
 		if e == nil {
 			ctx.Err(errors.New("vehicle not found"))
 			return

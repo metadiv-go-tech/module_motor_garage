@@ -19,6 +19,9 @@ type MotorGarageBooking struct {
 	VehicleId *uint               `json:"vehicle_id"`
 	Vehicle   *MotorGarageVehicle `json:"vehicle"`
 
+	InvoiceId *uint               `json:"invoice_id"`
+	Invoice   *MotorGarageInvoice `json:"invoice"`
+
 	Requirement []byte `json:"requirement"`
 	Note        []byte `json:"note"`
 }
@@ -41,6 +44,10 @@ func (m *MotorGarageBooking) ToDTO(locale string) *dto.MotorGarageBooking {
 	}
 	if m.Vehicle != nil {
 		d.Vehicle = m.Vehicle.ToDTO(locale)
+	}
+	if m.Invoice != nil {
+		d.InvoiceId = m.Invoice.ID
+		d.Invoice = m.Invoice.ToDTO(locale)
 	}
 	return d
 }

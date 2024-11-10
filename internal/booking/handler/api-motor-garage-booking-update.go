@@ -5,6 +5,7 @@ import (
 
 	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/booking/repo"
+	invoiceRepo "github.com/metadiv-go-tech/module_motor_garage/internal/invoice/repo"
 	vehicleRepo "github.com/metadiv-go-tech/module_motor_garage/internal/vehicle/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 	"github.com/metadiv-go-tech/module_motor_garage/model/request"
@@ -49,6 +50,15 @@ var ApiMotorGarageBookingUpdate = metagin.Put(
 			if booking.CustomerId == nil {
 				booking.CustomerId = vehicle.CustomerId
 			}
+		}
+
+		if booking.InvoiceId != nil {
+			invoice := invoiceRepo.MotorGarageInvoiceRepo.FindById(ctx.DB(), *booking.InvoiceId, ctx.WorkspaceId())
+			if invoice == nil {
+				ctx.Err(errors.New("invoice not found"))
+				return
+			}
+			booking.Invoice = invoice
 		}
 
 		booking = repo.MotorGarageBookingRepo.Save(ctx.DB(), booking, ctx.WorkspaceId())

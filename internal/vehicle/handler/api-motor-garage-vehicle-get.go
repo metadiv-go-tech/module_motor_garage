@@ -14,9 +14,8 @@ var ApiMotorGarageVehicleGet = metagin.Get(
 	"Get Vehicle",
 	"/motor-garage/vehicle/:id",
 	func(ctx metagin.Context[base.RequestPathId, dto.MotorGarageVehicle]) {
-		j := ctx.Jwt()
 
-		v := repo.MotorGarageVehicleRepo.FindById(ctx.DB().Preload("Customer"), ctx.Request().ID, j.GetWorkspaceId())
+		v := repo.MotorGarageVehicleRepo.FindById(ctx.DB().Preload("Customer"), ctx.Request().ID, ctx.WorkspaceId())
 		if v == nil {
 			ctx.Err(errors.New("vehicle not found"))
 			return

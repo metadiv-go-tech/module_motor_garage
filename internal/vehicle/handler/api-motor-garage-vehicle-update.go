@@ -17,14 +17,13 @@ var ApiMotorGarageVehicleUpdate = metagin.Put(
 	"Update Vehicle",
 	"/motor-garage/vehicle/:id",
 	func(ctx metagin.Context[request.MotorGarageVehicleUpdate, dto.MotorGarageVehicle]) {
-		j := ctx.Jwt()
 
 		if errMsg := ctx.Request().Validate(); errMsg != "" {
 			ctx.Err(errors.New(errMsg))
 			return
 		}
 
-		v := repo.MotorGarageVehicleRepo.FindById(ctx.DB(), ctx.Request().ID, j.GetWorkspaceId())
+		v := repo.MotorGarageVehicleRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())
 		if v == nil {
 			ctx.Err(errors.New("vehicle not found"))
 			return
@@ -34,7 +33,7 @@ var ApiMotorGarageVehicleUpdate = metagin.Put(
 			customer := relationship.CustomerCaller.GetCustomerByID(
 				ctx.DB(),
 				*ctx.Request().CustomerId,
-				j.GetWorkspaceId(),
+				ctx.WorkspaceId(),
 			)
 			if customer == nil {
 				ctx.Err(errors.New("customer not found"))
@@ -45,14 +44,14 @@ var ApiMotorGarageVehicleUpdate = metagin.Put(
 		}
 
 		if ctx.Request().Registration != "" {
-			if service.VehicleService.CheckRegistration(ctx.DB(), ctx.Request().Registration, j.GetWorkspaceId(), ctx.Request().ID) {
+			if service.VehicleService.CheckRegistration(ctx.DB(), ctx.Request().Registration, ctx.WorkspaceId(), ctx.Request().ID) {
 				ctx.Err(errors.New("registration is already in use"))
 				return
 			}
 		}
 
 		v = ctx.Request().ToEntity(v)
-		v = repo.MotorGarageVehicleRepo.Save(ctx.DB(), v, j.GetWorkspaceId())
+		v = repo.MotorGarageVehicleRepo.Save(ctx.DB(), v, ctx.WorkspaceId())
 		if v == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save vehicle"))
 			return

@@ -14,9 +14,8 @@ var ApiMotorGarageServiceDelete = metagin.Delete(
 	"Delete Service",
 	"/motor-garage/service/:id",
 	func(ctx metagin.Context[base.RequestPathId, struct{}]) {
-		j := ctx.Jwt()
 
-		e := repo.MotorGarageServiceRepo.FindById(ctx.DB(), ctx.Request().ID, j.GetWorkspaceId())
+		e := repo.MotorGarageServiceRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())
 		if e == nil {
 			ctx.Err(errors.New("service not found"))
 			return

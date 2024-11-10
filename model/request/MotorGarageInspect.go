@@ -2,33 +2,20 @@ package request
 
 import (
 	"encoding/json"
-	"errors"
 	"strings"
 
-	"github.com/metadiv-go-tech/metagin/v2/base"
 	"github.com/metadiv-go-tech/module_motor_garage/model/entity"
 )
 
-type MotorGarageInspectCreate struct {
+type MotorGarageInspect struct {
+	ID        uint              `json:"id"`
 	InvoiceId uint              `json:"invoice_id"`
 	PassItems []string          `json:"pass_items"`
 	FailItems []string          `json:"fail_items"`
 	KeyValues map[string]string `json:"key_values"`
 }
 
-type MotorGarageInspectUpdate struct {
-	base.RequestPathId
-	MotorGarageInspectCreate
-}
-
-func (r *MotorGarageInspectCreate) Validate() error {
-	if r.InvoiceId == 0 {
-		return errors.New("invoice is required")
-	}
-	return nil
-}
-
-func (r *MotorGarageInspectCreate) ToEntity(e *entity.MotorGarageInspect) *entity.MotorGarageInspect {
+func (r *MotorGarageInspect) ToEntity(e *entity.MotorGarageInspect) *entity.MotorGarageInspect {
 	if e == nil {
 		e = &entity.MotorGarageInspect{}
 	}

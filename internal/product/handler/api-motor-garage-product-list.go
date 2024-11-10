@@ -12,7 +12,7 @@ var ApiMotorGarageProductList = metagin.Get(
 	"List Product",
 	"/motor-garage/product",
 	func(ctx metagin.Context[base.RequestListing, []dto.MotorGarageProduct]) {
-		j := ctx.Jwt()
+
 		ps, page := repo.MotorGarageProductRepo.FindAllComplex(
 			ctx.DB(),
 			ctx.DB().Or(
@@ -27,7 +27,7 @@ var ApiMotorGarageProductList = metagin.Get(
 			),
 			ctx.Page(),
 			ctx.Sort(),
-			j.GetWorkspaceId(),
+			ctx.WorkspaceId(),
 		)
 		ds := make([]dto.MotorGarageProduct, len(ps))
 		for i := range ps {

@@ -13,7 +13,6 @@ var ApiMotorGarageInvoiceList = metagin.Get(
 	"List Invoices",
 	"/motor-garage/invoice",
 	func(ctx metagin.Context[base.RequestListing, []dto.MotorGarageInvoice]) {
-		j := ctx.Jwt()
 
 		b := metaorm.NewAndQueryBuilder()
 		b.Add(ctx.DB().Or(
@@ -27,7 +26,7 @@ var ApiMotorGarageInvoiceList = metagin.Get(
 			b.Build(),
 			ctx.Page(),
 			ctx.Sort(),
-			j.GetWorkspaceId(),
+			ctx.WorkspaceId(),
 		)
 
 		ds := make([]dto.MotorGarageInvoice, 0)

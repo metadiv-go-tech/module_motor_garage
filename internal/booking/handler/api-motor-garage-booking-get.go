@@ -14,7 +14,12 @@ var ApiMotorGarageBookingGet = metagin.Get(
 	"Get Motor Garage Booking",
 	"/motor-garage/booking/:id",
 	func(ctx metagin.Context[base.RequestPathId, dto.MotorGarageBooking]) {
-		booking := repo.MotorGarageBookingRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())
+		booking := repo.MotorGarageBookingRepo.FindById(ctx.DB().Preload(
+			"Customer",
+			"Customer.ContactPerson",
+			"Vehicle",
+			"Invoice",
+		), ctx.Request().ID, ctx.WorkspaceId())
 		if booking == nil {
 			ctx.Err(errors.New("booking not found"))
 			return

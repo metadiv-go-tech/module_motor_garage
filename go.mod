@@ -5,7 +5,6 @@ go 1.23.2
 require (
 	github.com/metadiv-go-tech/gotenberg v1.0.0
 	github.com/metadiv-go-tech/metadiv_util_client v0.0.0-20241029055206-0458b64628ca
-	github.com/metadiv-go-tech/metagin v1.5.0
 	github.com/metadiv-go-tech/metagin/v2 v2.3.20
 	github.com/metadiv-go-tech/metaorm/v2 v2.3.8
 	github.com/metadiv-go-tech/mod_dev_auth/v2 v2.0.0
@@ -56,6 +55,7 @@ require (
 	github.com/memcachier/mc/v3 v3.0.3 // indirect
 	github.com/metadiv-go-tech/aes v1.2.1 // indirect
 	github.com/metadiv-go-tech/jwt v1.1.0 // indirect
+	github.com/metadiv-go-tech/metagin v1.5.0 // indirect
 	github.com/metadiv-go-tech/metaorm v1.3.0 // indirect
 	github.com/metadiv-go-tech/nanoid v1.1.1 // indirect
 	github.com/metadiv-go-tech/rsa v1.1.1 // indirect
