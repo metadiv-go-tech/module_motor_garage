@@ -12,7 +12,7 @@ var ApiMotorGarageTechnicianDelete = metagin.Delete(
 	"deleteTechnician",
 	"Delete Technician",
 	"/motor-garage/technician/:id",
-	func(ctx metagin.Context[base.RequestPathId, any]) {
+	func(ctx metagin.Context[base.RequestPathId, base.Empty]) {
 		technician := repo.TechnicianRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())
 		if technician == nil {
 			ctx.Err(errors.New("technician not found"))
