@@ -1,6 +1,9 @@
 package request
 
-import "github.com/metadiv-go-tech/module_motor_garage/model/entity"
+import (
+	"github.com/metadiv-go-tech/metagin/v2/base"
+	"github.com/metadiv-go-tech/module_motor_garage/model/entity"
+)
 
 type MotorGarageInvoiceCreate struct {
 	Date      int64 `json:"date"`
@@ -9,6 +12,30 @@ type MotorGarageInvoiceCreate struct {
 	Services  []MotorGarageInvoiceService  `json:"services"`
 	Products  []MotorGarageInvoiceProduct  `json:"products"`
 	Discounts []MotorGarageInvoiceDiscount `json:"discounts"`
+}
+
+type MotorGarageInvoiceUpdate struct {
+	base.RequestPathId
+	MotorGarageInvoiceCreate
+}
+
+type MotorGarageInvoiceDiscount struct {
+	ID         uint `json:"id"`
+	DiscountId uint `json:"discount_id"`
+	MotorGarageDiscountCreate
+}
+
+type MotorGarageInvoiceProduct struct {
+	ID        uint `json:"id"`
+	Quantity  uint `json:"quantity"`
+	ProductId uint `json:"product_id"`
+	MotorGarageProductCreate
+}
+
+type MotorGarageInvoiceService struct {
+	ID        uint `json:"id"`
+	ServiceId uint `json:"service_id"`
+	MotorGarageServiceCreate
 }
 
 func (r *MotorGarageInvoiceCreate) Validate() string {

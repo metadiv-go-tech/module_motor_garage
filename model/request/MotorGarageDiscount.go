@@ -1,6 +1,7 @@
 package request
 
 import (
+	"github.com/metadiv-go-tech/metagin/v2/base"
 	"github.com/metadiv-go-tech/metaorm/v2"
 	"github.com/metadiv-go-tech/module_motor_garage/model/entity"
 )
@@ -10,6 +11,11 @@ type MotorGarageDiscountCreate struct {
 	Description        string  `json:"description"`
 	DiscountAmount     uint    `json:"discount_amount"`
 	DiscountPercentage float64 `json:"discount_percentage"`
+}
+
+type MotorGarageDiscountUpdate struct {
+	base.RequestPathId
+	MotorGarageDiscountCreate
 }
 
 func (r *MotorGarageDiscountCreate) Validate() string {

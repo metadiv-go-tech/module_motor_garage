@@ -1,6 +1,7 @@
 package request
 
 import (
+	"github.com/metadiv-go-tech/metagin/v2/base"
 	"github.com/metadiv-go-tech/metaorm/v2"
 	"github.com/metadiv-go-tech/module_motor_garage/model/entity"
 )
@@ -14,6 +15,11 @@ type MotorGarageVehicleCreate struct {
 	VIN          string `json:"vin"`
 	Registration string `json:"registration"`
 	CustomerId   *uint  `json:"customer_id"`
+}
+
+type MotorGarageVehicleUpdate struct {
+	base.RequestPathId
+	MotorGarageVehicleCreate
 }
 
 func (r *MotorGarageVehicleCreate) Validate() string {

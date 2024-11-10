@@ -1,8 +1,0 @@
-package request
-
-import "github.com/metadiv-go-tech/metagin/v2/base"
-
-type MotorGarageDiscountUpdate struct {
-	base.RequestPathId
-	MotorGarageDiscountCreate
-}
