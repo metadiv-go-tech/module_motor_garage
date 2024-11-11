@@ -2,17 +2,17 @@ package handler
 
 import (
 	"github.com/metadiv-go-tech/metagin/v2"
-	"github.com/metadiv-go-tech/metagin/v2/base"
 	"github.com/metadiv-go-tech/metaorm/v2"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/invoice/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
+	"github.com/metadiv-go-tech/module_motor_garage/model/request"
 )
 
 var ApiMotorGarageInvoiceList = metagin.Get(
 	"listInvoices",
 	"List Invoices",
 	"/motor-garage/invoice",
-	func(ctx metagin.Context[base.RequestListing, []dto.MotorGarageInvoice]) {
+	func(ctx metagin.Context[request.MotorGarageInvoiceListing, []dto.MotorGarageInvoice]) {
 
 		b := metaorm.NewAndQueryBuilder()
 		b.Add(ctx.DB().Or(
@@ -20,6 +20,13 @@ var ApiMotorGarageInvoiceList = metagin.Get(
 				"date",
 			),
 		))
+
+		if ctx.Request().From > 0 {
+			b.Add(ctx.DB().Gte("date", ctx.Request().From))
+		}
+		if ctx.Request().To > 0 {
+			b.Add(ctx.DB().Lte("date", ctx.Request().To))
+		}
 
 		is, page := repo.MotorGarageInvoiceRepo.FindAllComplex(
 			ctx.DB().Preload("Vehicle", "Vehicle.Customer", "Services", "Products", "Discounts"),
