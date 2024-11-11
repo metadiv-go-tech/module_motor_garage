@@ -13,7 +13,7 @@ import (
 var ApiMotorGarageDiscountUpdate = metagin.Put(
 	"updateDiscount",
 	"Update Discount",
-	"/motor-garage/discount",
+	"/motor-garage/discount/:id",
 	func(ctx metagin.Context[request.MotorGarageDiscountUpdate, dto.MotorGarageDiscount]) {
 
 		d := repo.MotorGarageDiscountRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())
