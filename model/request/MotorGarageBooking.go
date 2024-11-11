@@ -8,6 +8,12 @@ import (
 	"github.com/metadiv-go-tech/module_motor_garage/model/entity"
 )
 
+type MotorGarageBookingList struct {
+	base.RequestListing
+	From int64 `form:"from"`
+	To   int64 `form:"to"`
+}
+
 type MotorGarageBookingCreate struct {
 	DateTime int64 `json:"date_time"`
 
