@@ -71,8 +71,8 @@ type MotorGarageInspectRoadTest struct {
 
 // 2. Engine Tune
 type MotorGarageInspectBeforeAfter struct {
-	Before string `json:"before"`
-	After  string `json:"after"`
+	Before *MotorGarageInspectPassOrFail `json:"before"`
+	After  *MotorGarageInspectPassOrFail `json:"after"`
 }
 
 type MotorGarageInspectItem26 struct {
