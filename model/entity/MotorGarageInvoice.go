@@ -38,10 +38,10 @@ func (e *MotorGarageInvoice) ToDTO(locale string) *dto.MotorGarageInvoice {
 		d.BookingId = e.Booking.ID
 		d.Booking = e.Booking.ToDTO(locale)
 	}
-	// if e.Inspect != nil {
-	// 	d.InspectId = e.Inspect.ID
-	// 	d.Inspect = e.Inspect.ToDTO(locale)
-	// }
+	if e.Inspect != nil {
+		d.InspectId = e.Inspect.ID
+		d.Inspect = e.Inspect.ToDTO(locale)
+	}
 	var total uint
 	d.Services = make([]dto.MotorGarageInvoiceService, len(e.Services))
 	for i, s := range e.Services {
