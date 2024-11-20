@@ -26,6 +26,18 @@ type MotorGarageInspectPassOrFail struct {
 	Pass bool `json:"pass"`
 }
 
+func (p *MotorGarageInspectPassOrFail) GetPassOrFailString() string {
+	if p == nil {
+		return "N/A"
+	}
+
+	if p.Pass {
+		return "OK"
+	}
+
+	return "Fail"
+}
+
 type MotorGarageInspectLeftRightOptions struct {
 	L bool `json:"l"`
 	R bool `json:"r"`
@@ -36,6 +48,14 @@ type MotorGarageInspectDirectionOptions struct {
 	FR bool `json:"fr"`
 	RL bool `json:"rl"`
 	RR bool `json:"rr"`
+}
+
+func (*MotorGarageInspect) GetCheckboxCheckStatusString(option bool) string {
+	if option {
+		return `checked="true"`
+	}
+
+	return `checked="false"`
 }
 
 type MotorGarageInspectPassOrFailWithLeftRightOptions struct {
@@ -71,8 +91,8 @@ type MotorGarageInspectRoadTest struct {
 
 // 2. Engine Tune
 type MotorGarageInspectBeforeAfter struct {
-	Before *MotorGarageInspectPassOrFail `json:"before"`
-	After  *MotorGarageInspectPassOrFail `json:"after"`
+	Before string `json:"before"`
+	After  string `json:"after"`
 }
 
 type MotorGarageInspectItem26 struct {
@@ -285,7 +305,7 @@ type MotorGarageInspectUnderTheBonnetTests struct {
 	Item87 *MotorGarageInspectPassOrFail                     `json:"item_87"`
 	Item88 *MotorGarageInspectPassOrFail                     `json:"item_88"`
 	Item89 *MotorGarageInspectPassOrFail                     `json:"item_89"`
-	Item90 *MotorGarageInspectItem70                         `json:"item_90"`
+	Item90 *MotorGarageInspectPassOrFail                     `json:"item_90"`
 	Item91 *MotorGarageInspectPassOrFail                     `json:"item_91"`
 	Item92 *MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_92"`
 	Item93 *MotorGarageInspectPassOrFail                     `json:"item_93"`
