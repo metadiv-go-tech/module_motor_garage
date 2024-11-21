@@ -120,6 +120,10 @@ github.com/metadiv-go-tech/metagin/v2 v2.3.20 h1:3OOuIiGizqqRpl452Ggmb2w0TCqkMpO
 github.com/metadiv-go-tech/metagin/v2 v2.3.20/go.mod h1:GmtCJFG++4n4Rz7Dlczwz/fSc7D+kMDex4hJMFzhpgU=
 github.com/metadiv-go-tech/metagin/v2 v2.10.0 h1:KyP58x8ObTN8xqdTSf3Sc5m19o/QQkQtFoh6fo7XT9Q=
 github.com/metadiv-go-tech/metagin/v2 v2.10.0/go.mod h1:GmtCJFG++4n4Rz7Dlczwz/fSc7D+kMDex4hJMFzhpgU=
+github.com/metadiv-go-tech/metagin/v2 v2.11.0-test-v1 h1:tGJz3RMTSCkRZed2pX319RGQ2Bop2wcgUnqBfKsMOyo=
+github.com/metadiv-go-tech/metagin/v2 v2.11.0-test-v1/go.mod h1:GmtCJFG++4n4Rz7Dlczwz/fSc7D+kMDex4hJMFzhpgU=
+github.com/metadiv-go-tech/metagin/v2 v2.11.0 h1:i9rLo97iDw5gQT7XZ6c8IL5uu/Qnb3fOc+4OU0F07wU=
+github.com/metadiv-go-tech/metagin/v2 v2.11.0/go.mod h1:GmtCJFG++4n4Rz7Dlczwz/fSc7D+kMDex4hJMFzhpgU=
 github.com/metadiv-go-tech/metaorm v1.3.0 h1:oCt8lyEWalXLfiuqP9BB3ehr4noAxKxyRpaQVJUN6UE=
 github.com/metadiv-go-tech/metaorm v1.3.0/go.mod h1:OexZfDduBfr7A5QBLIARy/vglwRZcZCT6boiTTiU1SM=
 github.com/metadiv-go-tech/metaorm/v2 v2.3.8 h1:rs2CU1N0086397BZoTIGuOwISS40SgSlX2ktA1MMTrI=
