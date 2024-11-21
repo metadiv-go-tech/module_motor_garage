@@ -1552,10 +1552,10 @@ var TestReportTemplate = `<!DOCTYPE html>
                     <td style="width: 88%; border: 1px solid #ddd; padding: 2px;">
                         96. Road Test Car (if Roadworthy)
                         <span style="margin-left: 20px;">Max Speed</span> <span
-                            style="border: 1px solid #ddd; padding-left: 25px; padding-right: 25px; margin-left: 5px; margin-right: 10px;"></span>
+                            style="border: 1px solid #ddd; padding-left: 25px; padding-right: 25px; margin-left: 5px; margin-right: 10px;">{{road_test_max_speed_reached}}</span>
                         kph
                     </td>
-                    <td style="width: 12%; border: 1px solid #ddd; padding: 2px;"></td>
+                    <td style="width: 12%; border: 1px solid #ddd; padding: 2px;">{{road_test_max_speed}}</td>
                 </tr>
                 <tr>
                     <td style="width: 88%; border: 1px solid #ddd; border-right: none; padding: 2px;">
@@ -1563,7 +1563,7 @@ var TestReportTemplate = `<!DOCTYPE html>
                     </td>
                     <td
                         style="width: 12%; border: none; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 2px;">
-                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;">
+                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{park_vehicle_facing_out}}>
                     </td>
                 </tr>
                 <tr>
@@ -1572,16 +1572,16 @@ var TestReportTemplate = `<!DOCTYPE html>
                     </td>
                     <td
                         style="width: 12%; border: none; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 2px;">
-                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;">
+                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{reset_service_interval}}>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 88%; border: 1px solid #ddd; border-right: none; padding: 2px;">
+                    <td style="width: 88%; border: 1px solid #ddd; border-right: none; padding: 2px;" >
                         99. Gloss Tyres
                     </td>
                     <td
                         style="width: 12%; border: none; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 2px;">
-                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;">
+                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{gloss_tyres}}>
                     </td>
                 </tr>
                 <tr>
@@ -1590,7 +1590,7 @@ var TestReportTemplate = `<!DOCTYPE html>
                     </td>
                     <td
                         style="width: 12%; border: none; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 2px;">
-                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;">
+                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{vacuum_carpets_and_deodorise}}>
                     </td>
                 </tr>
                 <tr>
@@ -1599,7 +1599,7 @@ var TestReportTemplate = `<!DOCTYPE html>
                     </td>
                     <td
                         style="width: 12%; border: none; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 2px;">
-                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;">
+                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{deodorise_interior}}>
                     </td>
                 </tr>
                 <tr>
@@ -1608,7 +1608,7 @@ var TestReportTemplate = `<!DOCTYPE html>
                     </td>
                     <td
                         style="width: 12%; border: none; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 2px;">
-                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;">
+                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{wipe_over_dash}}>
                     </td>
                 </tr>
                 <tr>
@@ -1617,7 +1617,7 @@ var TestReportTemplate = `<!DOCTYPE html>
                     </td>
                     <td
                         style="width: 12%; border: none; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 2px;">
-                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;">
+                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{clean_windows}}>
                     </td>
                 </tr>
                 <tr>
@@ -1626,7 +1626,7 @@ var TestReportTemplate = `<!DOCTYPE html>
                     </td>
                     <td
                         style="width: 12%; border: none; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 2px;">
-                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;">
+                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{remove_seat_cover_and_floor_mat}}>
                     </td>
                 </tr>
             </tbody>

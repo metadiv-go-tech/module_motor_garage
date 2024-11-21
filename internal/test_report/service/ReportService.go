@@ -151,7 +151,6 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{seat_belts_rc}}", inspectDto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item46.RC), -1)
 			html = strings.Replace(html, "{{seat_belts_rr}}", inspectDto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item46.RR), -1)
 			html = strings.Replace(html, "{{seat_belts}}", inspectDto.InteriorChecks.Item46.GetPassOrFailString(), -1)
-
 			html = strings.Replace(html, "{{lubricate_door_locks_check_straps_hinges_bonnet_latch_fl}}", inspectDto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item47.FL), -1)
 			html = strings.Replace(html, "{{lubricate_door_locks_check_straps_hinges_bonnet_latch_fr}}", inspectDto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item47.FR), -1)
 			html = strings.Replace(html, "{{lubricate_door_locks_check_straps_hinges_bonnet_latch_rl}}", inspectDto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item47.RL), -1)
@@ -299,6 +298,19 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{bonnet_boot_latch}}", inspectDto.UnderTheBonnetTests.Item95.GetPassOrFailString(), -1)
 		}
 
+		// 10. Final Procedures
+		if inspectDto.FinalProcedures != nil {
+			html = strings.Replace(html, "{{road_test_max_speed_reached}}", inspectDto.FinalProcedures.Item96.MaxSpeed, -1)
+			html = strings.Replace(html, "{{road_test_max_speed}}", inspectDto.FinalProcedures.Item96.MaxSpeed, -1)
+			html = strings.Replace(html, "{{park_vehicle_facing_out}}", inspectDto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item97), -1)
+			html = strings.Replace(html, "{{reset_service_interval}}", inspectDto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item98), -1)
+			html = strings.Replace(html, "{{gloss_tyres}}", inspectDto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item99), -1)
+			html = strings.Replace(html, "{{vacuum_carpets_and_deodorise}}", inspectDto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item100), -1)
+			html = strings.Replace(html, "{{deodorise_interior}}", inspectDto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item101), -1)
+			html = strings.Replace(html, "{{wipe_over_dash}}", inspectDto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item102), -1)
+			html = strings.Replace(html, "{{clean_windows}}", inspectDto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item103), -1)
+			html = strings.Replace(html, "{{remove_seat_cover_and_floor_mat}}", inspectDto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item104), -1)
+		}
 	}
 
 	return html
