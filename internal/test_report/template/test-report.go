@@ -1228,8 +1228,8 @@ var TestReportTemplate = `<!DOCTYPE html>
                                         <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{shock_absorbers_rl}}><span
                                             class="status">RL</span>
                                         <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{shock_absorbers_rr}}><span
-                                            class="status">RR</span>dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-                                    </td>dddd
+                                            class="status">RR</span>
+                                    </td>d
                                     <td style="width: 12%; border: 1px solid #ddd; padding: 2px;">{{shock_absorbers}}
                                     </td>
                                 </tr>

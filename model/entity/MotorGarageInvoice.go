@@ -18,7 +18,7 @@ type MotorGarageInvoice struct {
 	Booking   *MotorGarageBooking `json:"booking" gorm:"-"`
 
 	InspectId *uint               `json:"inspect_id"`
-	Inspect   *MotorGarageInspect `json:"inspect" gorm:"-"`
+	Inspect   *MotorGarageInspect `json:"inspect" gorm:"foreignKey:InspectId"`
 
 	Services  []MotorGarageInvoiceService  `json:"services" gorm:"foreignKey:InvoiceId"`
 	Products  []MotorGarageInvoiceProduct  `json:"products" gorm:"foreignKey:InvoiceId"`
