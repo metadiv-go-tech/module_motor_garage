@@ -2,9 +2,11 @@ package handler
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/metadiv-go-tech/metagin/v2"
+	"github.com/metadiv-go-tech/module_motor_garage/config"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/discount/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 	"github.com/metadiv-go-tech/module_motor_garage/model/request"
@@ -13,7 +15,7 @@ import (
 var ApiMotorGarageDiscountUpdate = metagin.Put(
 	"updateDiscount",
 	"Update Discount",
-	"/motor-garage/discount/:id",
+	fmt.Sprintf("/api/%s/motor-garage/discount/:id", config.SystemVersion),
 	func(ctx metagin.Context[request.MotorGarageDiscountUpdate, dto.MotorGarageDiscount]) {
 
 		d := repo.MotorGarageDiscountRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())

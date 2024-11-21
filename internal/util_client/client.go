@@ -10,4 +10,6 @@ var (
 	StaticSpace    = metagin.Environment("STATIC_SPACE", true)
 )
 
-var Client = metadiv_util_client.NewClient(UtilClientHost.String())
+var StaticClient = metadiv_util_client.NewStaticClient(UtilClientHost.String(), StaticSpace.String())
+
+var HtmlToPdfClient = metadiv_util_client.NewHtmlToPdfClient(UtilClientHost.String())

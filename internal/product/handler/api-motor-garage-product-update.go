@@ -2,9 +2,11 @@ package handler
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/metadiv-go-tech/metagin/v2"
+	"github.com/metadiv-go-tech/module_motor_garage/config"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/product/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 	"github.com/metadiv-go-tech/module_motor_garage/model/request"
@@ -13,7 +15,7 @@ import (
 var ApiMotorGarageProductUpdate = metagin.Put(
 	"updateProduct",
 	"Update Product",
-	"/motor-garage/product/:id",
+	fmt.Sprintf("/api/%s/motor-garage/product/:id", config.SystemVersion),
 	func(ctx metagin.Context[request.MotorGarageProductUpdate, dto.MotorGarageProduct]) {
 
 		if errMsg := ctx.Request().Validate(); errMsg != "" {

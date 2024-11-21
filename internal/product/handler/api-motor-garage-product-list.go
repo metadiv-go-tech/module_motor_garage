@@ -1,8 +1,11 @@
 package handler
 
 import (
+	"fmt"
+
 	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/metagin/v2/base"
+	"github.com/metadiv-go-tech/module_motor_garage/config"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/product/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 )
@@ -10,7 +13,7 @@ import (
 var ApiMotorGarageProductList = metagin.Get(
 	"listProduct",
 	"List Product",
-	"/motor-garage/product",
+	fmt.Sprintf("/api/%s/motor-garage/product", config.SystemVersion),
 	func(ctx metagin.Context[base.RequestListing, []dto.MotorGarageProduct]) {
 
 		ps, page := repo.MotorGarageProductRepo.FindAllComplex(

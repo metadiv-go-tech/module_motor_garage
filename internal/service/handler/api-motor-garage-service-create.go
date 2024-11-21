@@ -2,9 +2,11 @@ package handler
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/metadiv-go-tech/metagin/v2"
+	"github.com/metadiv-go-tech/module_motor_garage/config"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/service/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 	"github.com/metadiv-go-tech/module_motor_garage/model/request"
@@ -13,7 +15,7 @@ import (
 var ApiMotorGarageServiceCreate = metagin.Post(
 	"createService",
 	"Create Service",
-	"/motor-garage/service",
+	fmt.Sprintf("/api/%s/motor-garage/service", config.SystemVersion),
 	func(ctx metagin.Context[request.MotorGarageServiceCreate, dto.MotorGarageService]) {
 
 		s := ctx.Request().ToEntity(nil)

@@ -2,17 +2,19 @@ package handler
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/metagin/v2/base"
+	"github.com/metadiv-go-tech/module_motor_garage/config"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/invoice/repo"
 )
 
 var ApiMotorGarageInvoiceDelete = metagin.Delete(
 	"deleteInvoice",
 	"Delete Invoice",
-	"/motor-garage/invoice/:id",
+	fmt.Sprintf("/api/%s/motor-garage/invoice/:id", config.SystemVersion),
 	func(ctx metagin.Context[base.RequestPathId, base.Empty]) {
 
 		e := repo.MotorGarageInvoiceRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())

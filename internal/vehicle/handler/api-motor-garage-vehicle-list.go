@@ -1,8 +1,11 @@
 package handler
 
 import (
+	"fmt"
+
 	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/metaorm/v2"
+	"github.com/metadiv-go-tech/module_motor_garage/config"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/vehicle/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 	"github.com/metadiv-go-tech/module_motor_garage/model/request"
@@ -11,7 +14,7 @@ import (
 var ApiMotorGarageVehicleList = metagin.Get(
 	"listVehicle",
 	"List Vehicle",
-	"/motor-garage/vehicle",
+	fmt.Sprintf("/api/%s/motor-garage/vehicle", config.SystemVersion),
 	func(ctx metagin.Context[request.MotorGarageVehicleList, []dto.MotorGarageVehicle]) {
 
 		bd := metaorm.NewAndQueryBuilder()

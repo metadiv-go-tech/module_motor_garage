@@ -2,9 +2,11 @@ package handler
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/metadiv-go-tech/metagin/v2"
+	"github.com/metadiv-go-tech/module_motor_garage/config"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/vehicle/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/vehicle/service"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
@@ -15,7 +17,7 @@ import (
 var ApiMotorGarageVehicleCreate = metagin.Post(
 	"createVehicle",
 	"Create Vehicle",
-	"/motor-garage/vehicle",
+	fmt.Sprintf("/api/%s/motor-garage/vehicle", config.SystemVersion),
 	func(ctx metagin.Context[request.MotorGarageVehicleCreate, dto.MotorGarageVehicle]) {
 
 		if errMsg := ctx.Request().Validate(); errMsg != "" {

@@ -2,8 +2,10 @@ package handler
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/metadiv-go-tech/metagin/v2"
+	"github.com/metadiv-go-tech/module_motor_garage/config"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/technician/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 	"github.com/metadiv-go-tech/module_motor_garage/model/request"
@@ -12,7 +14,7 @@ import (
 var ApiMotorGarageTechnicianUpdate = metagin.Put(
 	"updateTechnician",
 	"Update Technician",
-	"/motor-garage/technician/:id",
+	fmt.Sprintf("/api/%s/motor-garage/technician/:id", config.SystemVersion),
 	func(ctx metagin.Context[request.MotorGarageTechnicianUpdate, dto.MotorGarageTechnician]) {
 		if err := ctx.Request().Validate(); err != nil {
 			ctx.Err(err)
