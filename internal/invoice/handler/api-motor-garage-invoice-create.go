@@ -2,10 +2,12 @@ package handler
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/metagin/v2/one2many"
+	"github.com/metadiv-go-tech/module_motor_garage/config"
 	bookingRepo "github.com/metadiv-go-tech/module_motor_garage/internal/booking/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/invoice/repo"
 	vehicleRepo "github.com/metadiv-go-tech/module_motor_garage/internal/vehicle/repo"
@@ -16,7 +18,7 @@ import (
 var ApiMotorGarageInvoiceCreate = metagin.Post(
 	"createInvoice",
 	"Create Invoice",
-	"/motor-garage/invoice",
+	fmt.Sprintf("/api/%s/motor-garage/invoice", config.SystemVersion),
 	func(ctx metagin.Context[request.MotorGarageInvoiceCreate, dto.MotorGarageInvoice]) {
 
 		if err := ctx.Request().Validate(); err != "" {

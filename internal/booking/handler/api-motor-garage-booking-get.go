@@ -2,9 +2,11 @@ package handler
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/metagin/v2/base"
+	"github.com/metadiv-go-tech/module_motor_garage/config"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/booking/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 )
@@ -12,7 +14,7 @@ import (
 var ApiMotorGarageBookingGet = metagin.Get(
 	"getMotorGarageBooking",
 	"Get Motor Garage Booking",
-	"/motor-garage/booking/:id",
+	fmt.Sprintf("/api/%s/motor-garage/booking/:id", config.SystemVersion),
 	func(ctx metagin.Context[base.RequestPathId, dto.MotorGarageBooking]) {
 		booking := repo.MotorGarageBookingRepo.FindById(ctx.DB().Preload(
 			"Customer",

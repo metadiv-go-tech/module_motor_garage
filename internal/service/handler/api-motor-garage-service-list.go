@@ -1,8 +1,11 @@
 package handler
 
 import (
+	"fmt"
+
 	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/metagin/v2/base"
+	"github.com/metadiv-go-tech/module_motor_garage/config"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/service/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 )
@@ -10,7 +13,7 @@ import (
 var ApiMotorGarageServiceList = metagin.Get(
 	"listService",
 	"List Service",
-	"/motor-garage/service",
+	fmt.Sprintf("/api/%s/motor-garage/service", config.SystemVersion),
 	func(ctx metagin.Context[base.RequestListing, []dto.MotorGarageService]) {
 
 		ps, page := repo.MotorGarageServiceRepo.FindAllComplex(

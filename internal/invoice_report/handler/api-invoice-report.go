@@ -8,6 +8,7 @@ import (
 	"github.com/metadiv-go-tech/gotenberg"
 	"github.com/metadiv-go-tech/metagin/v2"
 	"github.com/metadiv-go-tech/metagin/v2/base"
+	"github.com/metadiv-go-tech/module_motor_garage/config"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/invoice/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/invoice_report/service"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/util_client"
@@ -16,7 +17,7 @@ import (
 var ApiInvoiceReport = metagin.Get(
 	"getInvoiceReport",
 	"Get Invoice Report",
-	"/motor-garage/invoice/report/:id",
+	fmt.Sprintf("/api/%s/motor-garage/invoice/report/:id", config.SystemVersion),
 	func(ctx metagin.Context[base.RequestPathId, base.Empty]) {
 
 		invoice := repo.MotorGarageInvoiceRepo.FindById(
@@ -27,7 +28,7 @@ var ApiInvoiceReport = metagin.Get(
 			return
 		}
 
-		pdf, err := util_client.Client.HtmlToPdf(gotenberg.HTML{
+		pdf, err := util_client.HtmlToPdfClient.HtmlToPdf(gotenberg.HTML{
 			HTML: service.InvoiceService.GenerateReport(invoice, ctx.Locale()),
 		})
 		if err != nil {
