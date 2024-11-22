@@ -9,16 +9,17 @@ type MotorGarageInspect struct {
 	Invoice   *MotorGarageInvoice `json:"invoice"`
 
 	// Inspect Sections
-	RoadTest                     *MotorGarageInspectRoadTest                     `json:"road_test"`
-	EngineTune                   *MotorGarageInspectEngineTune                   `json:"engine_tune"`
-	LightChecks                  *MotorGarageInspectLightChecks                  `json:"light_checks"`
-	InteriorChecks               *MotorGarageInspectInteriorChecks               `json:"interior_checks"`
-	UnderBody                    *MotorGarageInspectUnderBody                    `json:"under_body"`
-	ExhaustSystemChecks          *MotorGarageInspectExhaustSystemChecks          `json:"exhaust_system_checks"`
-	SuspensionSteeringSystemTest *MotorGarageInspectSuspensionSteeringSystemTest `json:"suspension_steering_system_test"`
-	BreakingSystemTest           *MotorGarageInspectBreakingSystemTest           `json:"breaking_system_test"`
-	UnderTheBonnetTests          *MotorGarageInspectUnderTheBonnetTests          `json:"under_the_bonnet_tests"`
-	FinalProcedures              *MotorGarageInspectFinalProcedures              `json:"final_procedures"`
+	CustomerInstructionsAndRepairs *MotorGarageCustomerInstructionsAndRepairs      `json:"customer_instructions_and_repairs"`
+	RoadTest                       *MotorGarageInspectRoadTest                     `json:"road_test"`
+	EngineTune                     *MotorGarageInspectEngineTune                   `json:"engine_tune"`
+	LightChecks                    *MotorGarageInspectLightChecks                  `json:"light_checks"`
+	InteriorChecks                 *MotorGarageInspectInteriorChecks               `json:"interior_checks"`
+	UnderBody                      *MotorGarageInspectUnderBody                    `json:"under_body"`
+	ExhaustSystemChecks            *MotorGarageInspectExhaustSystemChecks          `json:"exhaust_system_checks"`
+	SuspensionSteeringSystemTest   *MotorGarageInspectSuspensionSteeringSystemTest `json:"suspension_steering_system_test"`
+	BreakingSystemTest             *MotorGarageInspectBreakingSystemTest           `json:"breaking_system_test"`
+	UnderTheBonnetTests            *MotorGarageInspectUnderTheBonnetTests          `json:"under_the_bonnet_tests"`
+	FinalProcedures                *MotorGarageInspectFinalProcedures              `json:"final_procedures"`
 }
 
 // Inspect Sections general items
@@ -60,6 +61,27 @@ type MotorGarageInspectPassOrFailWithDirectionOptions struct {
 	MotorGarageInspectDirectionOptions
 }
 
+// Customer Instructions and Repairs
+type MotorGarageCustomerInstructionsAndRepairs struct {
+	Instruction1       bool   `json:"instruction_1"`
+	Instruction2       bool   `json:"instruction_2"`
+	Instruction3       bool   `json:"instruction_3"`
+	Instruction4       bool   `json:"instruction_4"`
+	Instruction5       bool   `json:"instruction_5"`
+	Instruction6       bool   `json:"instruction_6"`
+	Instruction7       bool   `json:"instruction_7"`
+	Instruction8       bool   `json:"instruction_8"`
+	Instruction9       bool   `json:"instruction_9"`
+	Instruction10      bool   `json:"instruction_10"`
+	Instruction11      bool   `json:"instruction_11"`
+	Instruction12      bool   `json:"instruction_12"`
+	Instruction13      bool   `json:"instruction_13"`
+	Instruction14      bool   `json:"instruction_14"`
+	Instruction15      bool   `json:"instruction_15"`
+	Instruction16      bool   `json:"instruction_16"`
+	PrimeItemOfConcern string `json:"prime_item_of_concern"`
+}
+
 // 1. Road Test
 type MotorGarageInspectItem4 struct {
 	*MotorGarageInspectPassOrFail
@@ -96,10 +118,10 @@ func (b *MotorGarageInspectBeforeAfter) GetBeforeAfterString() (string, string) 
 
 func GetCheckboxCheckStatusString(checked bool) string {
 	if checked {
-		return "checked={true}"
+		return "checked"
 	}
 
-	return "checked={false}"
+	return ""
 }
 
 type MotorGarageInspectItem26 struct {

@@ -118,6 +118,7 @@ var TestReportTemplate = `<!DOCTYPE html>
             border: 1px solid #ddd;
             border-radius: 0px;
             margin: 1px;
+
         }
 
         @media (max-width: 600px) {
@@ -225,77 +226,76 @@ var TestReportTemplate = `<!DOCTYPE html>
                             <thead>
                                 <tr>
                                     <th colspan="3" style="padding: 2px; background-color: #333; color: white;">
-                                        CUSTOMER INSTRUCTIONS AND REPAIRS</th>
+                                        CUSTOMER INSTRUCTIONS AND REPAIRS
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;">
-                                        TUNE
+                                        <input type="checkbox" style="vertical-align: middle;" {{tune}}> TUNE
                                     </td>
                                     <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> INJECTOR
+                                        <input type="checkbox" style="vertical-align: middle;" {{injector}}> INJECTOR
                                     </td>
                                     <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> DIESEL SERVICE
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> STANDARD
-                                    </td>
-                                    <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> TIMING BELT
-                                    </td>
-                                    <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> DIAGNOSE
+                                        <input type="checkbox" style="vertical-align: middle;" {{diesel_service}}> DIESEL SERVICE
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> MAJOR SERVICE
+                                        <input type="checkbox" style="vertical-align: middle;" {{standard}}> STANDARD
                                     </td>
                                     <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> EXHAUST
+                                        <input type="checkbox" style="vertical-align: middle;" {{timing_belt}}> TIMING BELT
                                     </td>
                                     <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> AUTO SERVICE
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> MINOR SERVICE
-                                    </td>
-                                    <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> SUSPENSION
-                                    </td>
-                                    <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> VEHICLE CHECK
+                                        <input type="checkbox" style="vertical-align: middle;" {{diagnose}}> DIAGNOSE
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> WIPER DISC SCE
+                                        <input type="checkbox" style="vertical-align: middle;" {{major_service}}> MAJOR SERVICE
                                     </td>
                                     <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> LOGBOOK SERVICE
+                                        <input type="checkbox" style="vertical-align: middle;" {{exhaust}}> EXHAUST
                                     </td>
                                     <td style="width: 33%; border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> CAB OVER SCHG
+                                        <input type="checkbox" style="vertical-align: middle;" {{auto_service}}> AUTO SERVICE
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 33%; border: 0; padding: 0;">
+                                        <input type="checkbox" style="vertical-align: middle;" {{minor_service}}> MINOR SERVICE
+                                    </td>
+                                    <td style="width: 33%; border: 0; padding: 0;">
+                                        <input type="checkbox" style="vertical-align: middle;" {{suspension}}> SUSPENSION
+                                    </td>
+                                    <td style="width: 33%; border: 0; padding: 0;">
+                                        <input type="checkbox" style="vertical-align: middle;" {{vehicle_check}}> VEHICLE CHECK
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 33%; border: 0; padding: 0;">
+                                        <input type="checkbox" style="vertical-align: middle;" {{wiper_disc_sce}}> WIPER DISC SCE
+                                    </td>
+                                    <td style="width: 33%; border: 0; padding: 0;">
+                                        <input type="checkbox" style="vertical-align: middle;" {{logbook_service}}> LOGBOOK SERVICE
+                                    </td>
+                                    <td style="width: 33%; border: 0; padding: 0;">
+                                        <input type="checkbox" style="vertical-align: middle;" {{cab_over_schg}}> CAB OVER SCHG
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" style="border: 0; padding: 0;">
-                                        <input type="checkbox" style="vertical-align: middle;"> AUTHORITY TO PROCEED AS
-                                        PER TERMS & CONDITIONS OVERLEAF
+                                        <input type="checkbox" style="vertical-align: middle;" {{authority_to_proceed}}>
+                                        AUTHORITY TO PROCEED AS PER TERMS & CONDITIONS OVERLEAF
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3"
-                                        style="border: 1px solid #ddd; padding: 4px; height: 30px; vertical-align: top;">
-                                        <div style="font-weight: bold; text-decoration: underline;">PRIME ITEM OF
-                                            CONCERN</div>
+                                    <td colspan="3" style="border: 1px solid #ddd; padding: 4px; height: 30px; vertical-align: top;">
+                                        <div style="font-weight: bold; text-decoration: underline;">PRIME ITEM OF CONCERN</div>
+                                        {{prime_item_of_concern}}
                                     </td>
                                 </tr>
                             </tbody>
@@ -1229,7 +1229,7 @@ var TestReportTemplate = `<!DOCTYPE html>
                                             class="status">RL</span>
                                         <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{shock_absorbers_rr}}><span
                                             class="status">RR</span>
-                                    </td>d
+                                    </td>
                                     <td style="width: 12%; border: 1px solid #ddd; padding: 2px;">{{shock_absorbers}}
                                     </td>
                                 </tr>
@@ -1280,16 +1280,16 @@ var TestReportTemplate = `<!DOCTYPE html>
                 <tr>
                     <td style="width: 88%; border: 1px solid #ddd; padding: 2px;">
                         76. Tyre Pressure
-                        <span class="status" style="margin-left: 15px; margin-right: 2px;" defaultValue="{{tyre_pressure_status_fl}}">FL</span>
-                        <input style="height: 6px; width: 16px;">
-                        <span class="status" style="margin-left: 15px; margin-right: 2px;" defaultValue="{{tyre_pressure_status_fr}}">FR</span>
-                        <input style="height: 6px; width: 16px;">
-                        <span class="status" style="margin-left: 15px; margin-right: 2px;" defaultValue="{{tyre_pressure_status_rl}}">RL</span>
-                        <input style="height: 6px; width: 16px;">
-                        <span class="status" style="margin-left: 15px; margin-right: 2px;" defaultValue="{{tyre_pressure_status_rr}}">RR</span>
-                        <input style="height: 6px; width: 16px;">
-                        <span class="status" style="margin-left: 15px; margin-right: 2px;" defaultValue="{{tyre_pressure_status_sp}}">SP</span>
-                        <input style="height: 6px; width: 16px;">
+                        <span class="status" style="margin-left: 15px; margin-right: 2px;" >FL</span>
+                        <input style="height: 6px; width: 16px;" value="{{tyre_pressure_status_fl}}">
+                        <span class="status" style="margin-left: 15px; margin-right: 2px;" >FR</span>
+                        <input style="height: 6px; width: 16px;" value="{{tyre_pressure_status_fr}}">
+                        <span class="status" style="margin-left: 15px; margin-right: 2px;" >RL</span>
+                        <input style="height: 6px; width: 16px;" value="{{tyre_pressure_status_rl}}">
+                        <span class="status" style="margin-left: 15px; margin-right: 2px;">RR</span>
+                        <input style="height: 6px; width: 16px;" value="{{tyre_pressure_status_rr}}">
+                        <span class="status" style="margin-left: 15px; margin-right: 2px;">SP</span>
+                        <input style="height: 6px; width: 16px;" value="{{tyre_pressure_status_sp}}">
                     </td>
                     <td style="width: 12%; border: 1px solid #ddd; padding: 2px;">{{tyre_pressure_status}}</td>
                 </tr>
@@ -1470,10 +1470,10 @@ var TestReportTemplate = `<!DOCTYPE html>
                     <td style="width: 88%; border: 1px solid #ddd; padding: 2px;">
                         85. Cambelt
                         <span style="margin-left: 20px;">Manuf Spec:</span> <span
-                            style="border: 1px solid #ddd; padding-left: 25px; padding-right: 25px; margin-left: 5px; margin-right: 10px;"></span>
+                            style="border: 1px solid #ddd; padding-left: 25px; padding-right: 25px; margin-left: 5px; margin-right: 10px;">{{cambelt_manuf_spec}}</span>
                         km
                         <span style="margin-left: 20px;">Date:</span> <span
-                            style="border: 1px solid #ddd; padding-left: 25px; padding-right: 25px; margin-left: 5px; margin-right: 10px;"></span>
+                            style="border: 1px solid #ddd; padding-left: 25px; padding-right: 25px; margin-left: 5px; margin-right: 10px;">{{cambelt_date}}</span>
                     </td>
                     <td style="width: 12%; border: 1px solid #ddd; padding: 2px;">{{cambelt}}</td>
                 </tr>

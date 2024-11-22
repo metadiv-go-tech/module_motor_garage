@@ -9,16 +9,17 @@ type MotorGarageInspect struct {
 	ID        uint `json:"id"`
 	InvoiceId uint `json:"invoice_id"`
 
-	RoadTest                     *dto.MotorGarageInspectRoadTest                     `json:"road_test"`
-	EngineTune                   *dto.MotorGarageInspectEngineTune                   `json:"engine_tune"`
-	LightChecks                  *dto.MotorGarageInspectLightChecks                  `json:"light_checks"`
-	InteriorChecks               *dto.MotorGarageInspectInteriorChecks               `json:"interior_checks"`
-	UnderBody                    *dto.MotorGarageInspectUnderBody                    `json:"under_body"`
-	ExhaustSystemChecks          *dto.MotorGarageInspectExhaustSystemChecks          `json:"exhaust_system_checks"`
-	SuspensionSteeringSystemTest *dto.MotorGarageInspectSuspensionSteeringSystemTest `json:"suspension_steering_system_test"`
-	BreakingSystemTest           *dto.MotorGarageInspectBreakingSystemTest           `json:"breaking_system_test"`
-	UnderTheBonnetTests          *dto.MotorGarageInspectUnderTheBonnetTests          `json:"under_the_bonnet_tests"`
-	FinalProcedures              *dto.MotorGarageInspectFinalProcedures              `json:"final_procedures"`
+	CustomerInstructionsAndRepairs *dto.MotorGarageCustomerInstructionsAndRepairs      `json:"customer_instructions_and_repairs"`
+	RoadTest                       *dto.MotorGarageInspectRoadTest                     `json:"road_test"`
+	EngineTune                     *dto.MotorGarageInspectEngineTune                   `json:"engine_tune"`
+	LightChecks                    *dto.MotorGarageInspectLightChecks                  `json:"light_checks"`
+	InteriorChecks                 *dto.MotorGarageInspectInteriorChecks               `json:"interior_checks"`
+	UnderBody                      *dto.MotorGarageInspectUnderBody                    `json:"under_body"`
+	ExhaustSystemChecks            *dto.MotorGarageInspectExhaustSystemChecks          `json:"exhaust_system_checks"`
+	SuspensionSteeringSystemTest   *dto.MotorGarageInspectSuspensionSteeringSystemTest `json:"suspension_steering_system_test"`
+	BreakingSystemTest             *dto.MotorGarageInspectBreakingSystemTest           `json:"breaking_system_test"`
+	UnderTheBonnetTests            *dto.MotorGarageInspectUnderTheBonnetTests          `json:"under_the_bonnet_tests"`
+	FinalProcedures                *dto.MotorGarageInspectFinalProcedures              `json:"final_procedures"`
 }
 
 func (r *MotorGarageInspect) ToEntity(e *entity.MotorGarageInspect) *entity.MotorGarageInspect {
@@ -26,6 +27,7 @@ func (r *MotorGarageInspect) ToEntity(e *entity.MotorGarageInspect) *entity.Moto
 		e = &entity.MotorGarageInspect{}
 	}
 
+	e.CustomerInstructionsAndRepairs = dto.InspectSectionToString(r.CustomerInstructionsAndRepairs)
 	e.RoadTest = dto.InspectSectionToString(r.RoadTest)
 	e.EngineTune = dto.InspectSectionToString(r.EngineTune)
 	e.LightChecks = dto.InspectSectionToString(r.LightChecks)

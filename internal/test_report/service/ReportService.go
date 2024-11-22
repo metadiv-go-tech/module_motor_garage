@@ -43,6 +43,27 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 	if invoice.Inspect != nil {
 		inspectDto := invoice.Inspect.ToDTO(locale)
 
+		// Customer Instructions and Repairs
+		if inspectDto.CustomerInstructionsAndRepairs != nil {
+			html = strings.Replace(html, "{{tune}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction1), -1)
+			html = strings.Replace(html, "{{injector}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction2), -1)
+			html = strings.Replace(html, "{{diesel_service}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction3), -1)
+			html = strings.Replace(html, "{{standard}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction4), -1)
+			html = strings.Replace(html, "{{timing_belt}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction5), -1)
+			html = strings.Replace(html, "{{diagnose}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction6), -1)
+			html = strings.Replace(html, "{{major_service}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction7), -1)
+			html = strings.Replace(html, "{{exhaust}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction8), -1)
+			html = strings.Replace(html, "{{auto_service}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction9), -1)
+			html = strings.Replace(html, "{{minor_service}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction10), -1)
+			html = strings.Replace(html, "{{suspension}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction11), -1)
+			html = strings.Replace(html, "{{vehicle_check}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction12), -1)
+			html = strings.Replace(html, "{{wiper_disc_sce}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction13), -1)
+			html = strings.Replace(html, "{{logbook_service}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction14), -1)
+			html = strings.Replace(html, "{{cab_over_schg}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction15), -1)
+			html = strings.Replace(html, "{{authority_to_proceed}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction16), -1)
+			html = strings.Replace(html, "{{prime_item_of_concern}}", inspectDto.CustomerInstructionsAndRepairs.PrimeItemOfConcern, -1)
+		}
+
 		// 1. Road Test
 		if inspectDto.RoadTest != nil {
 			html = strings.Replace(html, "{{fit_seat_cover_and_floor_mat}}", inspectDto.RoadTest.Item1.GetPassOrFailString(), -1)
