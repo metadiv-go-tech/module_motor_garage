@@ -35,7 +35,7 @@ func (p *MotorGarageInspectPassOrFail) GetPassOrFailString() string {
 		return "OK"
 	}
 
-	return "Fail"
+	return "FAIL"
 }
 
 type MotorGarageInspectLeftRightOptions struct {
@@ -50,27 +50,19 @@ type MotorGarageInspectDirectionOptions struct {
 	RR bool `json:"rr"`
 }
 
-func (*MotorGarageInspect) GetCheckboxCheckStatusString(option bool) string {
-	if option {
-		return `checked="true"`
-	}
-
-	return `checked="false"`
-}
-
 type MotorGarageInspectPassOrFailWithLeftRightOptions struct {
-	MotorGarageInspectPassOrFail
+	*MotorGarageInspectPassOrFail
 	MotorGarageInspectLeftRightOptions
 }
 
 type MotorGarageInspectPassOrFailWithDirectionOptions struct {
-	MotorGarageInspectPassOrFail
+	*MotorGarageInspectPassOrFail
 	MotorGarageInspectDirectionOptions
 }
 
 // 1. Road Test
 type MotorGarageInspectItem4 struct {
-	MotorGarageInspectPassOrFail
+	*MotorGarageInspectPassOrFail
 	Speed string `json:"speed"`
 }
 
@@ -78,7 +70,7 @@ type MotorGarageInspectRoadTest struct {
 	Item1  *MotorGarageInspectPassOrFail `json:"item_1"`
 	Item2  *MotorGarageInspectPassOrFail `json:"item_2"`
 	Item3  *MotorGarageInspectPassOrFail `json:"item_3"`
-	Item4  *MotorGarageInspectItem4      `json:"item_4"`
+	Item4  MotorGarageInspectItem4       `json:"item_4"`
 	Item5  *MotorGarageInspectPassOrFail `json:"item_5"`
 	Item6  *MotorGarageInspectPassOrFail `json:"item_6"`
 	Item7  *MotorGarageInspectPassOrFail `json:"item_7"`
@@ -95,33 +87,48 @@ type MotorGarageInspectBeforeAfter struct {
 	After  string `json:"after"`
 }
 
+func (b *MotorGarageInspectBeforeAfter) GetBeforeAfterString() (string, string) {
+	if b == nil {
+		return "", ""
+	}
+	return b.Before, b.After
+}
+
+func GetCheckboxCheckStatusString(checked bool) string {
+	if checked {
+		return "checked={true}"
+	}
+
+	return "checked={false}"
+}
+
 type MotorGarageInspectItem26 struct {
 	MotorGarageInspectBeforeAfter
 	Levels bool `json:"levels"`
 }
 
 type MotorGarageInspectEngineTune struct {
-	Item13 *MotorGarageInspectBeforeAfter `json:"item_13"`
-	Item14 *MotorGarageInspectBeforeAfter `json:"item_14"`
-	Item15 *MotorGarageInspectBeforeAfter `json:"item_15"`
-	Item16 *MotorGarageInspectBeforeAfter `json:"item_16"`
-	Item17 *MotorGarageInspectBeforeAfter `json:"item_17"`
-	Item18 *MotorGarageInspectBeforeAfter `json:"item_18"`
-	Item19 *MotorGarageInspectBeforeAfter `json:"item_19"`
-	Item20 *MotorGarageInspectBeforeAfter `json:"item_20"`
-	Item21 *MotorGarageInspectBeforeAfter `json:"item_21"`
-	Item22 *MotorGarageInspectBeforeAfter `json:"item_22"`
-	Item23 *MotorGarageInspectBeforeAfter `json:"item_23"`
-	Item24 *MotorGarageInspectBeforeAfter `json:"item_24"`
-	Item25 *MotorGarageInspectBeforeAfter `json:"item_25"`
-	Item26 *MotorGarageInspectItem26      `json:"item_26"`
-	Item27 *MotorGarageInspectBeforeAfter `json:"item_27"`
-	Item28 []string                       `json:"item_28"`
+	Item13 MotorGarageInspectBeforeAfter `json:"item_13"`
+	Item14 MotorGarageInspectBeforeAfter `json:"item_14"`
+	Item15 MotorGarageInspectBeforeAfter `json:"item_15"`
+	Item16 MotorGarageInspectBeforeAfter `json:"item_16"`
+	Item17 MotorGarageInspectBeforeAfter `json:"item_17"`
+	Item18 MotorGarageInspectBeforeAfter `json:"item_18"`
+	Item19 MotorGarageInspectBeforeAfter `json:"item_19"`
+	Item20 MotorGarageInspectBeforeAfter `json:"item_20"`
+	Item21 MotorGarageInspectBeforeAfter `json:"item_21"`
+	Item22 MotorGarageInspectBeforeAfter `json:"item_22"`
+	Item23 MotorGarageInspectBeforeAfter `json:"item_23"`
+	Item24 MotorGarageInspectBeforeAfter `json:"item_24"`
+	Item25 MotorGarageInspectBeforeAfter `json:"item_25"`
+	Item26 MotorGarageInspectItem26      `json:"item_26"`
+	Item27 MotorGarageInspectBeforeAfter `json:"item_27"`
+	Item28 []string                      `json:"item_28"`
 }
 
 // 3. Light checks
 type MotorGarageInspectItem29 struct {
-	MotorGarageInspectPassOrFail
+	*MotorGarageInspectPassOrFail
 	Hi_L bool `json:"hi_l"`
 	Hi_R bool `json:"hi_r"`
 	Lo_L bool `json:"lo_l"`
@@ -134,15 +141,15 @@ type MotorGarageInspectItem34 struct {
 }
 
 type MotorGarageInspectLightChecks struct {
-	Item29 *MotorGarageInspectItem29                         `json:"item_29"`
-	Item30 *MotorGarageInspectPassOrFail                     `json:"item_30"`
-	Item31 *MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_31"`
-	Item32 *MotorGarageInspectPassOrFail                     `json:"item_32"`
-	Item33 *MotorGarageInspectPassOrFailWithLeftRightOptions `json:"item_33"`
-	Item34 *MotorGarageInspectItem34                         `json:"item_34"`
-	Item35 *MotorGarageInspectPassOrFailWithLeftRightOptions `json:"item_35"`
-	Item36 *MotorGarageInspectPassOrFailWithLeftRightOptions `json:"item_36"`
-	Item37 *MotorGarageInspectPassOrFail                     `json:"item_37"`
+	Item29 MotorGarageInspectItem29                         `json:"item_29"`
+	Item30 *MotorGarageInspectPassOrFail                    `json:"item_30"`
+	Item31 MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_31"`
+	Item32 *MotorGarageInspectPassOrFail                    `json:"item_32"`
+	Item33 MotorGarageInspectPassOrFailWithLeftRightOptions `json:"item_33"`
+	Item34 MotorGarageInspectItem34                         `json:"item_34"`
+	Item35 MotorGarageInspectPassOrFailWithLeftRightOptions `json:"item_35"`
+	Item36 MotorGarageInspectPassOrFailWithLeftRightOptions `json:"item_36"`
+	Item37 *MotorGarageInspectPassOrFail                    `json:"item_37"`
 }
 
 // 4. Interior Checks
@@ -162,7 +169,7 @@ type MotorGarageInspectItem47 struct {
 }
 
 type MotorGarageInspectItem49 struct {
-	MotorGarageInspectPassOrFailWithDirectionOptions
+	*MotorGarageInspectPassOrFail
 	FL bool `json:"fl"`
 	FR bool `json:"fr"`
 	RL bool `json:"rl"`
@@ -174,14 +181,14 @@ type MotorGarageInspectInteriorChecks struct {
 	Item39 *MotorGarageInspectPassOrFail `json:"item_39"`
 	Item40 *MotorGarageInspectPassOrFail `json:"item_40"`
 	Item41 *MotorGarageInspectPassOrFail `json:"item_41"`
-	Item42 *MotorGarageInspectItem42     `json:"item_42"`
+	Item42 MotorGarageInspectItem42      `json:"item_42"`
 	Item43 *MotorGarageInspectPassOrFail `json:"item_43"`
 	Item44 *MotorGarageInspectPassOrFail `json:"item_44"`
 	Item45 *MotorGarageInspectPassOrFail `json:"item_45"`
-	Item46 *MotorGarageInspectItem46     `json:"item_46"`
-	Item47 *MotorGarageInspectItem47     `json:"item_47"`
+	Item46 MotorGarageInspectItem46      `json:"item_46"`
+	Item47 MotorGarageInspectItem47      `json:"item_47"`
 	Item48 *MotorGarageInspectPassOrFail `json:"item_48"`
-	Item49 *MotorGarageInspectItem49     `json:"item_49"`
+	Item49 MotorGarageInspectItem49      `json:"item_49"`
 	Item50 *MotorGarageInspectPassOrFail `json:"item_50"`
 }
 
@@ -202,7 +209,7 @@ type MotorGarageInspectUnderBody struct {
 	Item56 *MotorGarageInspectPassOrFail `json:"item_56"`
 	Item57 *MotorGarageInspectPassOrFail `json:"item_57"`
 	Item58 *MotorGarageInspectPassOrFail `json:"item_58"`
-	Item59 *MotorGarageInspectItem59     `json:"item_59"`
+	Item59 MotorGarageInspectItem59      `json:"item_59"`
 }
 
 // 6. Exhaust System Checks
@@ -222,22 +229,22 @@ type MotorGarageInspectItem70 struct {
 }
 
 type MotorGarageInspectSuspensionSteeringSystemTest struct {
-	Item65 *MotorGarageInspectPassOrFail                     `json:"item_65"`
-	Item66 *MotorGarageInspectPassOrFail                     `json:"item_66"`
-	Item67 *MotorGarageInspectPassOrFail                     `json:"item_67"`
-	Item68 *MotorGarageInspectPassOrFail                     `json:"item_68"`
-	Item69 *MotorGarageInspectPassOrFail                     `json:"item_69"`
-	Item70 *MotorGarageInspectItem70                         `json:"item_70"`
-	Item71 *MotorGarageInspectPassOrFail                     `json:"item_71"`
-	Item72 *MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_72"`
-	Item73 *MotorGarageInspectPassOrFail                     `json:"item_73"`
-	Item74 *MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_74"`
-	Item75 *MotorGarageInspectPassOrFailWithLeftRightOptions `json:"item_75"`
+	Item65 *MotorGarageInspectPassOrFail                    `json:"item_65"`
+	Item66 *MotorGarageInspectPassOrFail                    `json:"item_66"`
+	Item67 *MotorGarageInspectPassOrFail                    `json:"item_67"`
+	Item68 *MotorGarageInspectPassOrFail                    `json:"item_68"`
+	Item69 *MotorGarageInspectPassOrFail                    `json:"item_69"`
+	Item70 MotorGarageInspectItem70                         `json:"item_70"`
+	Item71 *MotorGarageInspectPassOrFail                    `json:"item_71"`
+	Item72 MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_72"`
+	Item73 *MotorGarageInspectPassOrFail                    `json:"item_73"`
+	Item74 MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_74"`
+	Item75 MotorGarageInspectPassOrFailWithLeftRightOptions `json:"item_75"`
 }
 
 // 8. Breaking System Test
 type MotorGarageInspectItem76 struct {
-	MotorGarageInspectPassOrFail
+	*MotorGarageInspectPassOrFail
 	FL string `json:"fl"`
 	FR string `json:"fr"`
 	RL string `json:"rl"`
@@ -251,38 +258,38 @@ type MotorGarageInspectItem77 struct {
 }
 
 type MotorGarageInspectItem79 struct {
-	MotorGarageInspectPassOrFail
+	*MotorGarageInspectPassOrFail
 	Master  bool `json:"master"`
 	Booster bool `json:"booster"`
 }
 
 type BrakesTestingByDirectionValues struct {
-	MotorGarageInspectPassOrFail
-	ManufacturersSpecSize     string `json:"manufacturers_spec_size"`
-	DiscOrDrumSize            string `json:"disc_or_drum_size"`
-	PadOrLiningPercentageWorn string `json:"pad_or_lining_percentage_worn"`
-	CaliperOrCylinder         bool   `json:"caliper_or_cylinder"`
-	Seats                     bool   `json:"seats"`
+	*MotorGarageInspectPassOrFail
+	ManufacturersSpecSize     string                        `json:"manufacturers_spec_size"`
+	DiscOrDrumSize            string                        `json:"disc_or_drum_size"`
+	PadOrLiningPercentageWorn string                        `json:"pad_or_lining_percentage_worn"`
+	CaliperOrCylinder         *MotorGarageInspectPassOrFail `json:"caliper_or_cylinder"`
+	Seats                     *MotorGarageInspectPassOrFail `json:"seats"`
 }
 
 type MotorGarageInspectItem80 struct {
-	LH_Front *BrakesTestingByDirectionValues `json:"lh_front"`
-	RH_Front *BrakesTestingByDirectionValues `json:"rh_front"`
-	LH_Rear  *BrakesTestingByDirectionValues `json:"lh_rear"`
-	RH_Rear  *BrakesTestingByDirectionValues `json:"rh_rear"`
+	LH_Front BrakesTestingByDirectionValues `json:"lh_front"`
+	RH_Front BrakesTestingByDirectionValues `json:"rh_front"`
+	LH_Rear  BrakesTestingByDirectionValues `json:"lh_rear"`
+	RH_Rear  BrakesTestingByDirectionValues `json:"rh_rear"`
 }
 
 type MotorGarageInspectBreakingSystemTest struct {
-	Item76 *MotorGarageInspectItem76                         `json:"item_76"`
-	Item77 *MotorGarageInspectItem77                         `json:"item_77"`
-	Item78 *MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_78"`
-	Item79 *MotorGarageInspectItem79                         `json:"item_79"`
-	Item80 *MotorGarageInspectItem80                         `json:"item_80"`
+	Item76 MotorGarageInspectItem76                         `json:"item_76"`
+	Item77 MotorGarageInspectItem77                         `json:"item_77"`
+	Item78 MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_78"`
+	Item79 MotorGarageInspectItem79                         `json:"item_79"`
+	Item80 MotorGarageInspectItem80                         `json:"item_80"`
 }
 
 // 9. Under The Bonnet Tests
 type MotorGarageInspectItem82 struct {
-	MotorGarageInspectPassOrFail
+	*MotorGarageInspectPassOrFail
 	Electrolyte bool `json:"electrolyte"`
 	Clamp       bool `json:"clamp"`
 	Terminals   bool `json:"terminals"`
@@ -290,32 +297,32 @@ type MotorGarageInspectItem82 struct {
 }
 
 type MotorGarageInspectItem85 struct {
-	MotorGarageInspectPassOrFail
+	*MotorGarageInspectPassOrFail
 	ManufSpec string `json:"manuf_spec"`
 	Date      string `json:"date"`
 }
 
 type MotorGarageInspectUnderTheBonnetTests struct {
-	Item81 *MotorGarageInspectPassOrFail                     `json:"item_81"`
-	Item82 *MotorGarageInspectItem82                         `json:"item_82"`
-	Item83 *MotorGarageInspectPassOrFail                     `json:"item_83"`
-	Item84 *MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_84"`
-	Item85 *MotorGarageInspectItem85                         `json:"item_85"`
-	Item86 *MotorGarageInspectPassOrFail                     `json:"item_86"`
-	Item87 *MotorGarageInspectPassOrFail                     `json:"item_87"`
-	Item88 *MotorGarageInspectPassOrFail                     `json:"item_88"`
-	Item89 *MotorGarageInspectPassOrFail                     `json:"item_89"`
-	Item90 *MotorGarageInspectPassOrFail                     `json:"item_90"`
-	Item91 *MotorGarageInspectPassOrFail                     `json:"item_91"`
-	Item92 *MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_92"`
-	Item93 *MotorGarageInspectPassOrFail                     `json:"item_93"`
-	Item94 *MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_94"`
-	Item95 *MotorGarageInspectPassOrFailWithLeftRightOptions `json:"item_95"`
+	Item81 *MotorGarageInspectPassOrFail                    `json:"item_81"`
+	Item82 MotorGarageInspectItem82                         `json:"item_82"`
+	Item83 *MotorGarageInspectPassOrFail                    `json:"item_83"`
+	Item84 MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_84"`
+	Item85 MotorGarageInspectItem85                         `json:"item_85"`
+	Item86 *MotorGarageInspectPassOrFail                    `json:"item_86"`
+	Item87 *MotorGarageInspectPassOrFail                    `json:"item_87"`
+	Item88 *MotorGarageInspectPassOrFail                    `json:"item_88"`
+	Item89 *MotorGarageInspectPassOrFail                    `json:"item_89"`
+	Item90 *MotorGarageInspectPassOrFail                    `json:"item_90"`
+	Item91 *MotorGarageInspectPassOrFail                    `json:"item_91"`
+	Item92 MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_92"`
+	Item93 *MotorGarageInspectPassOrFail                    `json:"item_93"`
+	Item94 MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_94"`
+	Item95 MotorGarageInspectPassOrFailWithLeftRightOptions `json:"item_95"`
 }
 
 // 10 .final procedures
 type MotorGarageInspectItem96 struct {
-	MotorGarageInspectPassOrFail
+	*MotorGarageInspectPassOrFail
 	MaxSpeed string `json:"max_speed"`
 }
 

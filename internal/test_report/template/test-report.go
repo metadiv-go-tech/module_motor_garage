@@ -137,7 +137,6 @@ var TestReportTemplate = `<!DOCTYPE html>
         }
     </style>
 </head>
-
 <body>
     <div class="header">
         <div class="company-info">
@@ -1028,6 +1027,7 @@ var TestReportTemplate = `<!DOCTYPE html>
                                 </tr>
                             </tbody>
                         </table>
+                    </td>
                         <!-- Right Column -->
                     <td style="width: 50%; border: 0; padding: 0;">
                         <table>
@@ -1268,7 +1268,7 @@ var TestReportTemplate = `<!DOCTYPE html>
                                 </tr>
                             </tbody>
                         </table>
-
+           <table>
                         <thead>
                             <tr>
                                 <th colspan="3" style="padding: 2px; background-color: #333; color: white;">
@@ -1276,7 +1276,7 @@ var TestReportTemplate = `<!DOCTYPE html>
                                 </th>
                             </tr>
                         </thead>
-            <tbody>
+          <tbody>
                 <tr>
                     <td style="width: 88%; border: 1px solid #ddd; padding: 2px;">
                         76. Tyre Pressure
@@ -1627,13 +1627,13 @@ var TestReportTemplate = `<!DOCTYPE html>
                     <td
                         style="width: 12%; border: none; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 2px;">
                         <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{remove_seat_cover_and_floor_mat}}>
+                   </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </td>
                 </tr>
             </tbody>
-        </table>
-        </td>
-        </tr>
-        </tbody>
         </table>
     </div>
 </body>
