@@ -118,7 +118,7 @@ var TestReportTemplate = `<!DOCTYPE html>
             border: 1px solid #ddd;
             border-radius: 0px;
             margin: 1px;
-
+            accent-color: #333;
         }
 
         @media (max-width: 600px) {
