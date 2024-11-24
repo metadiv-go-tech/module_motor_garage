@@ -8,6 +8,7 @@ import (
 	invoiceReportHandler "github.com/metadiv-go-tech/module_motor_garage/internal/invoice_report/handler"
 	productHandler "github.com/metadiv-go-tech/module_motor_garage/internal/product/handler"
 	serviceHandler "github.com/metadiv-go-tech/module_motor_garage/internal/service/handler"
+	statisticHandler "github.com/metadiv-go-tech/module_motor_garage/internal/statistic/handler"
 	technicianHandler "github.com/metadiv-go-tech/module_motor_garage/internal/technician/handler"
 	testReportHandler "github.com/metadiv-go-tech/module_motor_garage/internal/test_report/handler"
 	vehicleHandler "github.com/metadiv-go-tech/module_motor_garage/internal/vehicle/handler"
@@ -82,5 +83,10 @@ func SetupMotorGarage() {
 
 		// Test Report
 		testReportHandler.ApiTestReportPrint,
+
+		// Statistic
+		statisticHandler.ApiStatisticNumberOfCustomerGet,
+		statisticHandler.ApiStatisticNumberOfInvoiceGet,
+		statisticHandler.ApiStatisticIncomeGet,
 	)
 }
