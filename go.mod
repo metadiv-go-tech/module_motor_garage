@@ -8,7 +8,7 @@ require (
 	github.com/metadiv-go-tech/metagin/v2 v2.11.0
 	github.com/metadiv-go-tech/metaorm/v2 v2.3.8
 	github.com/metadiv-go-tech/mod_dev_auth/v2 v2.0.0
-	github.com/metadiv-go-tech/module_relationship/v2 v2.2.0
+	github.com/metadiv-go-tech/module_relationship/v2 v2.3.0
 	github.com/metadiv-go-tech/module_system_data/v2 v2.0.8
 )
 
