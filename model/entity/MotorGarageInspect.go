@@ -14,6 +14,8 @@ type MotorGarageInspect struct {
 	InvoiceId uint                `json:"invoice_id"`
 	Invoice   *MotorGarageInvoice `json:"invoice" gorm:"-"`
 
+	CustomerInstructionsAndRepairs string `json:"customer_instructions_and_repairs"`
+
 	RoadTest                     string `json:"road_test"`
 	EngineTune                   string `json:"engine_tune"`
 	LightChecks                  string `json:"light_checks"`
@@ -34,6 +36,12 @@ func (e *MotorGarageInspect) ToDTO(locale string) *dto.MotorGarageInspect {
 	if e.Invoice != nil {
 		d.Invoice = e.Invoice.ToDTO(locale)
 	}
+
+	if e.CustomerInstructionsAndRepairs != "" {
+		d.CustomerInstructionsAndRepairs = &dto.MotorGarageCustomerInstructionsAndRepairs{}
+		json.Unmarshal([]byte(e.CustomerInstructionsAndRepairs), d.CustomerInstructionsAndRepairs)
+	}
+
 	if e.RoadTest != "" {
 		d.RoadTest = &dto.MotorGarageInspectRoadTest{}
 		json.Unmarshal([]byte(e.RoadTest), d.RoadTest)
