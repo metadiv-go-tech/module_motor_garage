@@ -10,6 +10,7 @@ import (
 	"github.com/metadiv-go-tech/module_motor_garage/config"
 	bookingRepo "github.com/metadiv-go-tech/module_motor_garage/internal/booking/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/internal/invoice/repo"
+	"github.com/metadiv-go-tech/module_motor_garage/internal/invoice/service"
 	vehicleRepo "github.com/metadiv-go-tech/module_motor_garage/internal/vehicle/repo"
 	"github.com/metadiv-go-tech/module_motor_garage/model/dto"
 	"github.com/metadiv-go-tech/module_motor_garage/model/request"
@@ -75,7 +76,18 @@ var ApiMotorGarageInvoiceUpdate = metagin.Put(
 		}
 
 		e = repo.MotorGarageInvoiceRepo.FindById(ctx.DB().Preload("Products", "Services", "Discounts"), ctx.Request().ID, ctx.WorkspaceId())
-		ctx.OK(e.ToDTO(ctx.Locale()))
+		if e == nil {
+			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to load invoice"))
+			return
+		}
 
+		e.Total = service.InvoiceService.CalculateInvoiceTotal(e)
+		e = repo.MotorGarageInvoiceRepo.Save(ctx.DB(), e, ctx.WorkspaceId())
+		if e == nil {
+			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save invoice total"))
+			return
+		}
+
+		ctx.OK(e.ToDTO(ctx.Locale()))
 	},
 )

@@ -9,7 +9,8 @@ type MotorGarageInvoice struct {
 	base.Model
 	base.ModelWorkspace
 
-	Date int64 `json:"date"`
+	Date  int64 `json:"date"`
+	Total uint  `json:"total"`
 
 	VehicleId uint                `json:"vehicle_id"`
 	Vehicle   *MotorGarageVehicle `json:"vehicle" gorm:"foreignKey:VehicleId"`
@@ -30,6 +31,7 @@ func (e *MotorGarageInvoice) ToDTO(locale string) *dto.MotorGarageInvoice {
 		ID:        e.ID,
 		Date:      e.Date,
 		VehicleId: e.VehicleId,
+		Total:     e.Total,
 	}
 	if e.Vehicle != nil {
 		d.Vehicle = e.Vehicle.ToDTO(locale)

@@ -134,6 +134,8 @@ github.com/metadiv-go-tech/module_relationship/v2 v2.0.2 h1:jyrSf+hCg+1BJ7VJui6I
 github.com/metadiv-go-tech/module_relationship/v2 v2.0.2/go.mod h1:KKAqyAnMQ1q2BrfkMBkFw3+pjPh2wmvOwsCsCZXx7R0=
 github.com/metadiv-go-tech/module_relationship/v2 v2.2.0 h1:SmzwoB2n4qNRfoVSVDF5GXZ34q4teqg8TnJY0A6/Yik=
 github.com/metadiv-go-tech/module_relationship/v2 v2.2.0/go.mod h1:cp8b/KpUt6WN8CJiF5tyll49OPmtIxFmutYZdu3DIFk=
+github.com/metadiv-go-tech/module_relationship/v2 v2.3.0 h1:crr2zyXcQWINmeosdTkeAhP/vSAPcKVBaKe7co2jWBI=
+github.com/metadiv-go-tech/module_relationship/v2 v2.3.0/go.mod h1:cp8b/KpUt6WN8CJiF5tyll49OPmtIxFmutYZdu3DIFk=
 github.com/metadiv-go-tech/module_system_data/v2 v2.0.3 h1:iEnoDuSjTdvEC4shDbJiLtKURMdsS3aN0Fyo4MWTAvg=
 github.com/metadiv-go-tech/module_system_data/v2 v2.0.3/go.mod h1:NtKdg4aGUVoF3hymur4GpZukChhS0hHwsOFSODsFHY8=
 github.com/metadiv-go-tech/module_system_data/v2 v2.0.8 h1:7I9VvEQqlXip2fmK2VzUPbE7e2tQD6j9L772yI4jrSg=
