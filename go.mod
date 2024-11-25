@@ -4,19 +4,19 @@ go 1.23.2
 
 require (
 	github.com/metadiv-go-tech/gotenberg v1.0.0
-	github.com/metadiv-go-tech/metadiv_util_client v1.0.0
+	github.com/metadiv-go-tech/metadiv_services_client v1.1.0
 	github.com/metadiv-go-tech/metagin/v2 v2.11.0
 	github.com/metadiv-go-tech/metaorm/v2 v2.3.8
 	github.com/metadiv-go-tech/mod_dev_auth/v2 v2.0.0
-	github.com/metadiv-go-tech/module_relationship/v2 v2.3.0
-	github.com/metadiv-go-tech/module_system_data/v2 v2.0.8
+	github.com/metadiv-go-tech/module_relationship/v2 v2.4.0
+	github.com/metadiv-go-tech/module_system_data/v2 v2.1.0
 )
 
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/KyleBanks/depth v1.2.1 // indirect
 	github.com/bradfitz/gomemcache v0.0.0-20230905024940-24af94b03874 // indirect
-	github.com/bytedance/sonic v1.12.4 // indirect
+	github.com/bytedance/sonic v1.12.5 // indirect
 	github.com/bytedance/sonic/loader v0.2.1 // indirect
 	github.com/cloudwego/base64x v0.1.4 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
