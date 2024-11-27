@@ -327,8 +327,8 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 
 		// 10. Final Procedures
 		if inspectDto.FinalProcedures != nil {
-			html = strings.Replace(html, "{{road_test_max_speed_reached}}", inspectDto.FinalProcedures.Item96.MaxSpeed, -1)
 			html = strings.Replace(html, "{{road_test_max_speed}}", inspectDto.FinalProcedures.Item96.MaxSpeed, -1)
+			html = strings.Replace(html, "{{road_test_max_speed_reached}}", inspectDto.FinalProcedures.Item96.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{park_vehicle_facing_out}}", dto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item97), -1)
 			html = strings.Replace(html, "{{reset_service_interval}}", dto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item98), -1)
 			html = strings.Replace(html, "{{gloss_tyres}}", dto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item99), -1)

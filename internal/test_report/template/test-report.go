@@ -1552,10 +1552,10 @@ var TestReportTemplate = `<!DOCTYPE html>
                     <td style="width: 88%; border: 1px solid #ddd; padding: 2px;">
                         96. Road Test Car (if Roadworthy)
                         <span style="margin-left: 20px;">Max Speed</span> <span
-                            style="border: 1px solid #ddd; padding-left: 25px; padding-right: 25px; margin-left: 5px; margin-right: 10px;">{{road_test_max_speed_reached}}</span>
+                            style="border: 1px solid #ddd; padding-left: 25px; padding-right: 25px; margin-left: 5px; margin-right: 10px;">{{road_test_max_speed}}</span>
                         kph
                     </td>
-                    <td style="width: 12%; border: 1px solid #ddd; padding: 2px;">{{road_test_max_speed}}</td>
+                    <td style="width: 12%; border: 1px solid #ddd; padding: 2px;">{{road_test_max_speed_reached}}</td>
                 </tr>
                 <tr>
                     <td style="width: 88%; border: 1px solid #ddd; border-right: none; padding: 2px;">
