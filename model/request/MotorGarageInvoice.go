@@ -64,7 +64,6 @@ func (r *MotorGarageInvoiceCreate) ToEntity(e *entity.MotorGarageInvoice) *entit
 	}
 	e.Date = r.Date
 	e.VehicleId = r.VehicleId
-	e.BookingId = r.BookingId
 
 	existServices := make(map[uint]entity.MotorGarageInvoiceService)
 	for _, s := range e.Services {

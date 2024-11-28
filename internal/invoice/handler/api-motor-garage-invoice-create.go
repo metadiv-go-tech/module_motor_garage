@@ -36,12 +36,14 @@ var ApiMotorGarageInvoiceCreate = metagin.Post(
 		e := ctx.Request().ToEntity(nil)
 		e.Vehicle = vehicle
 
-		if e.BookingId != nil {
-			booking := bookingRepo.MotorGarageBookingRepo.FindById(ctx.DB().Preload("Invoice"), *e.BookingId, ctx.WorkspaceId())
+		if ctx.Request().BookingId != nil {
+			booking := bookingRepo.MotorGarageBookingRepo.FindById(ctx.DB().Preload("Invoice"), *ctx.Request().BookingId, ctx.WorkspaceId())
 			if booking == nil {
 				ctx.Err(errors.New("booking not found"))
 				return
 			}
+			booking.InvoiceId = &e.ID
+			booking = bookingRepo.MotorGarageBookingRepo.Save(ctx.DB(), booking, ctx.WorkspaceId())
 			e.Booking = booking
 		}
 

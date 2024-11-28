@@ -45,6 +45,8 @@ var ApiMotorGarageInvoiceUpdate = metagin.Put(
 				ctx.Err(errors.New("booking not found"))
 				return
 			}
+			booking.InvoiceId = &e.ID
+			booking = bookingRepo.MotorGarageBookingRepo.Save(ctx.DB(), booking, ctx.WorkspaceId())
 			e.Booking = booking
 		}
 
