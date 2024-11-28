@@ -27,7 +27,7 @@ var ApiMotorGarageInvoiceUpdate = metagin.Put(
 			return
 		}
 
-		e := repo.MotorGarageInvoiceRepo.FindById(ctx.DB(), ctx.Request().ID, ctx.WorkspaceId())
+		e := repo.MotorGarageInvoiceRepo.FindById(ctx.DB().Preload("Inspect"), ctx.Request().ID, ctx.WorkspaceId())
 		if e == nil {
 			ctx.Err(errors.New("invoice not found"))
 			return
@@ -79,6 +79,11 @@ var ApiMotorGarageInvoiceUpdate = metagin.Put(
 		if e == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to load invoice"))
 			return
+		}
+
+		if e.Inspect != nil {
+			e.Inspect = ctx.Request().Inspect.ToEntity(e.Inspect)
+			e.Inspect = repo.InspectRepo.Save(ctx.DB(), e.Inspect, ctx.WorkspaceId())
 		}
 
 		e.Total = service.InvoiceService.CalculateInvoiceTotal(e)

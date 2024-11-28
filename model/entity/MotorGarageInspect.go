@@ -12,7 +12,7 @@ type MotorGarageInspect struct {
 	base.ModelWorkspace
 
 	InvoiceId uint                `json:"invoice_id"`
-	Invoice   *MotorGarageInvoice `json:"invoice" gorm:"-"`
+	Invoice   *MotorGarageInvoice `json:"invoice" gorm:"foreignKey:InvoiceId"`
 
 	CustomerInstructionsAndRepairs string `json:"customer_instructions_and_repairs"`
 

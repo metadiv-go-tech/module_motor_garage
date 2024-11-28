@@ -45,21 +45,17 @@ var ApiMotorGarageInvoiceCreate = metagin.Post(
 			e.Booking = booking
 		}
 
-		if ctx.Request().Inspect != nil {
-			inspect := ctx.Request().Inspect.ToEntity(nil)
-			e.Inspect = inspect
-		}
-
 		e = repo.MotorGarageInvoiceRepo.Save(ctx.DB(), e, ctx.WorkspaceId())
 		if e == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save invoice"))
 			return
 		}
 
-		if e.Inspect != nil {
-			inspect := e.Inspect
+		if ctx.Request().Inspect != nil {
+			inspect := ctx.Request().Inspect.ToEntity(nil)
 			inspect.InvoiceId = e.ID
 			inspect = repo.InspectRepo.Save(ctx.DB(), inspect, ctx.WorkspaceId())
+			e.Inspect = inspect
 		}
 
 		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", e.Services, ctx.WorkspaceId()) {
