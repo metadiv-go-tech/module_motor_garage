@@ -190,28 +190,20 @@ type MotorGarageInspectItem47 struct {
 	Boot bool `json:"boot"`
 }
 
-type MotorGarageInspectItem49 struct {
-	*MotorGarageInspectPassOrFail
-	FL bool `json:"fl"`
-	FR bool `json:"fr"`
-	RL bool `json:"rl"`
-	RC bool `json:"rc"`
-}
-
 type MotorGarageInspectInteriorChecks struct {
-	Item38 *MotorGarageInspectPassOrFail `json:"item_38"`
-	Item39 *MotorGarageInspectPassOrFail `json:"item_39"`
-	Item40 *MotorGarageInspectPassOrFail `json:"item_40"`
-	Item41 *MotorGarageInspectPassOrFail `json:"item_41"`
-	Item42 MotorGarageInspectItem42      `json:"item_42"`
-	Item43 *MotorGarageInspectPassOrFail `json:"item_43"`
-	Item44 *MotorGarageInspectPassOrFail `json:"item_44"`
-	Item45 *MotorGarageInspectPassOrFail `json:"item_45"`
-	Item46 MotorGarageInspectItem46      `json:"item_46"`
-	Item47 MotorGarageInspectItem47      `json:"item_47"`
-	Item48 *MotorGarageInspectPassOrFail `json:"item_48"`
-	Item49 MotorGarageInspectItem49      `json:"item_49"`
-	Item50 *MotorGarageInspectPassOrFail `json:"item_50"`
+	Item38 *MotorGarageInspectPassOrFail                    `json:"item_38"`
+	Item39 *MotorGarageInspectPassOrFail                    `json:"item_39"`
+	Item40 *MotorGarageInspectPassOrFail                    `json:"item_40"`
+	Item41 *MotorGarageInspectPassOrFail                    `json:"item_41"`
+	Item42 MotorGarageInspectItem42                         `json:"item_42"`
+	Item43 *MotorGarageInspectPassOrFail                    `json:"item_43"`
+	Item44 *MotorGarageInspectPassOrFail                    `json:"item_44"`
+	Item45 *MotorGarageInspectPassOrFail                    `json:"item_45"`
+	Item46 MotorGarageInspectItem46                         `json:"item_46"`
+	Item47 MotorGarageInspectItem47                         `json:"item_47"`
+	Item48 MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_48"`
+	Item49 *MotorGarageInspectPassOrFail                    `json:"item_49"`
+	Item50 *MotorGarageInspectPassOrFail                    `json:"item_50"`
 }
 
 // 5. Under Body
@@ -325,21 +317,21 @@ type MotorGarageInspectItem85 struct {
 }
 
 type MotorGarageInspectUnderTheBonnetTests struct {
-	Item81 *MotorGarageInspectPassOrFail                    `json:"item_81"`
-	Item82 MotorGarageInspectItem82                         `json:"item_82"`
-	Item83 *MotorGarageInspectPassOrFail                    `json:"item_83"`
-	Item84 MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_84"`
-	Item85 MotorGarageInspectItem85                         `json:"item_85"`
-	Item86 *MotorGarageInspectPassOrFail                    `json:"item_86"`
-	Item87 *MotorGarageInspectPassOrFail                    `json:"item_87"`
-	Item88 *MotorGarageInspectPassOrFail                    `json:"item_88"`
-	Item89 *MotorGarageInspectPassOrFail                    `json:"item_89"`
-	Item90 *MotorGarageInspectPassOrFail                    `json:"item_90"`
-	Item91 *MotorGarageInspectPassOrFail                    `json:"item_91"`
-	Item92 MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_92"`
-	Item93 *MotorGarageInspectPassOrFail                    `json:"item_93"`
-	Item94 MotorGarageInspectPassOrFailWithDirectionOptions `json:"item_94"`
-	Item95 MotorGarageInspectPassOrFailWithLeftRightOptions `json:"item_95"`
+	Item81 *MotorGarageInspectPassOrFail `json:"item_81"`
+	Item82 MotorGarageInspectItem82      `json:"item_82"`
+	Item83 *MotorGarageInspectPassOrFail `json:"item_83"`
+	Item84 *MotorGarageInspectPassOrFail `json:"item_84"`
+	Item85 MotorGarageInspectItem85      `json:"item_85"`
+	Item86 *MotorGarageInspectPassOrFail `json:"item_86"`
+	Item87 *MotorGarageInspectPassOrFail `json:"item_87"`
+	Item88 *MotorGarageInspectPassOrFail `json:"item_88"`
+	Item89 *MotorGarageInspectPassOrFail `json:"item_89"`
+	Item90 *MotorGarageInspectPassOrFail `json:"item_90"`
+	Item91 *MotorGarageInspectPassOrFail `json:"item_91"`
+	Item92 *MotorGarageInspectPassOrFail `json:"item_92"`
+	Item93 *MotorGarageInspectPassOrFail `json:"item_93"`
+	Item94 *MotorGarageInspectPassOrFail `json:"item_94"`
+	Item95 *MotorGarageInspectPassOrFail `json:"item_95"`
 }
 
 // 10 .final procedures

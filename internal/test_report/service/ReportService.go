@@ -184,10 +184,10 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{lubricate_door_locks_check_straps_hinges_bonnet_latch_boot}}", dto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item47.Boot), -1)
 			html = strings.Replace(html, "{{lubricate_door_locks_check_straps_hinges_bonnet_latch}}", inspectDto.InteriorChecks.Item47.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{window_operation}}", inspectDto.InteriorChecks.Item48.GetPassOrFailString(), -1)
-			html = strings.Replace(html, "{{boot_and_tail_gate_operation_fl}}", dto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item49.FL), -1)
-			html = strings.Replace(html, "{{boot_and_tail_gate_operation_fr}}", dto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item49.FR), -1)
-			html = strings.Replace(html, "{{boot_and_tail_gate_operation_rl}}", dto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item49.RL), -1)
-			html = strings.Replace(html, "{{boot_and_tail_gate_operation_rc}}", dto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item49.RC), -1)
+			html = strings.Replace(html, "{{window_operation_fl}}", dto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item48.FL), -1)
+			html = strings.Replace(html, "{{window_operation_fr}}", dto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item48.FR), -1)
+			html = strings.Replace(html, "{{window_operation_rl}}", dto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item48.RL), -1)
+			html = strings.Replace(html, "{{window_operation_rr}}", dto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item48.RR), -1)
 			html = strings.Replace(html, "{{boot_and_tail_gate_operation}}", inspectDto.InteriorChecks.Item49.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{pollen_filter}}", inspectDto.InteriorChecks.Item50.GetPassOrFailString(), -1)
 		}
@@ -327,8 +327,8 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 
 		// 10. Final Procedures
 		if inspectDto.FinalProcedures != nil {
-			html = strings.Replace(html, "{{road_test_max_speed_reached}}", inspectDto.FinalProcedures.Item96.MaxSpeed, -1)
 			html = strings.Replace(html, "{{road_test_max_speed}}", inspectDto.FinalProcedures.Item96.MaxSpeed, -1)
+			html = strings.Replace(html, "{{road_test_max_speed_reached}}", inspectDto.FinalProcedures.Item96.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{park_vehicle_facing_out}}", dto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item97), -1)
 			html = strings.Replace(html, "{{reset_service_interval}}", dto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item98), -1)
 			html = strings.Replace(html, "{{gloss_tyres}}", dto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item99), -1)

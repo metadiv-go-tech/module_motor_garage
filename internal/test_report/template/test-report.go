@@ -1000,6 +1000,14 @@ var TestReportTemplate = `<!DOCTYPE html>
                                 <tr>
                                     <td style="width: 88%; border: 1px solid #ddd; padding: 2px;">
                                         48. Window Operation
+                                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{window_operation_fl}}>
+                                        <span class="status">FL</span>
+                                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{window_operation_fr}}>
+                                        <span class="status">FR</span>
+                                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{window_operation_rl}}>
+                                        <span class="status">RL</span>
+                                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{window_operation_rr}}>
+                                        <span class="status">RR</span>
                                     </td>
                                     <td style="width: 12%; border: 1px solid #ddd; padding: 2px;">{{window_operation}}
                                     </td>
@@ -1007,14 +1015,6 @@ var TestReportTemplate = `<!DOCTYPE html>
                                 <tr>
                                     <td style="width: 88%; border: 1px solid #ddd; padding: 2px;">
                                         49. Boot & Tail Gate Operation
-                                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{boot_and_tail_gate_operation_fl}}>
-                                        <span class="status">FL</span>
-                                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{boot_and_tail_gate_operation_fr}}>
-                                        <span class="status">FR</span>
-                                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{boot_and_tail_gate_operation_rl}}>
-                                        <span class="status">RL</span>
-                                        <input type="checkbox" style="height: 8px; width: 8px; margin-left: 20px;" {{boot_and_tail_gate_operation_rc}}>
-                                        <span class="status">RC</span>
                                     </td>
                                     <td style="width: 12%; border: 1px solid #ddd; padding: 2px;">
                                         {{boot_and_tail_gate_operation}}</td>
@@ -1552,10 +1552,10 @@ var TestReportTemplate = `<!DOCTYPE html>
                     <td style="width: 88%; border: 1px solid #ddd; padding: 2px;">
                         96. Road Test Car (if Roadworthy)
                         <span style="margin-left: 20px;">Max Speed</span> <span
-                            style="border: 1px solid #ddd; padding-left: 25px; padding-right: 25px; margin-left: 5px; margin-right: 10px;">{{road_test_max_speed_reached}}</span>
+                            style="border: 1px solid #ddd; padding-left: 25px; padding-right: 25px; margin-left: 5px; margin-right: 10px;">{{road_test_max_speed}}</span>
                         kph
                     </td>
-                    <td style="width: 12%; border: 1px solid #ddd; padding: 2px;">{{road_test_max_speed}}</td>
+                    <td style="width: 12%; border: 1px solid #ddd; padding: 2px;">{{road_test_max_speed_reached}}</td>
                 </tr>
                 <tr>
                     <td style="width: 88%; border: 1px solid #ddd; border-right: none; padding: 2px;">
