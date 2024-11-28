@@ -23,6 +23,7 @@ func SetupMotorGarage() {
 		&entity.MotorGarageProduct{},
 		&entity.MotorGarageDiscount{},
 		&entity.MotorGarageInvoice{},
+		&entity.MotorGarageInspect{},
 		&entity.MotorGarageInvoiceService{},
 		&entity.MotorGarageInvoiceProduct{},
 		&entity.MotorGarageInvoiceDiscount{},

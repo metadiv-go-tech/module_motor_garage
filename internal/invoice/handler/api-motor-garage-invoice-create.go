@@ -47,6 +47,13 @@ var ApiMotorGarageInvoiceCreate = metagin.Post(
 			e.Booking = booking
 		}
 
+		services := e.Services
+		products := e.Products
+		discounts := e.Discounts
+		e.Services = nil
+		e.Products = nil
+		e.Discounts = nil
+
 		e = repo.MotorGarageInvoiceRepo.Save(ctx.DB(), e, ctx.WorkspaceId())
 		if e == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save invoice"))
@@ -60,17 +67,17 @@ var ApiMotorGarageInvoiceCreate = metagin.Post(
 			e.Inspect = inspect
 		}
 
-		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", e.Services, ctx.WorkspaceId()) {
+		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", services, ctx.WorkspaceId()) {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save invoice services"))
 			return
 		}
 
-		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", e.Products, ctx.WorkspaceId()) {
+		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", products, ctx.WorkspaceId()) {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save invoice products"))
 			return
 		}
 
-		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", e.Discounts, ctx.WorkspaceId()) {
+		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", discounts, ctx.WorkspaceId()) {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save invoice discounts"))
 			return
 		}

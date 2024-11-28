@@ -6,7 +6,7 @@ type MotorGarageInvoiceDiscount struct {
 	MotorGarageDiscount
 
 	InvoiceId uint                `json:"invoice_id"`
-	Invoice   *MotorGarageInvoice `json:"invoice" gorm:"references:ID"`
+	Invoice   *MotorGarageInvoice `json:"invoice" gorm:"foreignKey:InvoiceId"`
 
 	DiscountId *uint                `json:"discount_id"`
 	Discount   *MotorGarageDiscount `json:"discount" gorm:"foreignKey:DiscountId"`
