@@ -208,7 +208,7 @@ type MotorGarageInspectInteriorChecks struct {
 
 // 5. Under Body
 type MotorGarageInspectItem59 struct {
-	MotorGarageInspectPassOrFail
+	*MotorGarageInspectPassOrFail
 	GearboxMounts bool `json:"gearbox_mounts"`
 	Front         bool `json:"front"`
 	Rear          bool `json:"rear"`
@@ -237,7 +237,7 @@ type MotorGarageInspectExhaustSystemChecks struct {
 
 // 7. Suspension / Steering System Test
 type MotorGarageInspectItem70 struct {
-	MotorGarageInspectPassOrFail
+	*MotorGarageInspectPassOrFail
 	Front bool `json:"front"`
 	Rear  bool `json:"rear"`
 }
