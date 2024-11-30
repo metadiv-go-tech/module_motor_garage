@@ -25,20 +25,17 @@ type MotorGarageInvoice struct {
 
 func (e *MotorGarageInvoice) ToDTO(locale string) *dto.MotorGarageInvoice {
 	d := &dto.MotorGarageInvoice{
-		ID:        e.ID,
-		Date:      e.Date,
-		VehicleId: e.VehicleId,
-		Total:     e.Total,
+		ID:    e.ID,
+		Date:  e.Date,
+		Total: e.Total,
 	}
 	if e.Vehicle != nil {
 		d.Vehicle = e.Vehicle.ToDTO(locale)
 	}
 	if e.Booking != nil {
-		d.BookingId = e.Booking.ID
 		d.Booking = e.Booking.ToDTO(locale)
 	}
 	if e.Inspect != nil {
-		d.InspectId = e.Inspect.ID
 		d.Inspect = e.Inspect.ToDTO(locale)
 	}
 	var total uint
