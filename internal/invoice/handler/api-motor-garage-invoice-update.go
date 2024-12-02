@@ -71,21 +71,29 @@ var ApiMotorGarageInvoiceUpdate = metagin.Put(
 		e.Services = nil
 		e.Products = nil
 		e.Discounts = nil
+
 		e = repo.MotorGarageInvoiceRepo.Save(ctx.DB(), e, ctx.WorkspaceId())
 		if e == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save invoice"))
 			return
 		}
 
-		e = repo.MotorGarageInvoiceRepo.FindById(ctx.DB().Preload("Products", "Services", "Discounts"), ctx.Request().ID, ctx.WorkspaceId())
+		if ctx.Request().Inspect != nil {
+			i := repo.InspectRepo.FindOne(ctx.DB(), ctx.DB().Eq("invoice_id", e.ID), ctx.WorkspaceId())
+			if i == nil {
+				ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to load inspect"))
+				return
+			}
+			i = ctx.Request().Inspect.ToEntity(i)
+
+			i = repo.InspectRepo.Save(ctx.DB(), i, ctx.WorkspaceId())
+			e.Inspect = i
+		}
+
+		e = repo.MotorGarageInvoiceRepo.FindById(ctx.DB().Preload("Products", "Services", "Discounts", "Inspect"), ctx.Request().ID, ctx.WorkspaceId())
 		if e == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to load invoice"))
 			return
-		}
-
-		if e.Inspect != nil {
-			e.Inspect = ctx.Request().Inspect.ToEntity(e.Inspect)
-			e.Inspect = repo.InspectRepo.Save(ctx.DB(), e.Inspect, ctx.WorkspaceId())
 		}
 
 		e.Total = service.InvoiceService.CalculateInvoiceTotal(e)
