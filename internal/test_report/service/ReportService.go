@@ -152,9 +152,9 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{license_plate_lights_l}}", dto.GetCheckboxCheckStatusString(inspectDto.LightChecks.Item35.L), -1)
 			html = strings.Replace(html, "{{license_plate_lights_r}}", dto.GetCheckboxCheckStatusString(inspectDto.LightChecks.Item35.R), -1)
 			html = strings.Replace(html, "{{license_plate_lights}}", inspectDto.LightChecks.Item35.GetPassOrFailString(), -1)
+			html = strings.Replace(html, "{{reverse_lights}}", inspectDto.LightChecks.Item36.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{reverse_lights_l}}", dto.GetCheckboxCheckStatusString(inspectDto.LightChecks.Item36.L), -1)
 			html = strings.Replace(html, "{{reverse_lights_r}}", dto.GetCheckboxCheckStatusString(inspectDto.LightChecks.Item36.R), -1)
-			html = strings.Replace(html, "{{reverse_lights}}", inspectDto.LightChecks.Item36.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{all_lenses_condition}}", inspectDto.LightChecks.Item37.GetPassOrFailString(), -1)
 		}
 

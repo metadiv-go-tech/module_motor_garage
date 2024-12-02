@@ -872,10 +872,10 @@ var TestReportTemplate = `<!DOCTYPE html>
                                     <td style="width: 88%; border: 1px solid #ddd; padding: 2px">
                                         36. Reverse Lights
                                         <input type="checkbox"
-                                            style="height: 8px; width: 8px; margin-left: 20px" {reverse_lights_l}}/><span
+                                            style="height: 8px; width: 8px; margin-left: 20px" {{reverse_lights_l}}/><span
                                             class="status">L</span>
                                         <input type="checkbox"
-                                            style="height: 8px; width: 8px; margin-left: 20px" {reverse_lights_r}}/><span
+                                            style="height: 8px; width: 8px; margin-left: 20px" {{reverse_lights_r}}/><span
                                             class="status">R</span>
                                     </td>
                                     <td style="width: 12%; border: 1px solid #ddd; padding: 2px">
@@ -1303,7 +1303,7 @@ var TestReportTemplate = `<!DOCTYPE html>
                         <span class="status" style="margin-left: 20px; margin-right: 2px;">RL</span>
                         <input type="checkbox" style="height: 10px; width: 10px;" {{tyre_condition_status_rl}}>
                         <span class="status" style="margin-left: 20px; margin-right: 2px;">RR</span>
-                        <input type="checkbox" style="height: 10px; width: 10px;" {{e_condition_status_rr}}>
+                        <input type="checkbox" style="height: 10px; width: 10px;" {{tyre_condition_status_rr}}>
                         <span class="status" style="margin-left: 20px; margin-right: 2px;">SP</span>
                         <input type="checkbox" style="height: 10px; width: 10px;" {{tyre_condition_status_sp}}>
                     </td>
