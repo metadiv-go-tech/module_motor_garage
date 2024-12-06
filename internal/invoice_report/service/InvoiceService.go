@@ -103,3 +103,43 @@ func (s *invoiceService) GenerateReport(invoice *entity.MotorGarageInvoice, loca
 	html = strings.Replace(html, "{{invoice_total}}", fmt.Sprintf("$%.2f", float64(invoiceTotal)/100), -1)
 	return html
 }
+
+func (s *invoiceService) GenerateBlankReport() string {
+
+	html := template.InvoiceTemplate
+
+	html = strings.Replace(html, "{{invoice_number}}", "", -1)
+	html = strings.Replace(html, "{{invoice_date}}", "", -1)
+
+	html = strings.Replace(html, "{{customer_name}}", "", -1)
+	html = strings.Replace(html, "{{vehicle_name}}", "", -1)
+	html = strings.Replace(html, "{{vehicle_year}}", "", -1)
+	html = strings.Replace(html, "{{vehicle_odometer}}", "", -1)
+	html = strings.Replace(html, "{{vehicle_registration}}", "", -1)
+
+	sHtml := ""
+	for i := 0; i < 5; i++ {
+		sHtml += "<tr><td></td><td></td><td></td><td></td></tr>"
+		html = strings.Replace(html, "{{service_items}}", sHtml, -1)
+		html = strings.ReplaceAll(html, "{{services_total}}", "$")
+	}
+
+	pHtml := ""
+	for i := 0; i < 5; i++ {
+		pHtml += "<tr><td></td><td></td><td></td><td></td><td></td></tr>"
+		html = strings.Replace(html, "{{product_items}}", pHtml, -1)
+		html = strings.ReplaceAll(html, "{{products_total}}", "$")
+	}
+
+	dHtml := ""
+	for i := 0; i < 5; i++ {
+		dHtml += "<tr><td></td><td></td><td></td><td></td></tr>"
+		html = strings.Replace(html, "{{discount_items}}", dHtml, -1)
+		html = strings.ReplaceAll(html, "{{discounts_total}}", "$")
+		html = strings.ReplaceAll(html, "{{discounts_percentage}}", "")
+	}
+
+	html = strings.Replace(html, "{{discounts_amount}}", "$", -1)
+	html = strings.Replace(html, "{{invoice_total}}", "$", -1)
+	return html
+}
