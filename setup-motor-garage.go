@@ -81,9 +81,11 @@ func SetupMotorGarage() {
 
 		// Invoice Report
 		invoiceReportHandler.ApiInvoiceReport,
+		invoiceReportHandler.ApiInvoiceReportBlank,
 
 		// Test Report
 		testReportHandler.ApiTestReportPrint,
+		testReportHandler.ApiTestReportPrintBlank,
 
 		// Statistic
 		statisticHandler.ApiStatisticNumberOfCustomerGet,
