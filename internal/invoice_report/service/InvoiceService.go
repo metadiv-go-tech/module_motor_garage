@@ -120,24 +120,24 @@ func (s *invoiceService) GenerateBlankReport() string {
 	sHtml := ""
 	for i := 0; i < 5; i++ {
 		sHtml += "<tr><td></td><td></td><td></td><td></td></tr>"
-		html = strings.Replace(html, "{{service_items}}", sHtml, -1)
-		html = strings.ReplaceAll(html, "{{services_total}}", "$")
 	}
+	html = strings.Replace(html, "{{service_items}}", sHtml, -1)
+	html = strings.ReplaceAll(html, "{{services_total}}", "$")
 
 	pHtml := ""
 	for i := 0; i < 5; i++ {
 		pHtml += "<tr><td></td><td></td><td></td><td></td><td></td></tr>"
-		html = strings.Replace(html, "{{product_items}}", pHtml, -1)
-		html = strings.ReplaceAll(html, "{{products_total}}", "$")
 	}
+	html = strings.Replace(html, "{{product_items}}", pHtml, -1)
+	html = strings.ReplaceAll(html, "{{products_total}}", "$")
 
 	dHtml := ""
 	for i := 0; i < 5; i++ {
 		dHtml += "<tr><td></td><td></td><td></td><td></td></tr>"
 		html = strings.Replace(html, "{{discount_items}}", dHtml, -1)
-		html = strings.ReplaceAll(html, "{{discounts_total}}", "$")
-		html = strings.ReplaceAll(html, "{{discounts_percentage}}", "")
 	}
+	html = strings.ReplaceAll(html, "{{discounts_total}}", "$")
+	html = strings.ReplaceAll(html, "{{discounts_percentage}}", "")
 
 	html = strings.Replace(html, "{{discounts_amount}}", "$", -1)
 	html = strings.Replace(html, "{{invoice_total}}", "$", -1)
