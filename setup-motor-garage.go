@@ -82,6 +82,7 @@ func SetupMotorGarage() {
 		// Invoice Report
 		invoiceReportHandler.ApiInvoiceReport,
 		invoiceReportHandler.ApiInvoiceReportBlank,
+		invoiceReportHandler.ApiCustomerBookInSheet,
 
 		// Test Report
 		testReportHandler.ApiTestReportPrint,
