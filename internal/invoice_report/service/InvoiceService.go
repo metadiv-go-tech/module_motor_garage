@@ -48,10 +48,9 @@ func (s *invoiceService) GenerateReport(invoice *entity.MotorGarageInvoice, loca
 		total := uint(0)
 		for _, service := range invoice.Services {
 			serviceDto := service.ToDTO()
-			sHtml += fmt.Sprintf("<tr><td>%s</td><td>%s</td><td>$%.2f</td><td>$%.2f</td></tr>",
+			sHtml += fmt.Sprintf("<tr><td>%s</td><td>%s</td><td>$%.2f</td></tr>",
 				serviceDto.Name,
 				serviceDto.Description,
-				float64(service.Price)/100,
 				float64(service.PriceAfterTax)/100)
 			total += service.PriceAfterTax
 			sum += service.PriceAfterTax
@@ -67,8 +66,8 @@ func (s *invoiceService) GenerateReport(invoice *entity.MotorGarageInvoice, loca
 		total := uint(0)
 		for _, product := range invoice.Products {
 			productDto := product.ToDTO()
-			pHtml += fmt.Sprintf("<tr><td>%s</td><td>%s</td><td>%d</td><td>$%.2f</td><td>$%.2f</td></tr>",
-				productDto.Name, productDto.Description, productDto.Quantity, float64(product.Price)/100, float64(product.PriceAfterTax)/100)
+			pHtml += fmt.Sprintf("<tr><td>%s</td><td>%s</td><td>%d</td><td>$%.2f</td></tr>",
+				productDto.Name, productDto.Description, productDto.Quantity, float64(product.PriceAfterTax)/100)
 			total += product.PriceAfterTax * productDto.Quantity
 			sum += product.PriceAfterTax * productDto.Quantity
 		}

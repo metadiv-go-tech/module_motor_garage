@@ -215,7 +215,6 @@ var InvoiceTemplate = `<!DOCTYPE html>
                         <th class="table-item-1st">Job</th>
                         <th class="table-item-2nd">Description</th>
                         <th>Price</th>
-                        <th>Sale (GST)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -223,7 +222,7 @@ var InvoiceTemplate = `<!DOCTYPE html>
                 </tbody>
             </table>
             <div class="subtotal">
-                <p>Services Total (GST Included): <strong>{{services_total}}</strong></p>
+                <p>Services Total: <strong>{{services_total}}</strong></p>
             </div>
         </div>
 
@@ -236,7 +235,6 @@ var InvoiceTemplate = `<!DOCTYPE html>
                         <th class="table-item-2nd">Description</th>
                         <th>Qty</th>
                         <th>Price</th>
-                        <th>Sale (GST)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -244,7 +242,7 @@ var InvoiceTemplate = `<!DOCTYPE html>
                 </tbody>
             </table>
             <div class="subtotal">
-                <p>Parts & Items Total (GST Included): <strong>{{products_total}}</strong></p>
+                <p>Parts & Items Total: <strong>{{products_total}}</strong></p>
             </div>
         </div>
 
@@ -287,7 +285,7 @@ var InvoiceTemplate = `<!DOCTYPE html>
                         <td style="text-align: right;font-size: 14px;">{{discounts_amount}}</td>
                     </tr>
                     <tr>
-                        <td>Total (GST Included):</td>
+                        <td>Total:</td>
                         <td style="text-align: right;font-size: 14px;"><strong>{{invoice_total}}</strong></td>
                     </tr>
                 </tbody>
