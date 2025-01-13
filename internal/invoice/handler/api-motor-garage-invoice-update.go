@@ -80,12 +80,7 @@ var ApiMotorGarageInvoiceUpdate = metagin.Put(
 
 		if ctx.Request().Inspect != nil {
 			i := repo.InspectRepo.FindOne(ctx.DB(), ctx.DB().Eq("invoice_id", e.ID), ctx.WorkspaceId())
-			if i == nil {
-				ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to load inspect"))
-				return
-			}
 			i = ctx.Request().Inspect.ToEntity(i)
-
 			i = repo.InspectRepo.Save(ctx.DB(), i, ctx.WorkspaceId())
 			e.Inspect = i
 		}
