@@ -82,9 +82,45 @@ var ApiMotorGarageInvoiceCreate = metagin.Post(
 			return
 		}
 
-		e = repo.MotorGarageInvoiceRepo.FindById(ctx.DB().Preload("Products", "Services", "Discounts"), e.ID, ctx.WorkspaceId())
+		e = repo.MotorGarageInvoiceRepo.FindById(ctx.DB().Preload("Products", "Products.Product", "Services", "Services.Service", "Discounts", "Discounts.Discount"), e.ID, ctx.WorkspaceId())
 		if e == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to load invoice"))
+			return
+		}
+
+		for i := range e.Services {
+			e.Services[i].Name = e.Services[i].Service.Name
+			e.Services[i].Description = e.Services[i].Service.Description
+			e.Services[i].Price = e.Services[i].Service.Price
+			e.Services[i].PriceAfterTax = e.Services[i].Service.PriceAfterTax
+		}
+
+		for i := range e.Products {
+			e.Products[i].Name = e.Products[i].Product.Name
+			e.Products[i].Description = e.Products[i].Product.Description
+			e.Products[i].Price = e.Products[i].Product.Price
+			e.Products[i].PriceAfterTax = e.Products[i].Product.PriceAfterTax
+		}
+
+		for i := range e.Discounts {
+			e.Discounts[i].Name = e.Discounts[i].Discount.Name
+			e.Discounts[i].Description = e.Discounts[i].Discount.Description
+			e.Discounts[i].DiscountAmount = e.Discounts[i].Discount.DiscountAmount
+			e.Discounts[i].DiscountPercentage = e.Discounts[i].Discount.DiscountPercentage
+		}
+
+		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", e.Services, ctx.WorkspaceId()) {
+			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save invoice services"))
+			return
+		}
+
+		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", e.Products, ctx.WorkspaceId()) {
+			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save invoice products"))
+			return
+		}
+
+		if !one2many.HandleOne2Many(ctx.DB(), e.ID, "InvoiceId", e.Discounts, ctx.WorkspaceId()) {
+			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to save invoice discounts"))
 			return
 		}
 
