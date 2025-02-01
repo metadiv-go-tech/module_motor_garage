@@ -85,7 +85,7 @@ var ApiMotorGarageInvoiceUpdate = metagin.Put(
 			e.Inspect = i
 		}
 
-		e = repo.MotorGarageInvoiceRepo.FindById(ctx.DB().Preload("Products", "Services", "Discounts", "Inspect"), ctx.Request().ID, ctx.WorkspaceId())
+		e = repo.MotorGarageInvoiceRepo.FindById(ctx.DB().Preload("Products", "Products.Product", "Services", "Services.Service", "Discounts", "Discounts.Discount", "Inspect"), ctx.Request().ID, ctx.WorkspaceId())
 		if e == nil {
 			ctx.ErrWithStatus(http.StatusInternalServerError, errors.New("failed to load invoice"))
 			return
