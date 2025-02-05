@@ -327,8 +327,8 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 
 		// 10. Final Procedures
 		if inspectDto.FinalProcedures != nil {
-			html = strings.Replace(html, "{{road_test_max_speed}}", inspectDto.FinalProcedures.Item96.MaxSpeed, -1)
-			html = strings.Replace(html, "{{road_test_max_speed_reached}}", inspectDto.FinalProcedures.Item96.GetPassOrFailString(), -1)
+			html = strings.Replace(html, "{{item_10_road_test_max_speed}}", inspectDto.FinalProcedures.Item96.MaxSpeed, -1)
+			html = strings.Replace(html, "{{item_10_road_test_max_speed_reached}}", inspectDto.FinalProcedures.Item96.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{park_vehicle_facing_out}}", dto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item97), -1)
 			html = strings.Replace(html, "{{reset_service_interval}}", dto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item98), -1)
 			html = strings.Replace(html, "{{gloss_tyres}}", dto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item99), -1)
@@ -613,8 +613,8 @@ func (s *reportService) GenerateBlankReport(invoice *entity.MotorGarageInvoice, 
 	html = strings.Replace(html, "{{bonnet_boot_latch}}", "", -1)
 
 	// 10. Final Procedures
-	html = strings.Replace(html, "{{road_test_max_speed}}", "", -1)
-	html = strings.Replace(html, "{{road_test_max_speed_reached}}", "", -1)
+	html = strings.Replace(html, "{{item_10_road_test_max_speed}}", "", -1)
+	html = strings.Replace(html, "{{item_10_road_test_max_speed_reached}}", "", -1)
 	html = strings.Replace(html, "{{park_vehicle_facing_out}}", "", -1)
 	html = strings.Replace(html, "{{reset_service_interval}}", "", -1)
 	html = strings.Replace(html, "{{gloss_tyres}}", "", -1)

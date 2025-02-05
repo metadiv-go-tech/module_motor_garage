@@ -335,11 +335,11 @@ var TestReportTemplate = `<!DOCTYPE html>
                                     <td style="width: 88%; border: 1px solid #ddd; padding: 2px;">
                                         4. Road Test - Max Speed Reached
                                         <span
-                                            style="border: 1px solid #ddd; padding-left: 25px; padding-right: 25px; margin-left: 25px; margin-right: 10px;">{{road_test_max_speed}}</span>
+                                            style="border: 1px solid #ddd; padding-left: 25px; padding-right: 25px; margin-left: 25px; margin-right: 10px;">{{item_10_road_test_max_speed}}</span>
                                         kph
                                     </td>
                                     <td style="width: 12%; border: 1px solid #ddd; padding: 2px;">
-                                        {{road_test_max_speed_reached}}</td>
+                                        {{item_10_road_test_max_speed_reached}}</td>
                                 </tr>
                                 <tr>
                                     <td style="width: 88%; border: 1px solid #ddd; padding: 2px;">
@@ -1281,15 +1281,15 @@ var TestReportTemplate = `<!DOCTYPE html>
                     <td style="width: 88%; border: 1px solid #ddd; padding: 2px;">
                         76. Tyre Pressure
                         <span class="status" style="margin-left: 15px; margin-right: 2px;" >FL</span>
-                        <input style="height: 6px; width: 16px;" value="{{tyre_pressure_status_fl}}">
+                        <input style="height: 6px; width: 16px; font-size: 10px;" value="{{tyre_pressure_status_fl}}">
                         <span class="status" style="margin-left: 15px; margin-right: 2px;" >FR</span>
-                        <input style="height: 6px; width: 16px;" value="{{tyre_pressure_status_fr}}">
+                        <input style="height: 6px; width: 16px; font-size: 10px;" value="{{tyre_pressure_status_fr}}">
                         <span class="status" style="margin-left: 15px; margin-right: 2px;" >RL</span>
-                        <input style="height: 6px; width: 16px;" value="{{tyre_pressure_status_rl}}">
+                        <input style="height: 6px; width: 16px; font-size: 10px;" value="{{tyre_pressure_status_rl}}">
                         <span class="status" style="margin-left: 15px; margin-right: 2px;">RR</span>
-                        <input style="height: 6px; width: 16px;" value="{{tyre_pressure_status_rr}}">
+                        <input style="height: 6px; width: 16px; font-size: 10px;" value="{{tyre_pressure_status_rr}}">
                         <span class="status" style="margin-left: 15px; margin-right: 2px;">SP</span>
-                        <input style="height: 6px; width: 16px;" value="{{tyre_pressure_status_sp}}">
+                        <input style="height: 6px; width: 16px; font-size: 10px;" value="{{tyre_pressure_status_sp}}">
                     </td>
                     <td style="width: 12%; border: 1px solid #ddd; padding: 2px;">{{tyre_pressure_status}}</td>
                 </tr>
@@ -1469,11 +1469,11 @@ var TestReportTemplate = `<!DOCTYPE html>
                 <tr>
                     <td style="width: 88%; border: 1px solid #ddd; padding: 2px;">
                         85. Cambelt
-                        <span style="margin-left: 20px;">Manuf Spec:</span> <span
-                            style="border: 1px solid #ddd; padding-left: 25px; padding-right: 25px; margin-left: 5px; margin-right: 10px;">{{cambelt_manuf_spec}}</span>
+                        <span style="margin-left: 10px;">Manuf Spec:</span> <span
+                            style="border: 1px solid #ddd; padding-left: 20px; padding-right: 20px; margin-left: 5px; margin-right: 10px;">{{cambelt_manuf_spec}}</span>
                         km
-                        <span style="margin-left: 20px;">Date:</span> <span
-                            style="border: 1px solid #ddd; padding-left: 25px; padding-right: 25px; margin-left: 5px; margin-right: 10px;">{{cambelt_date}}</span>
+                        <span style="margin-left: 10px;">Date:</span> <span
+                            style="border: 1px solid #ddd; padding-left: 20px; padding-right: 20px; margin-left: 5px; margin-right: 10px;">{{cambelt_date}}</span>
                     </td>
                     <td style="width: 12%; border: 1px solid #ddd; padding: 2px;">{{cambelt}}</td>
                 </tr>
