@@ -12,6 +12,8 @@ type MotorGarageInvoice struct {
 	Date  int64 `json:"date"`
 	Total uint  `json:"total"`
 
+	KM string `json:"km"`
+
 	VehicleId uint                `json:"vehicle_id"`
 	Vehicle   *MotorGarageVehicle `json:"vehicle" gorm:"foreignKey:VehicleId"`
 
@@ -27,6 +29,7 @@ func (e *MotorGarageInvoice) ToDTO(locale string) *dto.MotorGarageInvoice {
 	d := &dto.MotorGarageInvoice{
 		ID:    e.ID,
 		Date:  e.Date,
+		KM:    e.KM,
 		Total: e.Total,
 	}
 	if e.Vehicle != nil {

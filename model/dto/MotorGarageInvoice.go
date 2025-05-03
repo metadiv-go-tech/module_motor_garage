@@ -5,6 +5,8 @@ type MotorGarageInvoice struct {
 
 	Date int64 `json:"date"`
 
+	KM string `json:"km"`
+
 	Vehicle *MotorGarageVehicle `json:"vehicle"`
 	Booking *MotorGarageBooking `json:"booking"`
 	Inspect *MotorGarageInspect `json:"inspect"`
