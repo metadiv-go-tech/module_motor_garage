@@ -31,7 +31,7 @@ func (r *MotorGarageVehicleCreate) Validate() string {
 	if r.Name == "" {
 		return "name is required"
 	}
-	if r.Registration == "" {
+	if r.Rego == "" {
 		return "registration is required"
 	}
 	return ""
