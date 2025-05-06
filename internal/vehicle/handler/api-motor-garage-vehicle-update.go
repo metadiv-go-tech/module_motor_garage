@@ -46,7 +46,7 @@ var ApiMotorGarageVehicleUpdate = metagin.Put(
 		}
 
 		if ctx.Request().Registration != "" {
-			if service.VehicleService.CheckRegistration(ctx.DB(), ctx.Request().Registration, ctx.WorkspaceId(), ctx.Request().ID) {
+			if service.VehicleService.CheckRegistration(ctx.DB(), ctx.Request().Rego, ctx.WorkspaceId(), ctx.Request().ID) {
 				ctx.Err(errors.New("registration is already in use"))
 				return
 			}
