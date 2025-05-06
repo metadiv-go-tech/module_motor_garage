@@ -12,7 +12,7 @@ type vehicleService struct{}
 func (s *vehicleService) CheckRegistration(db metaorm.DB, registration string, workspaceId uint, excludeId uint) (duplicated bool) {
 	exist := repo.MotorGarageVehicleRepo.FindOne(db,
 		db.And(
-			db.DecryptedEq("registration", registration),
+			db.DecryptedEq("rego", registration),
 			db.Neq("id", excludeId),
 		),
 		workspaceId,
