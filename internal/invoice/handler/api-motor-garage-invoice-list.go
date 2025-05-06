@@ -20,14 +20,17 @@ var ApiMotorGarageInvoiceList = metagin.Get(
 		b := metaorm.NewAndQueryBuilder()
 		b.Add(ctx.DB().Or(
 			ctx.Request().BuildSimilarClause(
-				"motor_garage_invoices.date",
-				"Vehicle.Name",
-				"Vehicle.Year",
+				"Vehicle.name",
+				"Vehicle.year",
+				"Vehicle__Customer.code",
 			),
 			ctx.Request().BuildDecryptedSimilarClause(
-				"Vehicle.Rego",
-				"Vehicle.VIN",
-				"Vehicle.Registration",
+				"Vehicle.rego",
+				"Vehicle.vin",
+				"Vehicle.registration",
+				"Vehicle__Customer.display_name",
+				"Vehicle__Customer.company_name",
+				"Vehicle__Customer.search_full_name",
 			),
 		))
 
@@ -39,7 +42,7 @@ var ApiMotorGarageInvoiceList = metagin.Get(
 		}
 
 		is, page := repo.MotorGarageInvoiceRepo.FindAllComplexJoined(
-			ctx.DB().Joins("Vehicle").Preload("Vehicle.Customer", "Services", "Products", "Discounts"),
+			ctx.DB().Joins("Vehicle", "Vehicle.Customer").Preload("Services", "Products", "Discounts"),
 			b.Build(),
 			"motor_garage_invoices",
 			ctx.Page(),
