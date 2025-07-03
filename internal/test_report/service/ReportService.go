@@ -33,7 +33,11 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 		html = strings.Replace(html, "{{vehicle_year}}", fmt.Sprintf("%d", invoice.Vehicle.Year), -1)
 		html = strings.Replace(html, "{{vehicle_odometer}}", fmt.Sprintf("%d", invoice.Vehicle.Odometer), -1)
 		vehicleDto := invoice.Vehicle.ToDTO(locale)
-		html = strings.Replace(html, "{{vehicle_registration}}", vehicleDto.Registration, -1)
+		if vehicleDto.Registration != "" {
+			html = strings.Replace(html, "{{vehicle_registration}}", vehicleDto.Registration, -1)
+		} else {
+			html = strings.Replace(html, "{{vehicle_registration}}", vehicleDto.Rego, -1)
+		}
 	} else {
 		html = strings.Replace(html, "{{vehicle_name}}", "-", -1)
 		html = strings.Replace(html, "{{vehicle_year}}", "-", -1)
