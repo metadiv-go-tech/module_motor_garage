@@ -209,7 +209,7 @@ var TestReportTemplate = `<!DOCTYPE html>
                         ({{vehicle_year}})</span></div>
             </div>
             <div class="customer-info" style="margin: 0; flex: 1; text-align: left;">
-                <p><strong>Odometer:</strong><span>{{vehicle_odometer}} km</span></p>
+                <p><strong>Odometer:</strong><span>{{vehicle_odometer}} KM</span></p>
                 <p><strong>Registration:</strong><span>{{vehicle_registration}}</span></p>
             </div>
         </div>

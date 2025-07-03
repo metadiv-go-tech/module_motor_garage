@@ -31,7 +31,7 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 	if invoice.Vehicle != nil {
 		html = strings.Replace(html, "{{vehicle_name}}", invoice.Vehicle.Name, -1)
 		html = strings.Replace(html, "{{vehicle_year}}", fmt.Sprintf("%d", invoice.Vehicle.Year), -1)
-		html = strings.Replace(html, "{{vehicle_odometer}}", fmt.Sprintf("%d", invoice.Vehicle.Odometer), -1)
+		html = strings.Replace(html, "{{vehicle_odometer}}", fmt.Sprintf("%s", invoice.KM), -1)
 		vehicleDto := invoice.Vehicle.ToDTO(locale)
 		if vehicleDto.Registration != "" {
 			html = strings.Replace(html, "{{vehicle_registration}}", vehicleDto.Registration, -1)
@@ -364,7 +364,7 @@ func (s *reportService) GenerateBlankReport(invoice *entity.MotorGarageInvoice, 
 	if invoice.Vehicle != nil {
 		html = strings.Replace(html, "{{vehicle_name}}", invoice.Vehicle.Name, -1)
 		html = strings.Replace(html, "{{vehicle_year}}", fmt.Sprintf("%d", invoice.Vehicle.Year), -1)
-		html = strings.Replace(html, "{{vehicle_odometer}}", fmt.Sprintf("%d", invoice.Vehicle.Odometer), -1)
+		html = strings.Replace(html, "{{vehicle_odometer}}", fmt.Sprintf("%s", invoice.KM), -1)
 		vehicleDto := invoice.Vehicle.ToDTO(locale)
 		html = strings.Replace(html, "{{vehicle_registration}}", vehicleDto.Registration, -1)
 	} else {

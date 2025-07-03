@@ -200,7 +200,7 @@ var InvoiceTemplate = `<!DOCTYPE html>
             </div>
             <p><strong>Customer:</strong><span>{{customer_name}}</span></p>
             <p><strong>Vehicle:</strong><span>{{vehicle_name}} ({{vehicle_year}})</span></p>
-            <p><strong>Odometer:</strong><span>{{vehicle_odometer}} km</span></p>
+            <p><strong>Odometer:</strong><span>{{vehicle_odometer}} KM</span></p>
             <p><strong>Registration:</strong><span>{{vehicle_registration}}</span></p>
         </div>
     </div>
