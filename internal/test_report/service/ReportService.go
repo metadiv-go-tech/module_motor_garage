@@ -219,6 +219,13 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{catalytic_converter_visual}}", inspectDto.ExhaustSystemChecks.Item62.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{particulate_filter_visual}}", inspectDto.ExhaustSystemChecks.Item63.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{support_hangers}}", inspectDto.ExhaustSystemChecks.Item64.GetPassOrFailString(), -1)
+		} else {
+			// Replace placeholders with empty values if section doesn't exist
+			html = strings.Replace(html, "{{engine_pipe_flange}}", "", -1)
+			html = strings.Replace(html, "{{mufflers_resonators_pipes}}", "", -1)
+			html = strings.Replace(html, "{{catalytic_converter_visual}}", "", -1)
+			html = strings.Replace(html, "{{particulate_filter_visual}}", "", -1)
+			html = strings.Replace(html, "{{support_hangers}}", "", -1)
 		}
 
 		// 7. Suspension / Steering System Test
