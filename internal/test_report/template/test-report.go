@@ -192,7 +192,7 @@ var TestReportTemplate = `<!DOCTYPE html>
             <p style="padding-left: 25px;">
                 <strong>ABN:</strong> 15 797 051 352
             </p>
-            <p style="padding-left: 25px;">Unit 4/22 Musgrave Rd, Coopers Plains QLD 4108</p>
+            <p style="padding-left: 25px;">Unit 1/31 Boyland Ave, Coopers Plains QLD 4108</p>
             <p style="padding-left: 25px;">PH: +61 499 299 751</p>
         </div>
         <div class="info-container"
