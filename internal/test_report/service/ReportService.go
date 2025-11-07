@@ -21,12 +21,20 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 	html = strings.Replace(html, "{{invoice_number}}", fmt.Sprintf("#%d", invoice.ID), -1)
 	html = strings.Replace(html, "{{invoice_date}}", time.Unix(invoice.Date, 0).Format("02/01/2006"), -1)
 
-	if invoice.Vehicle != nil && invoice.Vehicle.Customer != nil && invoice.Vehicle.Customer.ContactPerson != nil {
-		contactPerson := invoice.Vehicle.Customer.ContactPerson.ToDTO()
-		html = strings.Replace(html, "{{customer_name}}", contactPerson.FirstName+" "+contactPerson.LastName, -1)
-	} else {
-		html = strings.Replace(html, "{{customer_name}}", "-", -1)
+	customerName := "-"
+	if invoice.Vehicle != nil && invoice.Vehicle.Customer != nil {
+		customer := invoice.Vehicle.Customer.ToDTO(locale)
+		if strings.TrimSpace(customer.DisplayName) != "" {
+			customerName = customer.DisplayName
+		} else if invoice.Vehicle.Customer.ContactPerson != nil {
+			contactPerson := invoice.Vehicle.Customer.ContactPerson.ToDTO()
+			fullName := strings.TrimSpace(contactPerson.FirstName + " " + contactPerson.LastName)
+			if fullName != "" {
+				customerName = fullName
+			}
+		}
 	}
+	html = strings.Replace(html, "{{customer_name}}", customerName, -1)
 
 	if invoice.Vehicle != nil {
 		html = strings.Replace(html, "{{vehicle_name}}", invoice.Vehicle.Name, -1)
