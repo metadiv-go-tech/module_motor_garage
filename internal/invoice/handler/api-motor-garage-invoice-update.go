@@ -81,6 +81,9 @@ var ApiMotorGarageInvoiceUpdate = metagin.Put(
 		if ctx.Request().Inspect != nil {
 			i := repo.InspectRepo.FindOne(ctx.DB(), ctx.DB().Eq("invoice_id", e.ID), ctx.WorkspaceId())
 			i = ctx.Request().Inspect.ToEntity(i)
+			if i.InvoiceId == 0 {
+				i.InvoiceId = e.ID
+			}
 			i = repo.InspectRepo.Save(ctx.DB(), i, ctx.WorkspaceId())
 			e.Inspect = i
 		}
