@@ -74,6 +74,25 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{cab_over_schg}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction15), -1)
 			html = strings.Replace(html, "{{authority_to_proceed}}", dto.GetCheckboxCheckStatusString(inspectDto.CustomerInstructionsAndRepairs.Instruction16), -1)
 			html = strings.Replace(html, "{{prime_item_of_concern}}", inspectDto.CustomerInstructionsAndRepairs.PrimeItemOfConcern, -1)
+		} else {
+			// Replace placeholders with empty values if section doesn't exist
+			html = strings.Replace(html, "{{tune}}", "", -1)
+			html = strings.Replace(html, "{{injector}}", "", -1)
+			html = strings.Replace(html, "{{diesel_service}}", "", -1)
+			html = strings.Replace(html, "{{standard}}", "", -1)
+			html = strings.Replace(html, "{{timing_belt}}", "", -1)
+			html = strings.Replace(html, "{{diagnose}}", "", -1)
+			html = strings.Replace(html, "{{major_service}}", "", -1)
+			html = strings.Replace(html, "{{exhaust}}", "", -1)
+			html = strings.Replace(html, "{{auto_service}}", "", -1)
+			html = strings.Replace(html, "{{minor_service}}", "", -1)
+			html = strings.Replace(html, "{{suspension}}", "", -1)
+			html = strings.Replace(html, "{{vehicle_check}}", "", -1)
+			html = strings.Replace(html, "{{wiper_disc_sce}}", "", -1)
+			html = strings.Replace(html, "{{logbook_service}}", "", -1)
+			html = strings.Replace(html, "{{cab_over_schg}}", "", -1)
+			html = strings.Replace(html, "{{authority_to_proceed}}", "", -1)
+			html = strings.Replace(html, "{{prime_item_of_concern}}", "", -1)
 		}
 
 		// 1. Road Test
@@ -91,6 +110,21 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{automatic_transmission_operation}}", inspectDto.RoadTest.Item10.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{starter_inhibitor_switch}}", inspectDto.RoadTest.Item11.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{requires_injector_service}}", inspectDto.RoadTest.Item12.GetPassOrFailString(), -1)
+		} else {
+			// Replace placeholders with empty values if section doesn't exist
+			html = strings.Replace(html, "{{fit_seat_cover_and_floor_mat}}", "", -1)
+			html = strings.Replace(html, "{{check_oil_water_and_tyre_condition}}", "", -1)
+			html = strings.Replace(html, "{{obvious_vehicle_damage}}", "", -1)
+			html = strings.Replace(html, "{{road_test_max_speed_reached}}", "", -1)
+			html = strings.Replace(html, "{{road_test_max_speed}}", "", -1)
+			html = strings.Replace(html, "{{air_conditioning_climate_heater_controls}}", "", -1)
+			html = strings.Replace(html, "{{air_conditioning_temperature_check}}", "", -1)
+			html = strings.Replace(html, "{{handbrake_operation}}", "", -1)
+			html = strings.Replace(html, "{{footbrake_operation}}", "", -1)
+			html = strings.Replace(html, "{{clutch_gearbox_operation}}", "", -1)
+			html = strings.Replace(html, "{{automatic_transmission_operation}}", "", -1)
+			html = strings.Replace(html, "{{starter_inhibitor_switch}}", "", -1)
+			html = strings.Replace(html, "{{requires_injector_service}}", "", -1)
 		}
 
 		// 2. Engine Tune
@@ -138,6 +172,43 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 				}
 			}
 
+		} else {
+			// Replace placeholders with empty values if section doesn't exist
+			html = strings.Replace(html, "{{battery_load_test_before}}", "", -1)
+			html = strings.Replace(html, "{{battery_load_test_after}}", "", -1)
+			html = strings.Replace(html, "{{cranking_voltage_before}}", "", -1)
+			html = strings.Replace(html, "{{cranking_voltage_after}}", "", -1)
+			html = strings.Replace(html, "{{charging_voltage_before}}", "", -1)
+			html = strings.Replace(html, "{{charging_voltage_after}}", "", -1)
+			html = strings.Replace(html, "{{ignition_timing_before}}", "", -1)
+			html = strings.Replace(html, "{{ignition_timing_after}}", "", -1)
+			html = strings.Replace(html, "{{coil_condenser_before}}", "", -1)
+			html = strings.Replace(html, "{{coil_condenser_after}}", "", -1)
+			html = strings.Replace(html, "{{idle_speed_before}}", "", -1)
+			html = strings.Replace(html, "{{idle_speed_after}}", "", -1)
+			html = strings.Replace(html, "{{injectors_secure_before}}", "", -1)
+			html = strings.Replace(html, "{{injectors_secure_after}}", "", -1)
+			html = strings.Replace(html, "{{fuel_lines_before}}", "", -1)
+			html = strings.Replace(html, "{{fuel_lines_after}}", "", -1)
+			html = strings.Replace(html, "{{ht_leads_before}}", "", -1)
+			html = strings.Replace(html, "{{ht_leads_after}}", "", -1)
+			html = strings.Replace(html, "{{egr_valve_before}}", "", -1)
+			html = strings.Replace(html, "{{egr_valve_after}}", "", -1)
+			html = strings.Replace(html, "{{distributor_cap_before}}", "", -1)
+			html = strings.Replace(html, "{{distributor_cap_after}}", "", -1)
+			html = strings.Replace(html, "{{rotor_before}}", "", -1)
+			html = strings.Replace(html, "{{rotor_after}}", "", -1)
+			html = strings.Replace(html, "{{pcv_system_before}}", "", -1)
+			html = strings.Replace(html, "{{pcv_system_after}}", "", -1)
+			html = strings.Replace(html, "{{battery_cables_levels}}", "", -1)
+			html = strings.Replace(html, "{{battery_cables_before}}", "", -1)
+			html = strings.Replace(html, "{{battery_cables_after}}", "", -1)
+			html = strings.Replace(html, "{{plugs_replaced_before}}", "", -1)
+			html = strings.Replace(html, "{{plugs_replaced_after}}", "", -1)
+			for i := 0; i < 8; i++ {
+				placeholder := fmt.Sprintf("{{compression_%v}}", i+1)
+				html = strings.Replace(html, placeholder, "", -1)
+			}
 		}
 
 		// 3. Light checks
@@ -168,6 +239,34 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{reverse_lights_l}}", dto.GetCheckboxCheckStatusString(inspectDto.LightChecks.Item36.L), -1)
 			html = strings.Replace(html, "{{reverse_lights_r}}", dto.GetCheckboxCheckStatusString(inspectDto.LightChecks.Item36.R), -1)
 			html = strings.Replace(html, "{{all_lenses_condition}}", inspectDto.LightChecks.Item37.GetPassOrFailString(), -1)
+		} else {
+			// Replace placeholders with empty values if section doesn't exist
+			html = strings.Replace(html, "{{headlight_operation_hi_l}}", "", -1)
+			html = strings.Replace(html, "{{headlight_operation_hi_r}}", "", -1)
+			html = strings.Replace(html, "{{headlight_operation_Lo_l}}", "", -1)
+			html = strings.Replace(html, "{{headlight_operation_Lo_r}}", "", -1)
+			html = strings.Replace(html, "{{headlight_operation}}", "", -1)
+			html = strings.Replace(html, "{{high_beam_indicator}}", "", -1)
+			html = strings.Replace(html, "{{park_tail_lights_fl}}", "", -1)
+			html = strings.Replace(html, "{{park_tail_lights_fr}}", "", -1)
+			html = strings.Replace(html, "{{park_tail_lights_rl}}", "", -1)
+			html = strings.Replace(html, "{{park_tail_lights_rr}}", "", -1)
+			html = strings.Replace(html, "{{park_tail_lights}}", "", -1)
+			html = strings.Replace(html, "{{turn_signals_rate}}", "", -1)
+			html = strings.Replace(html, "{{signal_cancellation_l}}", "", -1)
+			html = strings.Replace(html, "{{signal_cancellation_r}}", "", -1)
+			html = strings.Replace(html, "{{signal_cancellation}}", "", -1)
+			html = strings.Replace(html, "{{brake_lights_l}}", "", -1)
+			html = strings.Replace(html, "{{brake_lights_r}}", "", -1)
+			html = strings.Replace(html, "{{brake_lights_high_level}}", "", -1)
+			html = strings.Replace(html, "{{brake_lights}}", "", -1)
+			html = strings.Replace(html, "{{license_plate_lights_l}}", "", -1)
+			html = strings.Replace(html, "{{license_plate_lights_r}}", "", -1)
+			html = strings.Replace(html, "{{license_plate_lights}}", "", -1)
+			html = strings.Replace(html, "{{reverse_lights}}", "", -1)
+			html = strings.Replace(html, "{{reverse_lights_l}}", "", -1)
+			html = strings.Replace(html, "{{reverse_lights_r}}", "", -1)
+			html = strings.Replace(html, "{{all_lenses_condition}}", "", -1)
 		}
 
 		// 4. Interior Checks
@@ -202,6 +301,38 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{window_operation_rr}}", dto.GetCheckboxCheckStatusString(inspectDto.InteriorChecks.Item48.RR), -1)
 			html = strings.Replace(html, "{{boot_and_tail_gate_operation}}", inspectDto.InteriorChecks.Item49.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{pollen_filter}}", inspectDto.InteriorChecks.Item50.GetPassOrFailString(), -1)
+		} else {
+			// Replace placeholders with empty values if section doesn't exist
+			html = strings.Replace(html, "{{instrument_warning_lights}}", "", -1)
+			html = strings.Replace(html, "{{engine_check_light}}", "", -1)
+			html = strings.Replace(html, "{{instrument_panel_lights}}", "", -1)
+			html = strings.Replace(html, "{{interior_lights_courtesy_lights}}", "", -1)
+			html = strings.Replace(html, "{{windscreen_wiper_blades_l}}", "", -1)
+			html = strings.Replace(html, "{{windscreen_wiper_blades_r}}", "", -1)
+			html = strings.Replace(html, "{{windscreen_wiper_blades_rear}}", "", -1)
+			html = strings.Replace(html, "{{windscreen_wiper_blades}}", "", -1)
+			html = strings.Replace(html, "{{windscreen_condition_and_visibility}}", "", -1)
+			html = strings.Replace(html, "{{mirrors_internal_external}}", "", -1)
+			html = strings.Replace(html, "{{horn_operation}}", "", -1)
+			html = strings.Replace(html, "{{seat_belts_fl}}", "", -1)
+			html = strings.Replace(html, "{{seat_belts_fr}}", "", -1)
+			html = strings.Replace(html, "{{seat_belts_rl}}", "", -1)
+			html = strings.Replace(html, "{{seat_belts_rc}}", "", -1)
+			html = strings.Replace(html, "{{seat_belts_rr}}", "", -1)
+			html = strings.Replace(html, "{{seat_belts}}", "", -1)
+			html = strings.Replace(html, "{{lubricate_door_locks_check_straps_hinges_bonnet_latch_fl}}", "", -1)
+			html = strings.Replace(html, "{{lubricate_door_locks_check_straps_hinges_bonnet_latch_fr}}", "", -1)
+			html = strings.Replace(html, "{{lubricate_door_locks_check_straps_hinges_bonnet_latch_rl}}", "", -1)
+			html = strings.Replace(html, "{{lubricate_door_locks_check_straps_hinges_bonnet_latch_rr}}", "", -1)
+			html = strings.Replace(html, "{{lubricate_door_locks_check_straps_hinges_bonnet_latch_boot}}", "", -1)
+			html = strings.Replace(html, "{{lubricate_door_locks_check_straps_hinges_bonnet_latch}}", "", -1)
+			html = strings.Replace(html, "{{window_operation}}", "", -1)
+			html = strings.Replace(html, "{{window_operation_fl}}", "", -1)
+			html = strings.Replace(html, "{{window_operation_fr}}", "", -1)
+			html = strings.Replace(html, "{{window_operation_rl}}", "", -1)
+			html = strings.Replace(html, "{{window_operation_rr}}", "", -1)
+			html = strings.Replace(html, "{{boot_and_tail_gate_operation}}", "", -1)
+			html = strings.Replace(html, "{{pollen_filter}}", "", -1)
 		}
 
 		// 5. Under Body
@@ -218,6 +349,20 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{engine_mountings_front}}", dto.GetCheckboxCheckStatusString(inspectDto.UnderBody.Item59.Front), -1)
 			html = strings.Replace(html, "{{engine_mountings_rear}}", dto.GetCheckboxCheckStatusString(inspectDto.UnderBody.Item59.Rear), -1)
 			html = strings.Replace(html, "{{engine_mountings}}", inspectDto.UnderBody.Item59.GetPassOrFailString(), -1)
+		} else {
+			// Replace placeholders with empty values if section doesn't exist
+			html = strings.Replace(html, "{{drain_oil_replace_sump_plug_washer}}", "", -1)
+			html = strings.Replace(html, "{{replace_oil_filter}}", "", -1)
+			html = strings.Replace(html, "{{engine_oil_leaks}}", "", -1)
+			html = strings.Replace(html, "{{gearbox_oil_level_leaks}}", "", -1)
+			html = strings.Replace(html, "{{differential_oil_level_leaks}}", "", -1)
+			html = strings.Replace(html, "{{lubricate_suspension_where_applicable}}", "", -1)
+			html = strings.Replace(html, "{{fuel_line_leaks_attachments}}", "", -1)
+			html = strings.Replace(html, "{{brake_cables_hoses_lines}}", "", -1)
+			html = strings.Replace(html, "{{engine_mountings_gearbox_mounts}}", "", -1)
+			html = strings.Replace(html, "{{engine_mountings_front}}", "", -1)
+			html = strings.Replace(html, "{{engine_mountings_rear}}", "", -1)
+			html = strings.Replace(html, "{{engine_mountings}}", "", -1)
 		}
 
 		// 6. Exhaust System Checks
@@ -261,6 +406,31 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{rear_spring_bushes_l}}", dto.GetCheckboxCheckStatusString(inspectDto.SuspensionSteeringSystemTest.Item75.L), -1)
 			html = strings.Replace(html, "{{rear_spring_bushes_r}}", dto.GetCheckboxCheckStatusString(inspectDto.SuspensionSteeringSystemTest.Item75.R), -1)
 			html = strings.Replace(html, "{{rear_spring_bushes}}", inspectDto.SuspensionSteeringSystemTest.Item75.GetPassOrFailString(), -1)
+		} else {
+			// Replace placeholders with empty values if section doesn't exist
+			html = strings.Replace(html, "{{steering_free_play}}", "", -1)
+			html = strings.Replace(html, "{{steering_wear_leaks_rack_boots}}", "", -1)
+			html = strings.Replace(html, "{{tie_rod_ends}}", "", -1)
+			html = strings.Replace(html, "{{suspension_bushes}}", "", -1)
+			html = strings.Replace(html, "{{upper_and_lower_wishbones}}", "", -1)
+			html = strings.Replace(html, "{{sway_bar_rubbers_front}}", "", -1)
+			html = strings.Replace(html, "{{sway_bar_rubbers_rear}}", "", -1)
+			html = strings.Replace(html, "{{sway_bar_rubbers}}", "", -1)
+			html = strings.Replace(html, "{{ball_joints}}", "", -1)
+			html = strings.Replace(html, "{{shock_absorbers_fl}}", "", -1)
+			html = strings.Replace(html, "{{shock_absorbers_fr}}", "", -1)
+			html = strings.Replace(html, "{{shock_absorbers_rl}}", "", -1)
+			html = strings.Replace(html, "{{shock_absorbers_rr}}", "", -1)
+			html = strings.Replace(html, "{{shock_absorbers}}", "", -1)
+			html = strings.Replace(html, "{{tail_shaft_joints}}", "", -1)
+			html = strings.Replace(html, "{{constant_velocity_joints_fl}}", "", -1)
+			html = strings.Replace(html, "{{constant_velocity_joints_fr}}", "", -1)
+			html = strings.Replace(html, "{{constant_velocity_joints_rl}}", "", -1)
+			html = strings.Replace(html, "{{constant_velocity_joints_rr}}", "", -1)
+			html = strings.Replace(html, "{{constant_velocity_joints}}", "", -1)
+			html = strings.Replace(html, "{{rear_spring_bushes_l}}", "", -1)
+			html = strings.Replace(html, "{{rear_spring_bushes_r}}", "", -1)
+			html = strings.Replace(html, "{{rear_spring_bushes}}", "", -1)
 		}
 
 		// 8. Breaking System Test
@@ -317,6 +487,52 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{brakes_rh_rear_seats}}", inspectDto.BreakingSystemTest.Item80.RH_Rear.Seats.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{brakes_rh_rear}}", inspectDto.BreakingSystemTest.Item80.RH_Rear.Seats.GetPassOrFailString(), -1)
 
+		} else {
+			// Replace placeholders with empty values if section doesn't exist
+			html = strings.Replace(html, "{{tyre_pressure_status_fl}}", "", -1)
+			html = strings.Replace(html, "{{tyre_pressure_status_fr}}", "", -1)
+			html = strings.Replace(html, "{{tyre_pressure_status_rl}}", "", -1)
+			html = strings.Replace(html, "{{tyre_pressure_status_rr}}", "", -1)
+			html = strings.Replace(html, "{{tyre_pressure_status_sp}}", "", -1)
+			html = strings.Replace(html, "{{tyre_pressure_status}}", "", -1)
+			html = strings.Replace(html, "{{tyre_condition_status_fl}}", "", -1)
+			html = strings.Replace(html, "{{tyre_condition_status_fr}}", "", -1)
+			html = strings.Replace(html, "{{tyre_condition_status_rl}}", "", -1)
+			html = strings.Replace(html, "{{tyre_condition_status_rr}}", "", -1)
+			html = strings.Replace(html, "{{tyre_condition_status_sp}}", "", -1)
+			html = strings.Replace(html, "{{tyre_condition_status}}", "", -1)
+			html = strings.Replace(html, "{{wheel_bearings_status_fl}}", "", -1)
+			html = strings.Replace(html, "{{wheel_bearings_status_fr}}", "", -1)
+			html = strings.Replace(html, "{{wheel_bearings_status_rl}}", "", -1)
+			html = strings.Replace(html, "{{wheel_bearings_status_rr}}", "", -1)
+			html = strings.Replace(html, "{{wheel_bearings_status}}", "", -1)
+			html = strings.Replace(html, "{{master_cyl_booster_status_master}}", "", -1)
+			html = strings.Replace(html, "{{master_cyl_booster_status_booster}}", "", -1)
+			html = strings.Replace(html, "{{master_cyl_booster_status}}", "", -1)
+			html = strings.Replace(html, "{{brakes_lh_front_manufacturers_spec_size}}", "", -1)
+			html = strings.Replace(html, "{{brakes_lh_front_disc_size}}", "", -1)
+			html = strings.Replace(html, "{{brakes_lh_front_pad_worn}}", "", -1)
+			html = strings.Replace(html, "{{brakes_lh_front_caliper}}", "", -1)
+			html = strings.Replace(html, "{{brakes_lh_front_seats}}", "", -1)
+			html = strings.Replace(html, "{{brakes_lh_front}}", "", -1)
+			html = strings.Replace(html, "{{brakes_rh_front_manufacturers_spec_size}}", "", -1)
+			html = strings.Replace(html, "{{brakes_rh_front_disc_size}}", "", -1)
+			html = strings.Replace(html, "{{brakes_rh_front_pad_worn}}", "", -1)
+			html = strings.Replace(html, "{{brakes_rh_front_caliper}}", "", -1)
+			html = strings.Replace(html, "{{brakes_rh_front_seats}}", "", -1)
+			html = strings.Replace(html, "{{brakes_rh_front}}", "", -1)
+			html = strings.Replace(html, "{{brakes_lh_rear_manufacturers_spec_size}}", "", -1)
+			html = strings.Replace(html, "{{brakes_lh_rear_disc_size}}", "", -1)
+			html = strings.Replace(html, "{{brakes_lh_rear_pad_worn}}", "", -1)
+			html = strings.Replace(html, "{{brakes_lh_rear_caliper}}", "", -1)
+			html = strings.Replace(html, "{{brakes_lh_rear_seats}}", "", -1)
+			html = strings.Replace(html, "{{brakes_lh_rear}}", "", -1)
+			html = strings.Replace(html, "{{brakes_rh_rear_manufacturers_spec_size}}", "", -1)
+			html = strings.Replace(html, "{{brakes_rh_rear_disc_size}}", "", -1)
+			html = strings.Replace(html, "{{brakes_rh_rear_pad_worn}}", "", -1)
+			html = strings.Replace(html, "{{brakes_rh_rear_caliper}}", "", -1)
+			html = strings.Replace(html, "{{brakes_rh_rear_seats}}", "", -1)
+			html = strings.Replace(html, "{{brakes_rh_rear}}", "", -1)
 		}
 
 		// 9. Under The Bonnet Tests
@@ -342,6 +558,29 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{fuel_filter}}", inspectDto.UnderTheBonnetTests.Item93.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{pressurise_cooling_system}}", inspectDto.UnderTheBonnetTests.Item94.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{bonnet_boot_latch}}", inspectDto.UnderTheBonnetTests.Item95.GetPassOrFailString(), -1)
+		} else {
+			// Replace placeholders with empty values if section doesn't exist
+			html = strings.Replace(html, "{{replace_engine_oil}}", "", -1)
+			html = strings.Replace(html, "{{battery_load_test_electrolyte}}", "", -1)
+			html = strings.Replace(html, "{{battery_load_test_clamp}}", "", -1)
+			html = strings.Replace(html, "{{battery_load_test_terminals}}", "", -1)
+			html = strings.Replace(html, "{{battery_load_test_cables}}", "", -1)
+			html = strings.Replace(html, "{{battery_load_test}}", "", -1)
+			html = strings.Replace(html, "{{air_cleaner}}", "", -1)
+			html = strings.Replace(html, "{{belts}}", "", -1)
+			html = strings.Replace(html, "{{cambelt_manuf_spec}}", "", -1)
+			html = strings.Replace(html, "{{cambelt_date}}", "", -1)
+			html = strings.Replace(html, "{{cambelt}}", "", -1)
+			html = strings.Replace(html, "{{coolant_condition}}", "", -1)
+			html = strings.Replace(html, "{{external_visual_check}}", "", -1)
+			html = strings.Replace(html, "{{start_motor_check_oil_filter}}", "", -1)
+			html = strings.Replace(html, "{{power_steering_condition}}", "", -1)
+			html = strings.Replace(html, "{{transmission_oil_check}}", "", -1)
+			html = strings.Replace(html, "{{brake_clutch_fluid}}", "", -1)
+			html = strings.Replace(html, "{{windscreen_washers}}", "", -1)
+			html = strings.Replace(html, "{{fuel_filter}}", "", -1)
+			html = strings.Replace(html, "{{pressurise_cooling_system}}", "", -1)
+			html = strings.Replace(html, "{{bonnet_boot_latch}}", "", -1)
 		}
 
 		// 10. Final Procedures
@@ -356,6 +595,18 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{wipe_over_dash}}", dto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item102), -1)
 			html = strings.Replace(html, "{{clean_windows}}", dto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item103), -1)
 			html = strings.Replace(html, "{{remove_seat_cover_and_floor_mat}}", dto.GetCheckboxCheckStatusString(inspectDto.FinalProcedures.Item104), -1)
+		} else {
+			// Replace placeholders with empty values if section doesn't exist
+			html = strings.Replace(html, "{{item_10_road_test_max_speed}}", "", -1)
+			html = strings.Replace(html, "{{item_10_road_test_max_speed_reached}}", "", -1)
+			html = strings.Replace(html, "{{park_vehicle_facing_out}}", "", -1)
+			html = strings.Replace(html, "{{reset_service_interval}}", "", -1)
+			html = strings.Replace(html, "{{gloss_tyres}}", "", -1)
+			html = strings.Replace(html, "{{vacuum_carpets_and_deodorise}}", "", -1)
+			html = strings.Replace(html, "{{deodorise_interior}}", "", -1)
+			html = strings.Replace(html, "{{wipe_over_dash}}", "", -1)
+			html = strings.Replace(html, "{{clean_windows}}", "", -1)
+			html = strings.Replace(html, "{{remove_seat_cover_and_floor_mat}}", "", -1)
 		}
 	}
 
