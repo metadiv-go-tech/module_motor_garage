@@ -27,20 +27,6 @@ type MotorGarageInspectPassOrFail struct {
 	Pass *bool `json:"pass"` // 使用指针以支持 null 值，nil = N/A, &true = OK, &false = FAIL
 }
 
-// MarshalJSON 确保即使 Pass 为 nil 时也输出 pass: null
-// 这样即使 frontend 不传 pass 字段，返回时也会显示 pass: null
-func (p *MotorGarageInspectPassOrFail) MarshalJSON() ([]byte, error) {
-	if p == nil {
-		return json.Marshal(map[string]interface{}{
-			"pass": nil,
-		})
-	}
-	// 明确输出 Pass 字段，即使为 nil 也会序列化为 null
-	return json.Marshal(map[string]interface{}{
-		"pass": p.Pass,
-	})
-}
-
 func (p *MotorGarageInspectPassOrFail) GetPassOrFailString() string {
 	if p == nil || p.Pass == nil {
 		return "N/A"
