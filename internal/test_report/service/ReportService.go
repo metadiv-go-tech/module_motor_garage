@@ -464,28 +464,28 @@ func (s *reportService) GenerateReport(invoice *entity.MotorGarageInvoice, local
 			html = strings.Replace(html, "{{brakes_lh_front_pad_worn}}", inspectDto.BreakingSystemTest.Item80.LH_Front.PadOrLiningPercentageWorn, -1)
 			html = strings.Replace(html, "{{brakes_lh_front_caliper}}", inspectDto.BreakingSystemTest.Item80.LH_Front.CaliperOrCylinder.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{brakes_lh_front_seats}}", inspectDto.BreakingSystemTest.Item80.LH_Front.Seats.GetPassOrFailString(), -1)
-			html = strings.Replace(html, "{{brakes_lh_front}}", inspectDto.BreakingSystemTest.Item80.LH_Front.Seats.GetPassOrFailString(), -1)
+			html = strings.Replace(html, "{{brakes_lh_front}}", inspectDto.BreakingSystemTest.Item80.LH_Front.GetPassOrFailString(), -1)
 
 			html = strings.Replace(html, "{{brakes_rh_front_manufacturers_spec_size}}", inspectDto.BreakingSystemTest.Item80.RH_Front.ManufacturersSpecSize, -1)
 			html = strings.Replace(html, "{{brakes_rh_front_disc_size}}", inspectDto.BreakingSystemTest.Item80.RH_Front.DiscOrDrumSize, -1)
 			html = strings.Replace(html, "{{brakes_rh_front_pad_worn}}", inspectDto.BreakingSystemTest.Item80.RH_Front.PadOrLiningPercentageWorn, -1)
 			html = strings.Replace(html, "{{brakes_rh_front_caliper}}", inspectDto.BreakingSystemTest.Item80.RH_Front.CaliperOrCylinder.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{brakes_rh_front_seats}}", inspectDto.BreakingSystemTest.Item80.RH_Front.Seats.GetPassOrFailString(), -1)
-			html = strings.Replace(html, "{{brakes_rh_front}}", inspectDto.BreakingSystemTest.Item80.RH_Front.Seats.GetPassOrFailString(), -1)
+			html = strings.Replace(html, "{{brakes_rh_front}}", inspectDto.BreakingSystemTest.Item80.RH_Front.GetPassOrFailString(), -1)
 
 			html = strings.Replace(html, "{{brakes_lh_rear_manufacturers_spec_size}}", inspectDto.BreakingSystemTest.Item80.LH_Rear.ManufacturersSpecSize, -1)
 			html = strings.Replace(html, "{{brakes_lh_rear_disc_size}}", inspectDto.BreakingSystemTest.Item80.LH_Rear.DiscOrDrumSize, -1)
 			html = strings.Replace(html, "{{brakes_lh_rear_pad_worn}}", inspectDto.BreakingSystemTest.Item80.LH_Rear.PadOrLiningPercentageWorn, -1)
 			html = strings.Replace(html, "{{brakes_lh_rear_caliper}}", inspectDto.BreakingSystemTest.Item80.LH_Rear.CaliperOrCylinder.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{brakes_lh_rear_seats}}", inspectDto.BreakingSystemTest.Item80.LH_Rear.Seats.GetPassOrFailString(), -1)
-			html = strings.Replace(html, "{{brakes_lh_rear}}", inspectDto.BreakingSystemTest.Item80.LH_Rear.Seats.GetPassOrFailString(), -1)
+			html = strings.Replace(html, "{{brakes_lh_rear}}", inspectDto.BreakingSystemTest.Item80.LH_Rear.GetPassOrFailString(), -1)
 
 			html = strings.Replace(html, "{{brakes_rh_rear_manufacturers_spec_size}}", inspectDto.BreakingSystemTest.Item80.RH_Rear.ManufacturersSpecSize, -1)
 			html = strings.Replace(html, "{{brakes_rh_rear_disc_size}}", inspectDto.BreakingSystemTest.Item80.RH_Rear.DiscOrDrumSize, -1)
 			html = strings.Replace(html, "{{brakes_rh_rear_pad_worn}}", inspectDto.BreakingSystemTest.Item80.RH_Rear.PadOrLiningPercentageWorn, -1)
 			html = strings.Replace(html, "{{brakes_rh_rear_caliper}}", inspectDto.BreakingSystemTest.Item80.RH_Rear.CaliperOrCylinder.GetPassOrFailString(), -1)
 			html = strings.Replace(html, "{{brakes_rh_rear_seats}}", inspectDto.BreakingSystemTest.Item80.RH_Rear.Seats.GetPassOrFailString(), -1)
-			html = strings.Replace(html, "{{brakes_rh_rear}}", inspectDto.BreakingSystemTest.Item80.RH_Rear.Seats.GetPassOrFailString(), -1)
+			html = strings.Replace(html, "{{brakes_rh_rear}}", inspectDto.BreakingSystemTest.Item80.RH_Rear.GetPassOrFailString(), -1)
 
 		} else {
 			// Replace placeholders with empty values if section doesn't exist
